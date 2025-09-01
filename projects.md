@@ -1,23 +1,22 @@
 ---
-layout: page
 title: Projects
 permalink: /projects/
 ---
 
-
-Here are a few representative project themes. (Write brief, high‑level summaries. Avoid proprietary details; link only to public repos.)
-
+Below are representative themes. I keep write-ups **high-level** and link only to public materials.
 
 ### Interactive Analytics Dashboards
-Short description of an interactive dashboard project, focusing on the problem it solves and the impact of clear visuals.
-
+Short overview of interactive dashboards for exploration and decision support.  
+**Stack:** R (Shiny, tidyverse), HTML/CSS/JS
 
 ### Machine Learning Workflows
-High‑level summary of a modeling task (e.g., classification/regression/NLP), what was learned, and how you'd extend it.
+Predictive modeling or NLP projects; training, evaluation, and iteration.  
+**Stack:** Python (scikit-learn, xgboost/catboost), R (caret, tidymodels)
 
+### AI & Agents
+Lightweight assistants and retrieval workflows; structured outputs and evaluation.  
+**Stack:** open-source LLMs, embeddings, REST APIs
 
-### Data Storytelling Experiments
-Brief write‑ups where you explored a dataset, built a visualization, or wrote an article explaining insights.
-
-
-> Tip: For each project, include a 2–3 sentence abstract, bullet the stack (R, Python, Shiny, Quarto, etc.), and link to a public demo or GitHub repo if available.
+### Data Storytelling
+Compact writeups with visualizations and explainers.  
+**Stack:** ggplot2, plotly, Quarto/Markdown

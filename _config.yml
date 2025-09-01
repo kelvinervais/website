@@ -1,44 +1,31 @@
-# Site settings
-# If you use username.github.io as the repo name, you can omit baseurl.
-# If you use a project repo (e.g., kelvin-portfolio), set baseurl: "/kelvin-portfolio"
-
 title: "Kelvin Ervais — Data Science & Analytics"
 description: "R & Python, ML modeling, Shiny dashboards, and data storytelling."
+theme: minima
 
 author:
   name: Kelvin Ervais
-  email: kelvin@example.com
+  email: kelvinervais@gmail.com
 
-# Use GitHub Pages-supported theme
-# (minima is built-in and requires no extra setup)
-theme: minima
-
-# Optional: social links for minima header/footer
-# https://github.com/jekyll/minima#social-networks
 minima:
   social_links:
-    - { platform: github, user_url: "https://github.com/kelvinervais" }
-    - { platform: linkedin, user_url: "https://www.linkedin.com/in/your-handle/" }
+    - { platform: github,   user_url: "https://github.com/kelvinervais" }
+    - { platform: linkedin, user_url: "https://www.linkedin.com/in/kelvinervais/" }
 
-# URL settings (update to your actual username and baseurl)
+# Repo is named `website`, so use project-site settings:
 url: "https://kelvinervais.github.io"
-baseurl: "/website"   # <— since your repo is named "website"
+baseurl: "/website"
 
-# Plugins allowed on GitHub Pages
 plugins:
   - jekyll-seo-tag
   - jekyll-feed
 
-# Build settings
 markdown: kramdown
 kramdown:
   input: GFM
 
-# Include custom CSS
 sass:
   style: compressed
 
-# Defaults for pages and posts
 defaults:
   - scope:
       path: ""
