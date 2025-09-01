@@ -25,7 +25,7 @@ social_links:
 
 # URL settings (update to your actual username and baseurl)
 url: "https://kelvinervais.github.io"
-baseurl: "/website"
+baseurl: ""
 
 
 # Plugins allowed on GitHub Pages
