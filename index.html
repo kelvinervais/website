@@ -30,6 +30,10 @@ layout: none
   <style>
     html{scroll-behavior:smooth}
     .glass{backdrop-filter:saturate(180%) blur(8px); background:rgba(255,255,255,0.65)}
+    /* Fallback utilities if Tailwind fails to load: ensure centered layout */
+    .max-w-6xl{max-width:72rem}
+    .mx-auto{margin-left:auto;margin-right:auto}
+    .px-4{padding-left:1rem;padding-right:1rem}
   </style>
 </head>
 <body class="font-sans text-gray-900">
