@@ -3,20 +3,21 @@ title: Projects
 permalink: /projects/
 ---
 
-Below are representative themes. I keep write-ups **high-level** and link only to public materials.
+
+Below are representative themes. High‑level only; link to public materials.
+
 
 ### Interactive Analytics Dashboards
-Short overview of interactive dashboards for exploration and decision support.  
-**Stack:** R (Shiny, tidyverse), HTML/CSS/JS
+R Shiny tools for exploration and decision support with clean, responsive UI and thoughtful defaults.
+
 
 ### Machine Learning Workflows
-Predictive modeling or NLP projects; training, evaluation, and iteration.  
-**Stack:** Python (scikit-learn, xgboost/catboost), R (caret, tidymodels)
+Predictive modeling (XGBoost/CatBoost/GAMs), evaluation, iteration, and readable code.
 
-### AI & Agents
-Lightweight assistants and retrieval workflows; structured outputs and evaluation.  
-**Stack:** open-source LLMs, embeddings, REST APIs
+
+### AI & LLM‑Powered Assistants
+Lightweight RAG pipelines, structured outputs, and evaluation harnesses for analytics assistants.
+
 
 ### Data Storytelling
-Compact writeups with visualizations and explainers.  
-**Stack:** ggplot2, plotly, Quarto/Markdown
+Compact explainers with visuals; ggplot2/Plotly/Quarto.
