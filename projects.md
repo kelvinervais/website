@@ -4,7 +4,7 @@ permalink: /projects/
 ---
 
 
-Below are representative themes. High‑level only; link to public materials.
+High‑level project themes:
 
 
 ### Interactive Analytics Dashboards
@@ -12,7 +12,7 @@ R Shiny tools for exploration and decision support with clean, responsive UI and
 
 
 ### Machine Learning Workflows
-Predictive modeling (XGBoost/CatBoost/GAMs), evaluation, iteration, and readable code.
+Predictive modeling (XGBoost/CatBoost/GAMs), evaluation, iteration, and reproducibility.
 
 
 ### AI & LLM‑Powered Assistants
