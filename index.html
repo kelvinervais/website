@@ -1,72 +1,212 @@
 ---
-<article class="group bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition p-6">
-<h3 class="text-xl font-bold group-hover:text-brand-600">AI & LLM‑Powered Assistants</h3>
-<p class="mt-2 text-gray-600">Building lightweight RAG pipelines, structured output generation, and evaluation harnesses for domain‑specific analytics assistants using open‑source LLMs.</p>
-</article>
-</div>
-</div>
-</section>
+layout: none
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelvin Ervais — Data Science & Analytics</title>
+  <meta name="description" content="Kelvin Ervais — data science & analytics portfolio: R, Python, ML, Shiny, and data storytelling." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="{{ "/favicon.ico" | relative_url }}" />
 
+  <!-- Tailwind (CDN build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter","ui-sans-serif","system-ui","-apple-system","Segoe UI","Roboto","Arial","sans-serif"] },
+          colors: { brand: { 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1' } },
+          boxShadow: { glow: '0 0 0 4px rgb(14 165 233 / 0.15)' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    html{scroll-behavior:smooth}
+    .glass{backdrop-filter:saturate(180%) blur(8px); background:rgba(255,255,255,0.65)}
+  </style>
+</head>
+<body class="font-sans text-gray-900">
+  <!-- Sticky Nav -->
+  <header class="fixed top-0 inset-x-0 z-50">
+    <nav class="glass border-b border-white/40">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="#top" class="font-extrabold tracking-tight">Kelvin Ervais</a>
+        <div class="hidden sm:flex gap-6 text-sm">
+          <a href="#projects" class="hover:text-brand-600">Projects</a>
+          <a href="#skills" class="hover:text-brand-600">Skills</a>
+          <a href="#interests" class="hover:text-brand-600">Interests</a>
+          <a href="#contact" class="hover:text-brand-600">Contact</a>
+          <a href="{{ "/blog/" | relative_url }}" class="hover:text-brand-600">Notes</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-<!-- Skills -->
-<section id="skills" class="py-20 bg-sky-50">
-<div class="max-w-6xl mx-auto px-4">
-<h2 class="text-3xl font-extrabold">Skills Snapshot</h2>
-<div class="mt-6 grid md:grid-cols-3 gap-6 text-sm">
-<div class="bg-white rounded-2xl p-6 ring-1 ring-gray-200">
-<h3 class="font-bold">Data & Modeling</h3>
-<ul class="mt-2 list-disc list-inside text-gray-700">
-<li>Feature engineering, evaluation, reproducibility</li>
-<li>XGBoost, CatBoost, GAMs; NLP basics</li>
-<li>SQL, MongoDB</li>
-</ul>
-</div>
-<div class="bg-white rounded-2xl p-6 ring-1 ring-gray-200">
-<h3 class="font-bold">Apps & Visualization</h3>
-<ul class="mt-2 list-disc list-inside text-gray-700">
-<li>R Shiny dashboards & UI/UX polish</li>
-<li>ggplot2, Plotly; interactive explainers</li>
-<li>GitHub Pages, Quarto</li>
-</ul>
-</div>
-<div class="bg-white rounded-2xl p-6 ring-1 ring-gray-200">
-<h3 class="font-bold">AI & Retrieval</h3>
-<ul class="mt-2 list-disc list-inside text-gray-700">
-<li>RAG patterns; embeddings search</li>
-<li>Structured outputs; evaluation harnesses</li>
-<li>Open‑source model experimentation</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
+  <!-- Hero -->
+  <section id="top" class="pt-28 bg-gradient-to-b from-sky-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Data Science & Analytics</h1>
+        <p class="mt-4 text-lg text-gray-600">I turn complex data into clear, actionable insights using <strong>R</strong>, <strong>Python</strong>, and modern ML/LLM workflows. I love building interactive dashboards, practical models, and elegant data stories.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="inline-flex items-center px-5 py-3 rounded-xl bg-brand-600 text-white shadow-glow hover:bg-brand-700">See Projects</a>
+          <a href="mailto:kelvinervais@gmail.com" class="inline-flex items-center px-5 py-3 rounded-xl border border-brand-600 text-brand-700 hover:bg-brand-50">Email Me</a>
+        </div>
+        <p class="mt-3 text-sm text-gray-500">Baseball analytics is a personal interest area—blending statistics, visualization, and strategy.</p>
+      </div>
+      <div class="relative">
+        <div class="absolute -inset-6 bg-gradient-to-tr from-brand-600/10 to-sky-400/10 rounded-3xl blur-2xl"></div>
+        <div class="relative bg-white rounded-3xl shadow-xl ring-1 ring-gray-100 p-6">
+          <div class="grid grid-cols-3 gap-3 text-center text-xs">
+            <div class="p-4 rounded-xl bg-sky-50">
+              <div class="text-2xl font-extrabold">R</div>
+              <div class="mt-1 text-gray-600">Shiny · tidyverse</div>
+            </div>
+            <div class="p-4 rounded-xl bg-sky-50">
+              <div class="text-2xl font-extrabold">Py</div>
+              <div class="mt-1 text-gray-600">pandas · sklearn</div>
+            </div>
+            <div class="p-4 rounded-xl bg-sky-50">
+              <div class="text-2xl font-extrabold">AI</div>
+              <div class="mt-1 text-gray-600">RAG · LLM eval</div>
+            </div>
+            <div class="p-4 rounded-xl bg-sky-50">
+              <div class="text-2xl font-extrabold">Viz</div>
+              <div class="mt-1 text-gray-600">ggplot2 · Plotly</div>
+            </div>
+            <div class="p-4 rounded-xl bg-sky-50">
+              <div class="text-2xl font-extrabold">DB</div>
+              <div class="mt-1 text-gray-600">SQL · Mongo</div>
+            </div>
+            <div class="p-4 rounded-xl bg-sky-50">
+              <div class="text-2xl font-extrabold">Ops</div>
+              <div class="mt-1 text-gray-600">GitHub Pages</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- About -->
+  <section id="about" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-10">
+      <div class="md:col-span-2">
+        <h2 class="text-3xl font-extrabold">About</h2>
+        <p class="mt-4 text-gray-700 leading-7">
+          I’m Kelvin Ervais, a data science & analytics practitioner focused on practical tooling, interactive dashboards, and clear communication. 
+          <strong>Currently</strong> working as an Analyst in Major League Baseball, where I use R, Python, SQL, and visualization to support decision-making—without discussing any proprietary projects.
+        </p>
+        <p class="mt-3 text-gray-700 leading-7">
+          <strong>Education:</strong> University of California, Berkeley (’22). I care about reproducible analytics, readable code, and shipping useful artifacts.
+        </p>
+      </div>
+      <aside class="space-y-3">
+        <div class="bg-sky-50 rounded-2xl p-4">
+          <div class="text-xs uppercase tracking-wide text-gray-500">Toolkit</div>
+          <div class="mt-2 text-sm text-gray-800">R (Shiny, tidyverse) · Python (pandas, scikit-learn) · SQL · MongoDB · ggplot2/Plotly · GitHub Pages</div>
+        </div>
+        <div class="bg-sky-50 rounded-2xl p-4">
+          <div class="text-xs uppercase tracking-wide text-gray-500">Currently reading</div>
+          <div class="mt-2 text-sm text-gray-800">LLM/RAG eval methods · sports analytics research notes</div>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-<!-- Interests -->
-<section id="interests" class="py-20 bg-white">
-<div class="max-w-6xl mx-auto px-4">
-<h2 class="text-3xl font-extrabold">Interests</h2>
-<p class="mt-3 text-gray-700">I’m fascinated by the intersection of statistics, visualization, and strategy in <strong>baseball analytics</strong>. Beyond sports, I closely follow developments in AI/LLMs, open‑source tooling, and modern data engineering practices. These areas push the boundaries of what’s possible with data and keep me learning continuously.</p>
-</div>
-</section>
+  <!-- Projects -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">Highlighted Projects</h2>
+      <p class="mt-2 text-gray-600">High-level overviews; links go to public materials where available.</p>
 
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <article class="group bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition p-6">
+          <h3 class="text-xl font-bold group-hover:text-brand-600">Interactive Analytics Dashboards</h3>
+          <p class="mt-2 text-gray-600">R Shiny tools for exploration and decision support with clean, responsive UI and thoughtful defaults.</p>
+          <p class="mt-3 text-xs text-gray-500">Stack: R (Shiny, tidyverse), HTML/CSS/JS</p>
+        </article>
+        <article class="group bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition p-6">
+          <h3 class="text-xl font-bold group-hover:text-brand-600">Machine Learning Workflows</h3>
+          <p class="mt-2 text-gray-600">Predictive modeling (XGBoost/CatBoost/GAMs), evaluation, and iteration with readable, reproducible code.</p>
+          <p class="mt-3 text-xs text-gray-500">Stack: Python (pandas, scikit-learn), R (tidymodels)</p>
+        </article>
+        <article class="group bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition p-6">
+          <h3 class="text-xl font-bold group-hover:text-brand-600">AI & LLM-Powered Assistants</h3>
+          <p class="mt-2 text-gray-600">Lightweight RAG pipelines, structured outputs, and evaluation harnesses for analytics assistants.</p>
+          <p class="mt-3 text-xs text-gray-500">Stack: open-source LLMs, embeddings, REST APIs</p>
+        </article>
+      </div>
 
-<!-- Contact -->
-<section id="contact" class="py-20 bg-gradient-to-t from-sky-50 to-white">
-<div class="max-w-6xl mx-auto px-4 text-center">
-<h2 class="text-3xl font-extrabold">Let’s connect</h2>
-<p class="mt-2 text-gray-600">Open to collaborating on data‑driven tools, dashboards, or ML projects. Always happy to talk shop about analytics, reproducibility, and new approaches.</p>
-<div class="mt-6 flex justify-center gap-4">
-<a href="mailto:kelvinervais@gmail.com" class="px-6 py-3 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-glow">Email</a>
-<a href="https://github.com/kelvinervais" target="_blank" class="px-6 py-3 rounded-xl ring-1 ring-brand-600 text-brand-700 hover:bg-brand-50">GitHub</a>
-<a href="https://www.linkedin.com/in/kelvinervais/" target="_blank" class="px-6 py-3 rounded-xl ring-1 ring-brand-600 text-brand-700 hover:bg-brand-50">LinkedIn</a>
-</div>
-</div>
-</section>
+      <div class="mt-8">
+        <a class="inline-flex items-center gap-2 text-brand-700 hover:underline" href="{{ "/projects/" | relative_url }}">View project themes →</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Skills -->
+  <section id="skills" class="py-20 bg-sky-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">Skills Snapshot</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6 text-sm">
+        <div class="bg-white rounded-2xl p-6 ring-1 ring-gray-200">
+          <h3 class="font-bold">Data & Modeling</h3>
+          <ul class="mt-2 list-disc list-inside text-gray-700">
+            <li>Feature engineering, evaluation, honest metrics</li>
+            <li>XGBoost, CatBoost, GAMs; NLP basics</li>
+            <li>SQL, MongoDB</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 ring-1 ring-gray-200">
+          <h3 class="font-bold">Apps & Visualization</h3>
+          <ul class="mt-2 list-disc list-inside text-gray-700">
+            <li>R Shiny dashboards & UI/UX polish</li>
+            <li>ggplot2, Plotly; interactive explainers</li>
+            <li>GitHub Pages, Quarto</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 ring-1 ring-gray-200">
+          <h3 class="font-bold">AI & Retrieval</h3>
+          <ul class="mt-2 list-disc list-inside text-gray-700">
+            <li>RAG patterns; embeddings search</li>
+            <li>Structured outputs; evaluation harnesses</li>
+            <li>Open-source model experimentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer class="py-8 text-center text-sm text-gray-500">
-© <script>document.write(new Date().getFullYear())</script> Kelvin Ervais • Built with Jekyll + Tailwind
-</footer>
+  <!-- Interests -->
+  <section id="interests" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">Interests</h2>
+      <p class="mt-3 text-gray-700">I’m interested in the broader field of <strong>baseball analytics</strong>—a rich intersection of data, modeling, visualization, and strategy. I also follow open-source AI, reproducible analytics, and modern data engineering practices.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-gradient-to-t from-sky-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-extrabold">Let’s connect</h2>
+      <p class="mt-2 text-gray-600">I’m open to collaborating on data-driven tools, dashboards, or ML projects.</p>
+      <div class="mt-6 flex justify-center gap-4">
+        <a href="mailto:kelvinervais@gmail.com" class="px-6 py-3 rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-glow">Email</a>
+        <a href="https://github.com/kelvinervais" target="_blank" class="px-6 py-3 rounded-xl ring-1 ring-brand-600 text-brand-700 hover:bg-brand-50">GitHub</a>
+        <a href="https://www.linkedin.com/in/kelvinervais/" target="_blank" class="px-6 py-3 rounded-xl ring-1 ring-brand-600 text-brand-700 hover:bg-brand-50">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 text-center text-sm text-gray-500">
+    © <script>document.write(new Date().getFullYear())</script> Kelvin Ervais • Built with Jekyll + Tailwind
+  </footer>
 </body>
 </html>
