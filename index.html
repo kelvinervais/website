@@ -235,10 +235,16 @@ layout: none
           <p class="mt-3 text-xs text-gray-500">Stack: R (Shiny, tidyverse), embeddings</p>
         </article>
         <article class="group bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition-all duration-300 p-6 scale-hover slide-up">
-          <h3 class="text-xl font-bold group-hover:text-brand-600 transition-colors">FlickFlow — Movie Recs</h3>
-          <p class="mt-2 text-gray-600">Hybrid recommender: content-based for new users, then a custom Counts & Means CF as interactions grow.</p>
-          <p class="mt-2 text-gray-600">MongoDB for interactions; TMDB APIs for metadata; mobile-friendly swipe UI in Shiny.</p>
-          <p class="mt-3 text-xs text-gray-500">Stack: R (Shiny), MongoDB, APIs</p>
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold group-hover:text-brand-600 transition-colors">FlickFlow — Movie Recs</h3>
+            <a href="https://kelvinervais.shinyapps.io/flickflow/" target="_blank" 
+               class="px-3 py-1 text-xs bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-all hover:scale-105">
+              Live Demo
+            </a>
+          </div>
+          <p class="mt-2 text-gray-600">Tinder-style movie discovery app with AI-powered recommendations. Swipe right to like, left to pass—algorithms learn your taste.</p>
+          <p class="mt-2 text-gray-600">Features secure authentication, collaborative filtering, and beautiful glassmorphism UI. Switches to advanced ML after 25 swipes.</p>
+          <p class="mt-3 text-xs text-gray-500">Stack: R (Shiny), MongoDB, TMDb API, Modern CSS</p>
         </article>
         <article class="group bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition-all duration-300 p-6 scale-hover slide-up">
           <h3 class="text-xl font-bold group-hover:text-brand-600 transition-colors">Stock Portfolio Tracker</h3>
