@@ -3,9 +3,9 @@ title: About
 permalink: /about/
 ---
 
-I’m **Kelvin Ervais**, an analyst who enjoys building helpful, approachable data products. I like taking messy data and turning it into clear visuals, practical models, and interactive tools people actually use.
+I'm **Kelvin Ervais**, an analyst who enjoys building helpful, approachable data products. I like taking messy data and turning it into clear visuals, practical models, and interactive tools people actually use.
 
-I currently work with the **Seattle Mariners** on organizational analytics projects, focusing on statistical modeling, visualization, and decision support—while keeping proprietary work private. Prior experience includes the **ACLU** (analytics intern) and the **New York Mets** (systems video associate).
+I currently work with the **Seattle Mariners** on organizational analytics projects, focusing on statistical modeling, visualization, and decision support. Previously worked in analytics at Cal Baseball. Prior experience includes the **ACLU** (analytics intern) and the **New York Mets** (systems video associate).
 
 **Education**
 - M.S. Analytics (in progress), Georgia Tech — Computational Data Analytics  
