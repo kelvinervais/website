@@ -24,6 +24,8 @@ Selected independent projects. Each write‑up includes the problem, approach, k
 - Challenges & learnings: Tackled item/user cold‑start with popularity‑adjusted priors; tuned threshold to avoid premature CF switch.
 - Stack: R (Shiny), MongoDB, TMDB APIs
 
+Read more: [FlickFlow report →]({{ '/flickflow/' | relative_url }})
+
 ## Stock Portfolio Tracker — Interactive Analytics Platform
 
 - Problem: Retail investors need simple, transparent analytics for “what‑if” decisions.

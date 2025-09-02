@@ -460,10 +460,16 @@ layout: none
         <article class="group signature-card bg-white rounded-2xl ring-1 ring-gray-200 hover:shadow-xl transition-all duration-300 p-6 scale-hover slide-up">
           <div class="flex justify-between items-start mb-3">
             <h3 class="text-xl font-bold group-hover:text-brand-600 transition-colors">FlickFlow — Movie Recs</h3>
-            <a href="https://kelvinervais.shinyapps.io/flickflow/" target="_blank" 
-               class="px-3 py-1 text-xs bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-all hover:scale-105">
-              Live Demo
-            </a>
+            <div class="flex items-center gap-2">
+              <a href="https://kelvinervais.shinyapps.io/flickflow/" target="_blank" 
+                 class="px-3 py-1 text-xs bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-all hover:scale-105">
+                Live Demo
+              </a>
+              <a href="{{ '/flickflow/' | relative_url }}" 
+                 class="px-3 py-1 text-xs bg-white text-brand-700 rounded-full ring-1 ring-brand-200 hover:bg-sky-50 transition-all hover:scale-105">
+                Report
+              </a>
+            </div>
           </div>
           <div class="text-xs uppercase tracking-wide text-purple-600 mb-2 font-semibold">🎬 Challenge: Making ML recommendations fun</div>
           <p class="mt-2 text-gray-600">Reimagined movie discovery with a Tinder-style interface. The breakthrough: switching from simple content filtering to collaborative filtering after 25 swipes, dramatically improving relevance.</p>
@@ -776,6 +782,17 @@ layout: none
       document.querySelectorAll('.slide-up').forEach((el, index) => {
         el.style.animationDelay = `${index * 0.1}s`;
       });
+
+      // Fix any accidentally escaped markup in the Process section
+      const processSection = document.querySelector('#process');
+      if (processSection) {
+        const html = processSection.innerHTML;
+        if (html.includes('\\n') || html.includes('\\"')) {
+          processSection.innerHTML = html
+            .replaceAll('\\"', '"')
+            .replaceAll('\\n', '\n');
+        }
+      }
     });
 
     // Smooth scroll for navigation links
