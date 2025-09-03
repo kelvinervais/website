@@ -266,7 +266,6 @@ layout: none
           <a href="#process" class="hover:text-brand-600 transition-colors">Process</a>
           <a href="#interests" class="hover:text-brand-600 transition-colors">Interests</a>
           <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
-          <a href="{{ "/blog/" | relative_url }}" class="hover:text-brand-600 transition-colors">Blog</a>
         </div>
         <button class="sm:hidden p-2 rounded-lg hover:bg-white/20 transition-colors" onclick="toggleMobileMenu()" aria-label="Toggle menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,13 +283,12 @@ layout: none
         <a href="#process" class="hover:text-brand-600 transition-colors" onclick="toggleMobileMenu()">Process</a>
         <a href="#interests" class="hover:text-brand-600 transition-colors" onclick="toggleMobileMenu()">Interests</a>
         <a href="#contact" class="hover:text-brand-600 transition-colors" onclick="toggleMobileMenu()">Contact</a>
-        <a href="{{ "/blog/" | relative_url }}" class="hover:text-brand-600 transition-colors" onclick="toggleMobileMenu()">Blog</a>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="top" class="relative pt-28 hero-gradient min-h-screen flex items-center overflow-hidden">
+  <section id="top" class="relative pt-16 hero-gradient min-h-[60vh] flex items-center overflow-hidden">
     <!-- Animated background elements -->
     <div class="absolute inset-0 data-grid opacity-20"></div>
     <div class="absolute top-20 left-10 data-point" style="--bar-height: 30px;"></div>
@@ -301,10 +299,9 @@ layout: none
     <div class="max-w-6xl mx-auto px-4 py-16 grid gap-10 items-center relative z-10">
       <div class="fade-in text-center">
         <div class="mb-6">
-          <span class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium bounce-in">🎯 Data Science Portfolio</span>
         </div>
         <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-white mb-6">
-          Data Science,<br/>
+          Data Science and Analytics<br/>
           <span class="text-white">Built for Decisions</span>
         </h1>
         <p class="mt-4 text-xl text-white/90 slide-up max-w-3xl mx-auto leading-relaxed">Seattle-based analyst who builds tools people actually use. <strong>R</strong>, <strong>Python</strong>, ML, and <strong>Shiny</strong> apps focused on clarity, speed, and usability.</p>
@@ -328,7 +325,7 @@ layout: none
       <div class="md:col-span-2">
         <h2 class="text-3xl font-extrabold">About</h2>
         <p class="mt-4 text-gray-700 leading-7">
-          I'm Kelvin—an analyst who builds helpful, approachable data products. I'm currently at the <strong>Seattle Mariners</strong>, applying statistical modeling, visualization, and practical automation to support decisions. Previously worked in analytics at the ACLU, NY Mets, and Cal Baseball.
+          I'm Kelvin—an analyst who builds helpful, approachable data products. I'm currently at the <strong>Seattle Mariners</strong>, applying statistical modeling, visualization, and practical automation to support decisions. Previously worked in analytics at the ACLU, NY Mets, and Cal Baseball.  Outside of work you can find me reading, golfing, or on the mountain snowboarding.
         </p>
         <p class="mt-3 text-gray-700 leading-7">
           <strong>Education:</strong> M.S. Analytics (in progress), Georgia Tech — Computational Data Analytics.  <br/>
@@ -364,8 +361,8 @@ layout: none
           </div>
           <div class="text-gray-600">Analyst, Baseball Projects • Seattle, WA</div>
           <ul class="mt-3 list-disc list-inside text-gray-700">
-            <li>Applied data science and statistical modeling to organizational analytics projects.</li>
             <li>Built and maintained interactive dashboards and <strong>R Shiny</strong> apps.</li>
+            <li>Applied data science and statistical modeling to organizational analytics projects.</li>
             <li>Worked with large-scale datasets; modeling, visualization, and validation.</li>
           </ul>
         </div>
@@ -429,7 +426,7 @@ layout: none
             </div>
           </div>
           <div class="text-xs uppercase tracking-wide text-purple-600 mb-2 font-semibold">🎬 Challenge: Making ML recommendations fun</div>
-          <p class="mt-2 text-gray-600">Reimagined movie discovery with a Tinder-style interface. Switches from simple content filtering to collaborative filtering after 25 swipes to improve recommendation relevance.</p>
+          <p class="mt-2 text-gray-600">Reimagined movie discovery with a dating app style interface. Switches from simple content filtering to collaborative filtering after 25 swipes to improve recommendation relevance.</p>
           <div class="mt-3 text-xs text-gray-500">
             <span>Stack: R (Shiny), MongoDB, TMDb API</span>
           </div>
@@ -489,7 +486,7 @@ layout: none
               <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center text-white text-xl font-bold shrink-0">3</div>
               <div>
                 <h3 class="font-bold text-lg mb-2">Performance First</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">If it takes more than 3 seconds to load, users won't wait. I optimize for speed from the start—caching, smart data structures, and knowing what NOT to compute.</p>
+                <p class="text-gray-600 text-sm leading-relaxed">Good tools should feel responsive. I use caching and streamlined logic to keep load times short and the experience simple..</p>
               </div>
             </div>
           </div>
