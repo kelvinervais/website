@@ -969,6 +969,10 @@
 
     /* Responsive styles */
     @media (max-width: 1024px) {
+      /* Disable snapping on mobile/tablet */
+      .scroll-container { scroll-snap-type: none; }
+      .snap-point { display: none; }
+
       .card-wrapper {
         position: relative;
         left: auto;
@@ -980,12 +984,15 @@
       .work-panel,
       .interests-panel,
       .connect-panel {
-        position: relative;
-        width: 100%;
+        position: relative !important;
+        right: auto !important;
+        width: 100% !important;
+        height: auto !important;
         opacity: 1 !important;
         transform: none !important;
-        padding: 20px;
-        margin-top: 40px;
+        pointer-events: auto !important;
+        padding: 20px !important;
+        margin-top: 40px !important;
       }
 
       .sticky-container {
@@ -1002,6 +1009,8 @@
 
       /* Hide scroll indicator on mobile */
       #scrollIndicator { display: none; }
+      /* Hide side nav on tablet/phone */
+      .side-nav { display: none; }
     }
 
     @media (max-width: 768px) {
@@ -1575,6 +1584,8 @@
     const connectPanel = document.getElementById('connectPanel');
 
     function handleScroll() {
+      // Early exit for mobile/tablet; CSS handles layout
+      if (window.innerWidth <= 1024) return;
       const scrollTop = scrollContainer.scrollTop;
       const viewportHeight = window.innerHeight;
 
