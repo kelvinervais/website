@@ -1036,12 +1036,12 @@
 
       .timeline-content {
         max-width: 100%;
-        padding-left: 72px; /* gutter for rail + dots */
+        padding-left: 48px; /* gutter for rail only */
         padding-right: 16px;
       }
 
       .timeline-line {
-        left: 36px; /* match dot center */
+        left: 24px; /* rail position */
         transform: none;
         width: 2px;
       }
@@ -1052,11 +1052,9 @@
         margin-bottom: 28px;
       }
 
-      .timeline-item .timeline-dot {
-        position: absolute;
-        left: 36px; /* align with rail */
-        transform: translateX(-50%);
-      }
+      /* Hide dots entirely on mobile */
+      .timeline-item .timeline-dot,
+      .timeline-dot { display: none !important; }
 
       .timeline-item .timeline-spacer { display: none; }
 
@@ -1079,10 +1077,10 @@
 
     /* Extra-tight layout for small phones */
     @media (max-width: 480px) {
-      .timeline-content { padding-left: 64px !important; padding-right: 12px !important; }
-      .timeline-line { left: 32px !important; width: 2px !important; }
+      .timeline-content { padding-left: 44px !important; padding-right: 12px !important; }
+      .timeline-line { left: 22px !important; width: 2px !important; }
       .timeline-item { gap: 10px !important; margin-bottom: 22px !important; }
-      .timeline-dot { width: 14px !important; height: 14px !important; border-width: 2px !important; left: 32px !important; transform: translateX(-50%) !important; }
+      .timeline-dot { display: none !important; }
       .timeline-card { padding: 10px !important; border-radius: 10px !important; }
       .timeline-logo { width: 36px !important; height: 36px !important; }
       .timeline-title { font-size: 15px !important; }
