@@ -999,6 +999,9 @@
         min-height: 100vh;
         padding: 40px 0;
       }
+
+      /* Hide scroll indicator on mobile */
+      #scrollIndicator { display: none; }
     }
 
     @media (max-width: 768px) {
@@ -1699,10 +1702,37 @@
       }
     }
 
-    scrollContainer.addEventListener('scroll', handleScroll);
+    // Responsive: disable complex animation on tablets/phones
+    const mq = window.matchMedia('(max-width: 1024px)');
 
-    // Initial call to set starting position
-    handleScroll();
+    function setMobileDefaults() {
+      // Stack everything, all visible
+      cardWrapper.style.transform = 'none'; cardWrapper.style.opacity = '1';
+      timelineWrapper.style.opacity = '1'; timelineWrapper.style.transform = 'none'; timelineWrapper.style.pointerEvents = 'auto';
+      deckWrapper.style.opacity = '1'; deckWrapper.style.transform = 'none'; deckWrapper.style.pointerEvents = 'auto';
+      if (workPanel) { workPanel.style.opacity = '1'; workPanel.style.transform = 'none'; workPanel.style.pointerEvents = 'auto'; }
+      if (interestsPanel) { interestsPanel.style.opacity = '1'; interestsPanel.style.transform = 'none'; interestsPanel.style.pointerEvents = 'auto'; interestsPanel.style.visibility = 'visible'; }
+      if (connectPanel) { connectPanel.style.opacity = '1'; connectPanel.style.transform = 'none'; connectPanel.style.pointerEvents = 'auto'; }
+    }
+
+    function updateMode() {
+      if (mq.matches) {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+        setMobileDefaults();
+      } else {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+        scrollContainer.addEventListener('scroll', handleScroll);
+        handleScroll();
+      }
+    }
+
+    // Setup on load and when changed
+    updateMode();
+    if (mq.addEventListener) {
+      mq.addEventListener('change', updateMode);
+    } else if (mq.addListener) {
+      mq.addListener(updateMode);
+    }
 
     // Card deck carousel
     let currentCardIndex = 0;
