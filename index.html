@@ -1036,44 +1036,34 @@
 
       .timeline-content {
         max-width: 100%;
-        padding: 0 16px;
+        padding-left: 72px; /* gutter for rail + dots */
+        padding-right: 16px;
       }
 
       .timeline-line {
-        left: 22px;
+        left: 36px; /* match dot center */
         transform: none;
         width: 2px;
       }
 
       .timeline-item {
-        grid-template-columns: auto 1fr;
+        display: block;
         gap: 12px;
         margin-bottom: 28px;
       }
 
-      .timeline-item.left .timeline-card,
-      .timeline-item.right .timeline-card {
-        grid-column: 2;
-        text-align: left;
+      .timeline-item .timeline-dot {
+        position: absolute;
+        left: 36px; /* align with rail */
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
 
-      .timeline-item.left .timeline-dot,
-      .timeline-item.right .timeline-dot {
-        grid-column: 1;
-      }
+      .timeline-item .timeline-spacer { display: none; }
 
-      .timeline-item.left .timeline-spacer,
-      .timeline-item.right .timeline-spacer {
-        display: none;
-      }
-
-      .timeline-item.left .timeline-card {
-        flex-direction: row;
-      }
-
-      .timeline-item.left .timeline-info {
-        text-align: left;
-      }
+      .timeline-item .timeline-card { text-align: left; width: 100%; }
+      .timeline-item.left .timeline-card { flex-direction: row; }
+      .timeline-item.left .timeline-info { text-align: left; }
 
       .timeline-detail {
         padding: 24px 16px;
@@ -1090,10 +1080,10 @@
 
     /* Extra-tight layout for small phones */
     @media (max-width: 480px) {
-      .timeline-content { padding-left: 56px !important; padding-right: 12px !important; }
-      .timeline-line { left: 28px !important; width: 2px !important; }
+      .timeline-content { padding-left: 64px !important; padding-right: 12px !important; }
+      .timeline-line { left: 32px !important; width: 2px !important; }
       .timeline-item { gap: 10px !important; margin-bottom: 22px !important; }
-      .timeline-dot { width: 14px !important; height: 14px !important; border-width: 2px !important; }
+      .timeline-dot { width: 14px !important; height: 14px !important; border-width: 2px !important; left: 32px !important; }
       .timeline-card { padding: 10px !important; border-radius: 10px !important; }
       .timeline-logo { width: 36px !important; height: 36px !important; }
       .timeline-title { font-size: 15px !important; }
