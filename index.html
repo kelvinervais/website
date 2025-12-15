@@ -72,39 +72,125 @@
     body {
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     }
 
     /* Scroll container */
     .scroll-container {
       height: 100vh;
       overflow-y: scroll;
-      scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
     }
 
-    .scroll-section {
-      height: 100vh;
-      scroll-snap-align: start;
+    /* Multi-stage transition section */
+    .multi-stage-section {
+      height: 1000vh;
       position: relative;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 200% 200%;
+      animation: gradient-shift 15s ease infinite;
+    }
+
+    /* Generic full-screen scroll sections */
+    .site-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      scroll-snap-align: start;
+      padding: 60px 0;
+    }
+
+    /* Fade/slide animation for inline sections */
+    .section-fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.4s linear, transform 0.4s linear;
+      will-change: opacity, transform;
+    }
+    .section-fade.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sticky-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
-    .scroll-section.split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      padding: 60px;
+    .snap-point {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      pointer-events: none;
+      scroll-snap-align: start;
     }
 
-    @media (max-width: 1024px) {
-      .scroll-section.split {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 40px 20px;
-      }
+    .snap-point-1 { top: 0; }
+    .snap-point-2 { top: 200vh; }
+    .snap-point-3 { top: 800vh; }
+
+    .card-wrapper {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.1s linear;
+      z-index: 10;
     }
+
+    .timeline-wrapper {
+      position: absolute;
+      right: 0;
+      width: 50%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.1s linear, transform 0.1s linear;
+      padding: 40px;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .deck-wrapper {
+      position: absolute;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.1s linear, transform 0.1s linear;
+      padding: 40px;
+      pointer-events: none;
+    }
+
+    /* (removed) .work-wrapper and .interests-wrapper were overlay-only */
+
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(14px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
 
     /* Baseball card styles */
     .card-container {
@@ -260,13 +346,6 @@
       transform: translateX(0);
     }
 
-    /* Gradient background for section 1 */
-    .hero-gradient {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      background-size: 200% 200%;
-      animation: gradient-shift 15s ease infinite;
-    }
-
     @keyframes gradient-shift {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -279,6 +358,8 @@
       left: 50%;
       transform: translateX(-50%);
       animation: bounce-slow 2s infinite;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
     }
 
     @keyframes bounce-slow {
@@ -306,27 +387,14 @@
     }
 
     /* Timeline styles */
-    .timeline-section {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      background-size: 200% 200%;
-      animation: gradient-shift 15s ease infinite;
-    }
-
-    .timeline-side {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
     .timeline-header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .timeline-content {
       width: 100%;
-      max-width: 700px;
+      max-width: 550px;
       position: relative;
     }
 
@@ -339,22 +407,27 @@
       width: 3px;
       background: rgba(255, 255, 255, 0.3);
       border-radius: 2px;
+      pointer-events: none;
     }
 
     .timeline-items {
       position: relative;
       padding: 10px 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .timeline-item {
       position: relative;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 25px;
+      gap: 20px;
+      min-height: 80px;
+      isolation: isolate;
     }
 
     .timeline-item:last-child {
@@ -373,6 +446,8 @@
     .timeline-item.left .timeline-card {
       grid-column: 1;
       text-align: right;
+      justify-self: end;
+      width: 100%;
     }
 
     .timeline-item.left .timeline-dot {
@@ -386,6 +461,7 @@
     /* Right side items */
     .timeline-item.right .timeline-spacer {
       grid-column: 1;
+      pointer-events: none;
     }
 
     .timeline-item.right .timeline-dot {
@@ -395,10 +471,13 @@
     .timeline-item.right .timeline-card {
       grid-column: 3;
       text-align: left;
+      justify-self: start;
+      width: 100%;
     }
 
     .timeline-spacer {
       width: 100%;
+      pointer-events: none;
     }
 
     .timeline-dot {
@@ -433,12 +512,14 @@
     .timeline-card {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 12px;
-      padding: 16px;
+      padding: 14px 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       transition: all 0.3s ease;
       display: flex;
-      gap: 14px;
+      gap: 12px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .timeline-item.left .timeline-card {
@@ -446,14 +527,14 @@
     }
 
     .timeline-logo {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 24px;
       flex-shrink: 0;
     }
 
@@ -474,19 +555,19 @@
     .timeline-title {
       font-weight: 700;
       color: #1e293b;
-      font-size: 16px;
-      margin-bottom: 3px;
+      font-size: 15px;
+      margin-bottom: 2px;
     }
 
     .timeline-subtitle {
-      font-size: 12px;
+      font-size: 11px;
       color: #64748b;
       line-height: 1.3;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .timeline-dates {
-      font-size: 10px;
+      font-size: 9px;
       color: #94a3b8;
       font-weight: 600;
       text-transform: uppercase;
@@ -597,8 +678,296 @@
       font-weight: 600;
     }
 
-    /* Responsive timeline */
+    /* Card deck styles */
+    .deck-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .deck-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .deck-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .deck-carousel:active {
+      cursor: grabbing;
+    }
+
+    .deck-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .deck-card {
+      position: absolute;
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+      opacity: 0;
+      transform: translateX(100px) scale(0.85);
+      pointer-events: none;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .deck-card.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: all;
+      z-index: 3;
+    }
+
+    .deck-card.prev {
+      opacity: 0.4;
+      transform: translateX(-100px) scale(0.85);
+      z-index: 1;
+    }
+
+    .deck-card.next {
+      opacity: 0.4;
+      transform: translateX(100px) scale(0.85);
+      z-index: 1;
+    }
+
+    .deck-nav {
+      display: flex;
+      gap: 16px;
+      margin-top: 30px;
+      align-items: center;
+    }
+
+    .deck-nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      color: white;
+      font-size: 20px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .deck-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .deck-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .deck-indicators {
+      display: flex;
+      gap: 10px;
+    }
+
+    .deck-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .deck-indicator.active {
+      background: white;
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    /* Vertical side navbar */
+    .side-nav {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+    .side-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .side-nav a:hover { 
+      transform: translateX(2px);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+    .side-nav a.active {
+      background: white;
+      color: #0C2C56;
+      border-color: white;
+    }
     @media (max-width: 768px) {
+      .side-nav { display: none; }
+    }
+
+
+    .project-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .project-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+
+    .project-category {
+      font-size: 13px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .project-problem {
+      font-size: 14px;
+      color: #0ea5e9;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .project-description {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-stack {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      padding: 12px;
+      background: rgba(241, 245, 249, 0.6);
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .project-stack strong {
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .project-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      transform: translateX(4px);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1024px) {
+      .card-wrapper {
+        position: relative;
+        left: auto;
+        transform: none !important;
+      }
+
+      .timeline-wrapper,
+      .deck-wrapper {
+        position: relative;
+        width: 100%;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 20px;
+        margin-top: 40px;
+      }
+
+      .sticky-container {
+        flex-direction: column;
+        height: auto;
+        position: relative;
+      }
+
+      .multi-stage-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 40px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .deck-carousel {
+        max-width: 100%;
+        height: 500px;
+      }
+
+      .deck-card {
+        max-width: 90%;
+        padding: 30px;
+      }
+
+      .deck-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
       .timeline-content {
         max-width: 100%;
         padding: 0 20px;
@@ -639,29 +1008,6 @@
         text-align: left;
       }
 
-      .timeline-card {
-        padding: 16px;
-        gap: 12px;
-      }
-
-      .timeline-logo {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
-      }
-
-      .timeline-title {
-        font-size: 16px;
-      }
-
-      .timeline-subtitle {
-        font-size: 12px;
-      }
-
-      .timeline-dates {
-        font-size: 10px;
-      }
-
       .timeline-detail {
         padding: 30px 20px;
       }
@@ -669,232 +1015,477 @@
   </style>
 </head>
 <body>
-  <div class="scroll-container">
+  <div class="scroll-container" id="scrollContainer">
 
-    <!-- Section 1: Baseball Card -->
-    <section class="scroll-section hero-gradient">
-      <div class="card-container" onclick="flipCard()">
-        <div class="card" id="baseballCard">
+    <!-- Multi-stage Transition Section -->
+    <section class="multi-stage-section">
+      <!-- Snap points for scroll-snap -->
+      <div class="snap-point snap-point-1" id="home"></div>
+      <div class="snap-point snap-point-2" id="journey"></div>
+      <div class="snap-point snap-point-3" id="projects"></div>
 
-          <!-- Front of Card -->
-          <div class="card-face card-front">
-            <div class="card-border"></div>
+      <div class="sticky-container">
 
-            <div class="card-header">
-              <div class="font-display text-white text-4xl tracking-wider">KELVIN ERVAIS</div>
-              <div class="text-teal-300 text-xs font-bold uppercase tracking-widest mt-1">Analyst, Baseball Projects</div>
-              <div class="text-white/50 text-xs uppercase tracking-widest mt-2">Seattle Mariners</div>
-            </div>
+        <!-- Baseball Card (starts centered, moves left) -->
+        <div class="card-wrapper" id="cardWrapper">
+          <div class="card-container" onclick="flipCard()">
+            <div class="card" id="baseballCard">
 
-            <div class="flex flex-col items-center justify-center h-full px-8 -mt-24">
-              <img src="headshot.jpeg" alt="Kelvin Ervais" class="player-photo">
+              <!-- Front of Card -->
+              <div class="card-face card-front">
+                <div class="card-border"></div>
 
-              <div class="mt-6 text-center">
-                <div class="text-white/95 text-xl leading-relaxed max-w-md px-4 font-medium">
-                  Building data products used daily by MLB front offices
+                <div class="card-header">
+                  <div class="font-display text-white text-4xl tracking-wider">KELVIN ERVAIS</div>
+                  <div class="text-teal-300 text-xs font-bold uppercase tracking-widest mt-1">Analyst, Baseball Projects</div>
+                  <div class="text-white/50 text-xs uppercase tracking-widest mt-2">Seattle Mariners</div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center h-full px-8 -mt-24">
+                  <img src="headshot.jpeg" alt="Kelvin Ervais" class="player-photo">
+
+                  <div class="mt-6 text-center">
+                    <div class="text-white/95 text-xl leading-relaxed max-w-md px-4 font-medium">
+                      Building data products used daily by MLB front offices
+                    </div>
+                  </div>
+                </div>
+
+                <div class="absolute bottom-6 left-0 right-0 text-center">
+                  <button class="card-cta">View Skills</button>
                 </div>
               </div>
-            </div>
 
-            <div class="absolute bottom-6 left-0 right-0 text-center">
-              <button class="card-cta">View Skills</button>
+              <!-- Back of Card -->
+              <div class="card-face card-back">
+                <div class="h-full overflow-y-auto p-6">
+                  <div class="text-center mb-6">
+                    <div class="font-display text-3xl text-gray-800 tracking-wide">Skills</div>
+                    <div class="text-gray-500 text-xs uppercase tracking-widest mt-1">as of the 2025 Season</div>
+                  </div>
+
+                  <div class="px-4">
+                    <!-- R Programming -->
+                    <div class="stat-container">
+                      <span class="stat-label">R</span>
+                      <div class="stars-container" data-rating="5">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                      </div>
+                    </div>
+
+                    <!-- Python -->
+                    <div class="stat-container">
+                      <span class="stat-label">Python</span>
+                      <div class="stars-container" data-rating="4.5">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                      </div>
+                    </div>
+
+                    <!-- SQL -->
+                    <div class="stat-container">
+                      <span class="stat-label">SQL</span>
+                      <div class="stars-container" data-rating="4.5">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                      </div>
+                    </div>
+
+                    <!-- Machine Learning -->
+                    <div class="stat-container">
+                      <span class="stat-label">Machine Learning</span>
+                      <div class="stars-container" data-rating="4">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                      </div>
+                    </div>
+
+                    <!-- Data Visualization -->
+                    <div class="stat-container">
+                      <span class="stat-label">Data Visualization</span>
+                      <div class="stars-container" data-rating="5">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                      </div>
+                    </div>
+
+                    <!-- UI/UX Design -->
+                    <div class="stat-container">
+                      <span class="stat-label">UI/UX Design</span>
+                      <div class="stars-container" data-rating="3.5">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="absolute bottom-6 left-0 right-0 text-center">
+                  <div class="flip-hint text-gray-500 text-xs">Click to flip back →</div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <!-- Back of Card -->
-          <div class="card-face card-back">
-            <div class="h-full overflow-y-auto p-6">
-              <div class="text-center mb-6">
-                <div class="font-display text-3xl text-gray-800 tracking-wide">Skills</div>
-                <div class="text-gray-500 text-xs uppercase tracking-widest mt-1">as of the 2025 Season</div>
-              </div>
-
-              <div class="px-4">
-                <!-- R Programming -->
-                <div class="stat-container">
-                  <span class="stat-label">R</span>
-                  <div class="stars-container" data-rating="5">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                  </div>
-                </div>
-
-                <!-- Python -->
-                <div class="stat-container">
-                  <span class="stat-label">Python</span>
-                  <div class="stars-container" data-rating="4.5">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                  </div>
-                </div>
-
-                <!-- SQL -->
-                <div class="stat-container">
-                  <span class="stat-label">SQL</span>
-                  <div class="stars-container" data-rating="4.5">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                  </div>
-                </div>
-
-                <!-- Machine Learning -->
-                <div class="stat-container">
-                  <span class="stat-label">Machine Learning</span>
-                  <div class="stars-container" data-rating="4">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                  </div>
-                </div>
-
-                <!-- Data Visualization -->
-                <div class="stat-container">
-                  <span class="stat-label">Data Visualization</span>
-                  <div class="stars-container" data-rating="5">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                  </div>
-                </div>
-
-                <!-- UI/UX Design -->
-                <div class="stat-container">
-                  <span class="stat-label">UI/UX Design</span>
-                  <div class="stars-container" data-rating="3.5">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-
-            <div class="absolute bottom-6 left-0 right-0 text-center">
-              <div class="flip-hint text-gray-500 text-xs">Click to flip back →</div>
-            </div>
+          <div class="scroll-indicator text-white" id="scrollIndicator">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
           </div>
-
         </div>
-      </div>
 
-      <div class="scroll-indicator text-white">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
+        <!-- Timeline (appears second, then fades out) -->
+        <div class="timeline-wrapper" id="timelineWrapper">
+          <div class="w-full h-full flex flex-col justify-center">
+            <div class="timeline-header">
+              <h2 class="font-display text-3xl text-white mb-1">JOURNEY</h2>
+              <p class="text-white/70 text-sm">From Berkeley to the Show...</p>
+              <p class="text-white/70 text-sm">Click on each section to learn more!</p>
+
+            </div>
+
+            <div class="timeline-content mx-auto">
+              <div class="timeline-line"></div>
+              <div class="timeline-items">
+                <!-- UC Berkeley - Left -->
+                <div class="timeline-item left" data-experience="berkeley">
+                  <div class="timeline-card">
+                    <div class="timeline-logo">🐻</div>
+                    <div class="timeline-info">
+                      <div class="timeline-title">UC Berkeley</div>
+                      <div class="timeline-subtitle">B.A. Political Economy</div>
+                      <div class="timeline-dates">Aug 2018 - May 2022</div>
+                    </div>
+                  </div>
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-spacer"></div>
+                </div>
+
+                <!-- NY Mets - Right -->
+                <div class="timeline-item right" data-experience="mets">
+                  <div class="timeline-spacer"></div>
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-card">
+                    <div class="timeline-logo">⚾</div>
+                    <div class="timeline-info">
+                      <div class="timeline-title">NY Mets</div>
+                      <div class="timeline-subtitle">Systems Video Associate</div>
+                      <div class="timeline-dates">May - Nov 2022</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ACLU - Left -->
+                <div class="timeline-item left" data-experience="aclu">
+                  <div class="timeline-card">
+                    <div class="timeline-logo">⚖️</div>
+                    <div class="timeline-info">
+                      <div class="timeline-title">ACLU</div>
+                      <div class="timeline-subtitle">Analytics Intern</div>
+                      <div class="timeline-dates">Jan - Apr 2023</div>
+                    </div>
+                  </div>
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-spacer"></div>
+                </div>
+
+                <!-- Seattle Mariners - Right -->
+                <div class="timeline-item active right" data-experience="mariners">
+                  <div class="timeline-spacer"></div>
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-card">
+                    <div class="timeline-logo">⚓</div>
+                    <div class="timeline-info">
+                      <div class="timeline-title">Seattle Mariners</div>
+                      <div class="timeline-subtitle">Analyst, Baseball Projects</div>
+                      <div class="timeline-dates">Apr 2023 - Present</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Georgia Tech - Left -->
+                <div class="timeline-item active left" data-experience="gatech">
+                  <div class="timeline-card">
+                    <div class="timeline-logo">🐝</div>
+                    <div class="timeline-info">
+                      <div class="timeline-title">Georgia Tech</div>
+                      <div class="timeline-subtitle">M.S. Analytics</div>
+                      <div class="timeline-dates">Aug 2023 - Dec 2025</div>
+                    </div>
+                  </div>
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-spacer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card Deck (appears third, replaces timeline) -->
+        <div class="deck-wrapper" id="deckWrapper">
+          <div class="deck-container">
+            <div class="deck-header">
+              <h2 class="font-display text-3xl text-white mb-1">PROJECTS</h2>
+              <p class="text-white/70 text-sm">Swipe to explore</p>
+            </div>
+
+            <div class="deck-carousel">
+              <div class="deck-track">
+
+                <!-- Project 1: AI Golf Coach -->
+                <div class="deck-card active" data-index="0">
+                  <span class="project-icon">⛳</span>
+                  <h3 class="project-title">AI Golf Coach</h3>
+                  <p class="project-category">Computer Vision & AI</p>
+
+                  <div class="project-problem">
+                    <span>💡</span>
+                    <span>Problem: Expensive golf coaching limits skill development</span>
+                  </div>
+
+                  <p class="project-description">
+                    Uses computer vision and OpenAI API to produce interactive Plotly visualizations and personalized coaching advice based on the Titleist Performance Institute methodology.
+                  </p>
+
+                  <div class="project-stack">
+                    <strong>Stack:</strong> Python (OpenCV, OpenAI), Plotly
+                  </div>
+
+                  <a
+                    href="https://kelvinervais.shinyapps.io/ai_tpi_coach/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    Live Demo →
+                  </a>
+                </div>
+
+                <!-- Project 2: TrendTracker -->
+                <div class="deck-card next" data-index="1">
+                  <span class="project-icon">💹</span>
+                  <h3 class="project-title">TrendTracker</h3>
+                  <p class="project-category">Finance Analytics</p>
+
+                  <div class="project-problem">
+                    <span>💡</span>
+                    <span>Problem: Complex financial data needs simplification</span>
+                  </div>
+
+                  <p class="project-description">
+                    Designed an intuitive finance dashboard that transforms overwhelming market data into actionable insights. Features real-time retrieval, AR(1) forecasting, and Monte Carlo risk simulation.
+                  </p>
+
+                  <div class="project-stack">
+                    <strong>Stack:</strong> R (Shiny, quantmod), bslib
+                  </div>
+
+                  <a
+                    href="https://kelvinervais.shinyapps.io/TrendTracker/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    Live Demo →
+                  </a>
+
+                </div>
+
+                <!-- Project 3: foodPal -->
+                <div class="deck-card" data-index="2">
+                  <span class="project-icon">🍽️</span>
+                  <h3 class="project-title">foodPal</h3>
+                  <p class="project-category">Recipe Recommender</p>
+
+                  <div class="project-problem">
+                    <span>💡</span>
+                    <span>Problem: Decision fatigue in meal planning</span>
+                  </div>
+
+                  <p class="project-description">
+                    Built an ensemble recommendation system that understands both your taste preferences and what's actually in your pantry. Combines collaborative filtering with content-based matching and semantic embeddings. (Set user id as test_user)
+                  </p>
+
+                  <div class="project-stack">
+                    <strong>Stack:</strong> R (Shiny, tidyverse), embeddings
+                  </div>
+
+                  <a
+                    href="https://kelvinervais.shinyapps.io/foodPal/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    Live Demo →
+                  </a>
+
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="deck-nav">
+              <button class="deck-nav-btn" id="prevBtn">‹</button>
+              <div class="deck-indicators" id="deckIndicators">
+                <div class="deck-indicator active"></div>
+                <div class="deck-indicator"></div>
+                <div class="deck-indicator"></div>
+              </div>
+              <button class="deck-nav-btn" id="nextBtn">›</button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Section 2: Timeline Only -->
-    <section class="scroll-section timeline-section">
-      <div class="w-full max-w-5xl mx-auto px-8 py-12">
-        <div class="timeline-header">
-          <h2 class="font-display text-4xl text-white mb-2">JOURNEY</h2>
-          <p class="text-white/70 text-base">From Berkeley to the Show</p>
+    <!-- HOW I WORK: inline section -->
+    <section class="site-section section-fade" id="how-i-work">
+      <div class="max-w-5xl mx-auto px-6 w-full">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-5xl text-white mb-4">How I Work</h2>
+          <p class="text-slate-100/90 max-w-2xl mx-auto">
+            Behind every successful data project is a thoughtful process. Here’s how I approach complex problems and deliver solutions that actually get used.
+          </p>
         </div>
-
-        <div class="timeline-content">
-          <div class="timeline-line"></div>
-          <div class="timeline-items">
-            <!-- UC Berkeley - Left -->
-            <div class="timeline-item left" data-experience="berkeley">
-              <div class="timeline-card">
-                <div class="timeline-logo">🐻</div>
-                <div class="timeline-info">
-                  <div class="timeline-title">UC Berkeley</div>
-                  <div class="timeline-subtitle">B.A. Political Economy</div>
-                  <div class="timeline-dates">2018 - 2022</div>
-                </div>
-              </div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-spacer"></div>
-            </div>
-
-            <!-- NY Mets - Right -->
-            <div class="timeline-item right" data-experience="mets">
-              <div class="timeline-spacer"></div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-card">
-                <div class="timeline-logo">⚾</div>
-                <div class="timeline-info">
-                  <div class="timeline-title">NY Mets</div>
-                  <div class="timeline-subtitle">Systems Video Associate</div>
-                  <div class="timeline-dates">May - Nov 2022</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ACLU - Left -->
-            <div class="timeline-item left" data-experience="aclu">
-              <div class="timeline-card">
-                <div class="timeline-logo">⚖️</div>
-                <div class="timeline-info">
-                  <div class="timeline-title">ACLU</div>
-                  <div class="timeline-subtitle">Analytics Intern</div>
-                  <div class="timeline-dates">Jan - Apr 2023</div>
-                </div>
-              </div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-spacer"></div>
-            </div>
-
-            <!-- Seattle Mariners - Right -->
-            <div class="timeline-item active right" data-experience="mariners">
-              <div class="timeline-spacer"></div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-card">
-                <div class="timeline-logo">⚓</div>
-                <div class="timeline-info">
-                  <div class="timeline-title">Seattle Mariners</div>
-                  <div class="timeline-subtitle">Analyst, Baseball Projects</div>
-                  <div class="timeline-dates">Apr 2023 - Present</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Georgia Tech - Left -->
-            <div class="timeline-item active left" data-experience="gatech">
-              <div class="timeline-card">
-                <div class="timeline-logo">🐝</div>
-                <div class="timeline-info">
-                  <div class="timeline-title">Georgia Tech</div>
-                  <div class="timeline-subtitle">M.S. Analytics</div>
-                  <div class="timeline-dates">2023 - Present</div>
-                </div>
-              </div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-spacer"></div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="glass-card p-8">
+            <div class="text-brand-400 font-bold text-3xl mb-4">1</div>
+            <h3 class="text-xl font-semibold mb-3 text-white">Build Fast, Test Early</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">
+              With R Shiny, I can have a working prototype running in hours. Real user feedback beats theoretical perfection.
+            </p>
+          </div>
+          <div class="glass-card p-8">
+            <div class="text-purple-300 font-bold text-3xl mb-4">2</div>
+            <h3 class="text-xl font-semibold mb-3 text-white">User Feedback Loops</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">
+              I instrument apps from day one and let real usage patterns guide development.
+            </p>
+          </div>
+          <div class="glass-card p-8">
+            <div class="text-green-300 font-bold text-3xl mb-4">3</div>
+            <h3 class="text-xl font-semibold mb-3 text-white">Performance First</h3>
+            <p class="text-slate-200 text-sm leading-relaxed">
+              Responsive tools matter. I prioritize efficient logic and fast load times.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Coming Soon -->
-    <section class="scroll-section bg-gradient-to-br from-slate-900 to-slate-700">
-      <div class="text-center text-white">
-        <h2 class="text-5xl font-display mb-4">MORE COMING SOON</h2>
-        <p class="text-xl text-white/70">Additional sections in development</p>
+    <!-- INTERESTS: inline section -->
+    <section class="site-section section-fade" id="interests">
+      <div class="max-w-5xl mx-auto px-6 w-full">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-5xl text-white mb-4">Interests</h2>
+          <p class="text-slate-100/90 max-w-2xl mx-auto">
+            Areas I love exploring and building in.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">🤖 LLM Systems & ML</h3>
+            <p class="text-slate-700 text-sm">
+              Focused on recommendation engines, RAG patterns, and production ML applications.
+            </p>
+          </div>
+          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">🌍 Multilingual Communication</h3>
+            <p class="text-slate-700 text-sm">
+              Spanish speaker with California Seal of Biliteracy.
+            </p>
+          </div>
+          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">📊 Interactive Data Apps</h3>
+            <p class="text-slate-700 text-sm">
+              Building intuitive R Shiny tools that make complex data accessible.
+            </p>
+          </div>
+          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+            <h3 class="text-xl font-semibold mb-2 text-slate-900">📚 Continuous Learning</h3>
+            <p class="text-slate-700 text-sm">
+              Constantly exploring new methods in modeling, visualization, and decision science.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LET'S CONNECT: inline section -->
+    <section class="site-section section-fade" id="lets-connect">
+      <div class="max-w-5xl mx-auto px-6 w-full">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-5xl text-white mb-4">Let's Connect</h2>
+          <p class="text-slate-100/90 max-w-2xl mx-auto">
+            Find me on GitHub, LinkedIn, or send an email.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <a
+            href="https://github.com/kelvinervais"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit my GitHub profile"
+            class="glass-card p-8 flex items-center justify-center gap-3 text-white hover:no-underline"
+          >
+            <span class="text-2xl">🐙</span>
+            <span class="font-semibold">github.com/kelvinervais</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/kelvinervais"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit my LinkedIn profile"
+            class="glass-card p-8 flex items-center justify-center gap-3 text-white hover:no-underline"
+          >
+            <span class="text-2xl">🔗</span>
+            <span class="font-semibold">linkedin.com/in/kelvinervais</span>
+          </a>
+          <a
+            href="mailto:kelvinervais@gmail.com"
+            aria-label="Send me an email"
+            class="glass-card p-8 flex items-center justify-center gap-3 text-white hover:no-underline"
+          >
+            <span class="text-2xl">✉️</span>
+            <span class="font-semibold">kelvinervais@gmail.com</span>
+          </a>
+        </div>
       </div>
     </section>
 
   </div>
+
+  <!-- Side Navigation -->
+  <nav class="side-nav" id="sideNav" aria-label="Section navigation">
+    <a href="#home" data-target="home">🏠 Home</a>
+    <a href="#journey" data-target="journey">🛤️ Journey</a>
+    <a href="#projects" data-target="projects">🗂️ Projects</a>
+    <a href="#how-i-work" data-target="how-i-work">🧰 How I Work</a>
+    <a href="#interests" data-target="interests">✨ Interests</a>
+    <a href="#lets-connect" data-target="lets-connect">📬 Connect</a>
+  </nav>
 
   <!-- Timeline Detail Modal -->
   <div class="timeline-detail-overlay" id="timelineOverlay"></div>
@@ -945,6 +1536,229 @@
       });
     }
 
+    // Multi-stage scroll-based animation
+    const scrollContainer = document.getElementById('scrollContainer');
+    const cardWrapper = document.getElementById('cardWrapper');
+    const timelineWrapper = document.getElementById('timelineWrapper');
+    const deckWrapper = document.getElementById('deckWrapper');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+
+    function handleScroll() {
+      const scrollTop = scrollContainer.scrollTop;
+      const viewportHeight = window.innerHeight;
+
+      // Total progress across 10 viewports (0 to 9)
+      const totalProgress = scrollTop / viewportHeight;
+
+      // Stage 1: 0-2 viewports (Card center → Timeline appears)
+      // Stage 2: 2-10 viewports (Timeline fades out → Projects appear)
+
+      if (totalProgress <= 2) {
+        // Stage 1: Card slides left, timeline appears (2 viewports)
+        const stage1Progress = Math.min(totalProgress / 2, 1); // 0 to 1
+
+        // Card movement: center → far left
+        const cardTranslateX = -50 + (stage1Progress * -50); // -50% to -100%
+        cardWrapper.style.transform = `translateX(${cardTranslateX}%)`;
+
+        // Timeline: fade in and slide in - ALWAYS CLICKABLE IN STAGE 1
+        const timelineOpacity = stage1Progress;
+        const timelineTranslateX = 50 - (stage1Progress * 50);
+        timelineWrapper.style.opacity = timelineOpacity;
+        timelineWrapper.style.transform = `translateX(${timelineTranslateX}px)`;
+        timelineWrapper.style.pointerEvents =
+          timelineOpacity > 0.1 ? 'auto' : 'none';
+
+        // Deck: hidden and not clickable
+        deckWrapper.style.opacity = '0';
+        deckWrapper.style.transform = `translateX(50px)`;
+        deckWrapper.style.pointerEvents = 'none';
+
+      } else if (totalProgress <= 10) {
+        // Stage 2: Timeline fades out, then projects appear (8 viewports)
+        const stage2Progress = (totalProgress - 2) / 8; // 0 to 1
+
+        // Card: stays left
+        cardWrapper.style.transform = `translateX(-100%)`;
+
+        // First half: Timeline fades out - STILL CLICKABLE
+        if (stage2Progress < 0.5) {
+          const fadeOutProgress = stage2Progress * 2; // 0 to 1 in first half
+
+          const timelineOpacity = 1 - fadeOutProgress;
+          timelineWrapper.style.opacity = timelineOpacity;
+          timelineWrapper.style.transform = `translateX(0)`;
+          timelineWrapper.style.pointerEvents =
+            timelineOpacity > 0.1 ? 'auto' : 'none';
+
+          // Deck stays hidden and not clickable
+          deckWrapper.style.opacity = '0';
+          deckWrapper.style.transform = `translateX(50px)`;
+          deckWrapper.style.pointerEvents = 'none';
+        }
+        // Second half: Projects fade in - NOW CLICKABLE
+        else {
+          let fadeInProgress = (stage2Progress - 0.5) * 4; // 0 -> 1 between 0.5 and 0.75
+          if (stage2Progress >= 0.75) fadeInProgress = 1;
+          fadeInProgress = Math.min(Math.max(fadeInProgress, 0), 1);
+
+          // Timeline fully hidden and not clickable
+          timelineWrapper.style.opacity = '0';
+          timelineWrapper.style.transform = `translateX(0)`;
+          timelineWrapper.style.pointerEvents = 'none';
+
+          // Deck fades in and is clickable
+          deckWrapper.style.opacity = String(fadeInProgress);
+          const deckTranslateX = 50 - (fadeInProgress * 50);
+          deckWrapper.style.transform = `translateX(${deckTranslateX}px)`;
+          deckWrapper.style.pointerEvents = 'auto';
+        }
+      }
+
+      // Stage 3 removed: How I Work and Interests are standalone sections
+
+
+
+      // Hide scroll indicator after scrolling starts
+      if (totalProgress > 0.1) {
+        scrollIndicator.style.opacity = '0';
+      } else {
+        scrollIndicator.style.opacity = '1';
+      }
+    }
+
+    scrollContainer.addEventListener('scroll', handleScroll);
+
+    // Initial call to set starting position
+    handleScroll();
+
+    // Card deck carousel
+    let currentCardIndex = 0;
+    const deckCards = document.querySelectorAll('.deck-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.deck-indicator');
+
+    function updateDeck() {
+      deckCards.forEach((card, index) => {
+        card.classList.remove('active', 'prev', 'next');
+
+        if (index === currentCardIndex) {
+          card.classList.add('active');
+        } else if (index === currentCardIndex - 1) {
+          card.classList.add('prev');
+        } else if (index === currentCardIndex + 1) {
+          card.classList.add('next');
+        }
+      });
+
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        if (index === currentCardIndex) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentCardIndex = (currentCardIndex - 1 + deckCards.length) % deckCards.length;
+      updateDeck();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentCardIndex = (currentCardIndex + 1) % deckCards.length;
+      updateDeck();
+    });
+
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        currentCardIndex = index;
+        updateDeck();
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        currentCardIndex = (currentCardIndex - 1 + deckCards.length) % deckCards.length;
+        updateDeck();
+      } else if (e.key === 'ArrowRight') {
+        currentCardIndex = (currentCardIndex + 1) % deckCards.length;
+        updateDeck();
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+
+    const deckCarousel = document.querySelector('.deck-carousel');
+
+    deckCarousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    deckCarousel.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+
+    deckCarousel.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      handleSwipe();
+    });
+
+    // Mouse drag support
+    let mouseStartX = 0;
+    let isMouseDragging = false;
+
+    deckCarousel.addEventListener('mousedown', (e) => {
+      mouseStartX = e.clientX;
+      isMouseDragging = true;
+    });
+
+    deckCarousel.addEventListener('mousemove', (e) => {
+      if (!isMouseDragging) return;
+      touchEndX = e.clientX;
+    });
+
+    deckCarousel.addEventListener('mouseup', (e) => {
+      if (!isMouseDragging) return;
+      isMouseDragging = false;
+      touchStartX = mouseStartX;
+      touchEndX = e.clientX;
+      handleSwipe();
+    });
+
+    deckCarousel.addEventListener('mouseleave', (e) => {
+      if (isMouseDragging) {
+        isMouseDragging = false;
+      }
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next card
+          currentCardIndex = (currentCardIndex + 1) % deckCards.length;
+        } else {
+          // Swipe right - prev card
+          currentCardIndex = (currentCardIndex - 1 + deckCards.length) % deckCards.length;
+        }
+        updateDeck();
+      }
+    }
+
+    // Initialize
+    updateDeck();
 
     // Timeline experience details
     const experienceData = {
@@ -987,7 +1801,7 @@
       berkeley: {
         title: 'UC Berkeley',
         subtitle: 'B.A. Political Economy (Minor: Data Science)',
-        dates: '2018 - 2022',
+        dates: 'Aug 2018 - May 2022',
         content: `
           <p>Completed undergraduate degree in Political Economy with a minor in Data Science. Focused on quantitative analysis, statistical modeling, and data-driven decision making.</p>
         `
@@ -995,9 +1809,9 @@
       gatech: {
         title: 'Georgia Tech',
         subtitle: 'M.S. Analytics - Computational Data Analytics',
-        dates: '2023 - Present',
+        dates: 'Aug 2023 - Dec 2025',
         content: `
-          <p>Pursuing Master of Science in Analytics with a concentration in Computational Data Analytics. Coursework includes advanced machine learning, statistical modeling, and data visualization techniques.</p>
+          <p>Completed Master of Science in Analytics with a concentration in Computational Data Analytics. Coursework includes advanced machine learning, statistical modeling, and data visualization techniques.</p>
         `
       }
     };
@@ -1042,6 +1856,62 @@
         hideExperienceDetail();
       }
     });
+
+    // Fade-in/out for inline sections within scroll container
+    const fadeSections = document.querySelectorAll('.section-fade');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, {
+      root: scrollContainer,
+      threshold: 0.35
+    });
+
+    fadeSections.forEach(sec => sectionObserver.observe(sec));
+
+    // Side nav: smooth-scroll and active link management
+    const sideNav = document.getElementById('sideNav');
+    const sideLinks = sideNav.querySelectorAll('a[data-target]');
+
+    sideLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const navTargets = ['home','journey','projects','how-i-work','interests','lets-connect']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    const linkMap = new Map();
+    sideLinks.forEach(link => linkMap.set(link.getAttribute('data-target'), link));
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = linkMap.get(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          sideLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, {
+      root: scrollContainer,
+      threshold: 0.6
+    });
+
+    navTargets.forEach(t => navObserver.observe(t));
   </script>
 </body>
 </html>
