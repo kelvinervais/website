@@ -80,12 +80,13 @@
       height: 100vh;
       overflow-y: scroll;
       scroll-behavior: smooth;
-      scroll-snap-type: y proximity;
+      scroll-snap-type: y mandatory;
+      overscroll-behavior-y: contain;
     }
 
     /* Multi-stage transition section */
     .multi-stage-section {
-      height: 1000vh;
+      height: 700vh;
       position: relative;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
       background-size: 200% 200%;
@@ -98,6 +99,7 @@
       display: flex;
       align-items: center;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
       padding: 60px 0;
     }
 
@@ -129,11 +131,12 @@
       height: 1px;
       pointer-events: none;
       scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .snap-point-1 { top: 0; }
     .snap-point-2 { top: 200vh; }
-    .snap-point-3 { top: 800vh; }
+    .snap-point-3 { top: 600vh; }
 
     .card-wrapper {
       position: absolute;
@@ -174,7 +177,8 @@
       pointer-events: none;
     }
 
-    /* (removed) .work-wrapper and .interests-wrapper were overlay-only */
+    /* Overlay sections for final stages */
+    /* (no overlay wrappers; sections are separate) */
 
 
     .glass-card {
@@ -1357,6 +1361,9 @@
 
           </div>
         </div>
+
+        
+
       </div>
     </section>
 
@@ -1475,6 +1482,7 @@
       </div>
     </section>
 
+    <!-- LET'S CONNECT: inline section -->
   </div>
 
   <!-- Side Navigation -->
@@ -1574,9 +1582,9 @@
         deckWrapper.style.transform = `translateX(50px)`;
         deckWrapper.style.pointerEvents = 'none';
 
-      } else if (totalProgress <= 10) {
-        // Stage 2: Timeline fades out, then projects appear (8 viewports)
-        const stage2Progress = (totalProgress - 2) / 8; // 0 to 1
+      } else if (totalProgress <= 6) {
+        // Stage 2: Timeline fades out, then projects appear (4 viewports)
+        const stage2Progress = (totalProgress - 2) / 4; // 0 to 1
 
         // Card: stays left
         cardWrapper.style.transform = `translateX(-100%)`;
@@ -1615,7 +1623,7 @@
         }
       }
 
-      // Stage 3 removed: How I Work and Interests are standalone sections
+      // Stage 3 removed: additional sections scroll inline below
 
 
 
@@ -1869,7 +1877,8 @@
       });
     }, {
       root: scrollContainer,
-      threshold: 0.35
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px'
     });
 
     fadeSections.forEach(sec => sectionObserver.observe(sec));
