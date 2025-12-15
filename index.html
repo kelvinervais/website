@@ -969,8 +969,12 @@
 
     /* Responsive styles */
     @media (max-width: 1024px) {
-      /* Disable snapping on mobile/tablet */
-      .scroll-container { scroll-snap-type: none; }
+      /* Disable snapping and container-scrolling on mobile/tablet */
+      .scroll-container {
+        height: auto;
+        overflow-y: visible;
+        scroll-snap-type: none;
+      }
       .snap-point { display: none; }
 
       .card-wrapper {
