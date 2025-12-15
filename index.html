@@ -72,7 +72,7 @@
     body {
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: #0f172a;
     }
 
     /* Scroll container */
@@ -86,11 +86,9 @@
 
     /* Multi-stage transition section */
     .multi-stage-section {
-      height: 700vh;
+      height: 1200vh;
       position: relative;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      background-size: 200% 200%;
-      animation: gradient-shift 15s ease infinite;
+      background: transparent;
     }
 
     /* Generic full-screen scroll sections */
@@ -137,6 +135,9 @@
     .snap-point-1 { top: 0; }
     .snap-point-2 { top: 200vh; }
     .snap-point-3 { top: 600vh; }
+    .snap-point-4 { top: 800vh; }
+    .snap-point-5 { top: 1000vh; }
+    .snap-point-6 { top: 1200vh; }
 
     .card-wrapper {
       position: absolute;
@@ -177,8 +178,28 @@
       pointer-events: none;
     }
 
-    /* Overlay sections for final stages */
-    /* (no overlay wrappers; sections are separate) */
+    /* Panel sections for later stages (right side) */
+    .work-panel,
+    .interests-panel,
+    .connect-panel {
+      position: absolute;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.1s linear, transform 0.1s linear;
+      padding: 40px;
+      pointer-events: none;
+      z-index: 24;
+    }
+
+    .work-panel { z-index: 23; }
+    .interests-panel { z-index: 24; }
+    .connect-panel { z-index: 25; }
 
 
     .glass-card {
@@ -924,6 +945,28 @@
       transform: translateX(4px);
     }
 
+    /* Connect panel cards */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 24px;
+      min-height: 120px;
+      text-decoration: none;
+    }
+    .contact-card .label { font-weight: 700; }
+    .contact-card .sub { opacity: 0.7; font-size: 13px; }
+
     /* Responsive styles */
     @media (max-width: 1024px) {
       .card-wrapper {
@@ -933,7 +976,10 @@
       }
 
       .timeline-wrapper,
-      .deck-wrapper {
+      .deck-wrapper,
+      .work-panel,
+      .interests-panel,
+      .connect-panel {
         position: relative;
         width: 100%;
         opacity: 1 !important;
@@ -1027,6 +1073,9 @@
       <div class="snap-point snap-point-1" id="home"></div>
       <div class="snap-point snap-point-2" id="journey"></div>
       <div class="snap-point snap-point-3" id="projects"></div>
+      <div class="snap-point snap-point-4" id="how-i-work"></div>
+      <div class="snap-point snap-point-5" id="interests"></div>
+      <div class="snap-point snap-point-6" id="lets-connect"></div>
 
       <div class="sticky-container">
 
@@ -1363,124 +1412,92 @@
         </div>
 
         
+        <!-- RIGHT-PANEL STAGES (inside sticky) -->
+        <div class="work-panel" id="workPanel" aria-label="How I Work panel">
+          <div class="max-w-5xl mx-auto px-6 w-full">
+            <div class="text-center mb-12">
+              <h2 class="font-display text-5xl text-white mb-4">How I Work</h2>
+              <p class="text-slate-100/90 max-w-2xl mx-auto">Behind every successful data project is a thoughtful process. Here’s how I approach complex problems and deliver solutions that actually get used.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="glass-card p-8">
+                <div class="text-brand-400 font-bold text-3xl mb-4">1</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Build Fast, Test Early</h3>
+                <p class="text-slate-200 text-sm leading-relaxed">With R Shiny, I can have a working prototype running in hours. Real user feedback beats theoretical perfection.</p>
+              </div>
+              <div class="glass-card p-8">
+                <div class="text-purple-300 font-bold text-3xl mb-4">2</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">User Feedback Loops</h3>
+                <p class="text-slate-200 text-sm leading-relaxed">I instrument apps from day one and let real usage patterns guide development.</p>
+              </div>
+              <div class="glass-card p-8">
+                <div class="text-green-300 font-bold text-3xl mb-4">3</div>
+                <h3 class="text-xl font-semibold mb-3 text-white">Performance First</h3>
+                <p class="text-slate-200 text-sm leading-relaxed">Responsive tools matter. I prioritize efficient logic and fast load times.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="interests-panel" id="interestsPanel" aria-label="Interests panel">
+          <div class="max-w-5xl mx-auto px-6 w-full">
+            <div class="text-center mb-12">
+              <h2 class="font-display text-5xl text-white mb-4">Interests</h2>
+              <p class="text-slate-100/90 max-w-2xl mx-auto">Areas I love exploring and building in.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+                <h3 class="text-xl font-semibold mb-2 text-slate-900">🤖 LLM Systems & ML</h3>
+                <p class="text-slate-700 text-sm">Focused on recommendation engines, RAG patterns, and production ML applications.</p>
+              </div>
+              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+                <h3 class="text-xl font-semibold mb-2 text-slate-900">🌍 Multilingual Communication</h3>
+                <p class="text-slate-700 text-sm">Spanish speaker with California Seal of Biliteracy.</p>
+              </div>
+              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+                <h3 class="text-xl font-semibold mb-2 text-slate-900">📊 Interactive Data Apps</h3>
+                <p class="text-slate-700 text-sm">Building intuitive R Shiny tools that make complex data accessible.</p>
+              </div>
+              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
+                <h3 class="text-xl font-semibold mb-2 text-slate-900">📚 Continuous Learning</h3>
+                <p class="text-slate-700 text-sm">Constantly exploring new methods in modeling, visualization, and decision science.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="connect-panel" id="connectPanel" aria-label="Connect panel">
+          <div class="max-w-5xl mx-auto px-6 w-full">
+            <div class="text-center mb-12">
+              <h2 class="font-display text-5xl text-white mb-4">Let's Connect</h2>
+              <p class="text-slate-100/90 max-w-2xl mx-auto">Find me on GitHub, LinkedIn, or send an email.</p>
+            </div>
+            <div class="contact-grid">
+              <a href="https://github.com/kelvinervais" target="_blank" rel="noopener noreferrer" class="glass-card contact-card text-white" aria-label="Visit my GitHub profile">
+                <span class="text-3xl">🐙</span>
+                <span class="label">GitHub</span>
+                <span class="sub">@kelvinervais</span>
+              </a>
+              <a href="https://www.linkedin.com/in/kelvinervais" target="_blank" rel="noopener noreferrer" class="glass-card contact-card text-white" aria-label="Visit my LinkedIn profile">
+                <span class="text-3xl">🔗</span>
+                <span class="label">LinkedIn</span>
+                <span class="sub">/in/kelvinervais</span>
+              </a>
+              <a href="mailto:kelvinervais@gmail.com" class="glass-card contact-card text-white" aria-label="Send me an email">
+                <span class="text-3xl">✉️</span>
+                <span class="label">Email</span>
+                <span class="sub">kelvinervais@gmail.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
       </div>
+        
     </section>
 
     <!-- HOW I WORK: inline section -->
-    <section class="site-section section-fade" id="how-i-work">
-      <div class="max-w-5xl mx-auto px-6 w-full">
-        <div class="text-center mb-12">
-          <h2 class="font-display text-5xl text-white mb-4">How I Work</h2>
-          <p class="text-slate-100/90 max-w-2xl mx-auto">
-            Behind every successful data project is a thoughtful process. Here’s how I approach complex problems and deliver solutions that actually get used.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="glass-card p-8">
-            <div class="text-brand-400 font-bold text-3xl mb-4">1</div>
-            <h3 class="text-xl font-semibold mb-3 text-white">Build Fast, Test Early</h3>
-            <p class="text-slate-200 text-sm leading-relaxed">
-              With R Shiny, I can have a working prototype running in hours. Real user feedback beats theoretical perfection.
-            </p>
-          </div>
-          <div class="glass-card p-8">
-            <div class="text-purple-300 font-bold text-3xl mb-4">2</div>
-            <h3 class="text-xl font-semibold mb-3 text-white">User Feedback Loops</h3>
-            <p class="text-slate-200 text-sm leading-relaxed">
-              I instrument apps from day one and let real usage patterns guide development.
-            </p>
-          </div>
-          <div class="glass-card p-8">
-            <div class="text-green-300 font-bold text-3xl mb-4">3</div>
-            <h3 class="text-xl font-semibold mb-3 text-white">Performance First</h3>
-            <p class="text-slate-200 text-sm leading-relaxed">
-              Responsive tools matter. I prioritize efficient logic and fast load times.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTERESTS: inline section -->
-    <section class="site-section section-fade" id="interests">
-      <div class="max-w-5xl mx-auto px-6 w-full">
-        <div class="text-center mb-12">
-          <h2 class="font-display text-5xl text-white mb-4">Interests</h2>
-          <p class="text-slate-100/90 max-w-2xl mx-auto">
-            Areas I love exploring and building in.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">🤖 LLM Systems & ML</h3>
-            <p class="text-slate-700 text-sm">
-              Focused on recommendation engines, RAG patterns, and production ML applications.
-            </p>
-          </div>
-          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">🌍 Multilingual Communication</h3>
-            <p class="text-slate-700 text-sm">
-              Spanish speaker with California Seal of Biliteracy.
-            </p>
-          </div>
-          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">📊 Interactive Data Apps</h3>
-            <p class="text-slate-700 text-sm">
-              Building intuitive R Shiny tools that make complex data accessible.
-            </p>
-          </div>
-          <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-            <h3 class="text-xl font-semibold mb-2 text-slate-900">📚 Continuous Learning</h3>
-            <p class="text-slate-700 text-sm">
-              Constantly exploring new methods in modeling, visualization, and decision science.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LET'S CONNECT: inline section -->
-    <section class="site-section section-fade" id="lets-connect">
-      <div class="max-w-5xl mx-auto px-6 w-full">
-        <div class="text-center mb-12">
-          <h2 class="font-display text-5xl text-white mb-4">Let's Connect</h2>
-          <p class="text-slate-100/90 max-w-2xl mx-auto">
-            Find me on GitHub, LinkedIn, or send an email.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <a
-            href="https://github.com/kelvinervais"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit my GitHub profile"
-            class="glass-card p-8 flex items-center justify-center gap-3 text-white hover:no-underline"
-          >
-            <span class="text-2xl">🐙</span>
-            <span class="font-semibold">github.com/kelvinervais</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/kelvinervais"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit my LinkedIn profile"
-            class="glass-card p-8 flex items-center justify-center gap-3 text-white hover:no-underline"
-          >
-            <span class="text-2xl">🔗</span>
-            <span class="font-semibold">linkedin.com/in/kelvinervais</span>
-          </a>
-          <a
-            href="mailto:kelvinervais@gmail.com"
-            aria-label="Send me an email"
-            class="glass-card p-8 flex items-center justify-center gap-3 text-white hover:no-underline"
-          >
-            <span class="text-2xl">✉️</span>
-            <span class="font-semibold">kelvinervais@gmail.com</span>
-          </a>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- LET'S CONNECT: inline section -->
   </div>
@@ -1550,6 +1567,9 @@
     const timelineWrapper = document.getElementById('timelineWrapper');
     const deckWrapper = document.getElementById('deckWrapper');
     const scrollIndicator = document.getElementById('scrollIndicator');
+    const workPanel = document.getElementById('workPanel');
+    const interestsPanel = document.getElementById('interestsPanel');
+    const connectPanel = document.getElementById('connectPanel');
 
     function handleScroll() {
       const scrollTop = scrollContainer.scrollTop;
@@ -1558,72 +1578,116 @@
       // Total progress across 10 viewports (0 to 9)
       const totalProgress = scrollTop / viewportHeight;
 
-      // Stage 1: 0-2 viewports (Card center → Timeline appears)
-      // Stage 2: 2-10 viewports (Timeline fades out → Projects appear)
+      // Stage 1: 0–2 (Card → Timeline)
+      // Stage 2: 2–6 (Timeline → Projects)
+      // Stage 3a: 6–8 (Projects → How I Work)
+      // Stage 3b: 8–10 (How I Work → Interests)
+      // Stage 4: 10–12 (Interests → Connect)
 
       if (totalProgress <= 2) {
-        // Stage 1: Card slides left, timeline appears (2 viewports)
-        const stage1Progress = Math.min(totalProgress / 2, 1); // 0 to 1
-
-        // Card movement: center → far left
-        const cardTranslateX = -50 + (stage1Progress * -50); // -50% to -100%
+        // Stage 1: Card → Timeline
+        const stage1Progress = Math.min(totalProgress / 2, 1);
+        const cardTranslateX = -50 + (stage1Progress * -50);
         cardWrapper.style.transform = `translateX(${cardTranslateX}%)`;
+        cardWrapper.style.opacity = '1';
 
-        // Timeline: fade in and slide in - ALWAYS CLICKABLE IN STAGE 1
         const timelineOpacity = stage1Progress;
         const timelineTranslateX = 50 - (stage1Progress * 50);
-        timelineWrapper.style.opacity = timelineOpacity;
+        timelineWrapper.style.opacity = String(timelineOpacity);
         timelineWrapper.style.transform = `translateX(${timelineTranslateX}px)`;
-        timelineWrapper.style.pointerEvents =
-          timelineOpacity > 0.1 ? 'auto' : 'none';
+        timelineWrapper.style.pointerEvents = timelineOpacity > 0.1 ? 'auto' : 'none';
 
-        // Deck: hidden and not clickable
-        deckWrapper.style.opacity = '0';
-        deckWrapper.style.transform = `translateX(50px)`;
-        deckWrapper.style.pointerEvents = 'none';
+        // Hide others
+        deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none';
+        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none';
+        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none';
+        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none';
 
       } else if (totalProgress <= 6) {
-        // Stage 2: Timeline fades out, then projects appear (4 viewports)
-        const stage2Progress = (totalProgress - 2) / 4; // 0 to 1
-
-        // Card: stays left
+        // Stage 2: Timeline → Projects
+        const stage2Progress = (totalProgress - 2) / 4;
         cardWrapper.style.transform = `translateX(-100%)`;
+        cardWrapper.style.opacity = '1';
 
-        // First half: Timeline fades out - STILL CLICKABLE
         if (stage2Progress < 0.5) {
-          const fadeOutProgress = stage2Progress * 2; // 0 to 1 in first half
-
+          const fadeOutProgress = stage2Progress * 2;
           const timelineOpacity = 1 - fadeOutProgress;
-          timelineWrapper.style.opacity = timelineOpacity;
-          timelineWrapper.style.transform = `translateX(0)`;
-          timelineWrapper.style.pointerEvents =
-            timelineOpacity > 0.1 ? 'auto' : 'none';
+          timelineWrapper.style.opacity = String(timelineOpacity);
+          timelineWrapper.style.transform = 'translateX(0)';
+          timelineWrapper.style.pointerEvents = timelineOpacity > 0.1 ? 'auto' : 'none';
 
-          // Deck stays hidden and not clickable
-          deckWrapper.style.opacity = '0';
-          deckWrapper.style.transform = `translateX(50px)`;
-          deckWrapper.style.pointerEvents = 'none';
-        }
-        // Second half: Projects fade in - NOW CLICKABLE
-        else {
-          let fadeInProgress = (stage2Progress - 0.5) * 4; // 0 -> 1 between 0.5 and 0.75
-          if (stage2Progress >= 0.75) fadeInProgress = 1;
+          deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none';
+        } else {
+          let fadeInProgress = (stage2Progress - 0.5) * 2; // 0→1
           fadeInProgress = Math.min(Math.max(fadeInProgress, 0), 1);
-
-          // Timeline fully hidden and not clickable
-          timelineWrapper.style.opacity = '0';
-          timelineWrapper.style.transform = `translateX(0)`;
-          timelineWrapper.style.pointerEvents = 'none';
-
-          // Deck fades in and is clickable
+          timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none';
           deckWrapper.style.opacity = String(fadeInProgress);
           const deckTranslateX = 50 - (fadeInProgress * 50);
           deckWrapper.style.transform = `translateX(${deckTranslateX}px)`;
           deckWrapper.style.pointerEvents = 'auto';
         }
-      }
 
-      // Stage 3 removed: additional sections scroll inline below
+        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none';
+        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none';
+        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none';
+
+      } else if (totalProgress <= 8) {
+        // Stage 3a: Projects → How I Work
+        const p = (totalProgress - 6) / 2;
+        deckWrapper.style.opacity = String(1 - p);
+        deckWrapper.style.transform = 'translateX(0)';
+        deckWrapper.style.pointerEvents = 'none';
+
+        workPanel.style.opacity = String(p);
+        workPanel.style.transform = `translateX(${50 - p * 50}px)`;
+        workPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
+
+        // Hide others
+        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none';
+        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none';
+        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none';
+
+      } else if (totalProgress <= 10) {
+        // Stage 3b: How I Work → Interests (crossfade)
+        const p = (totalProgress - 8) / 2;
+        workPanel.style.opacity = String(1 - p);
+        workPanel.style.transform = 'translateX(0)';
+        workPanel.style.pointerEvents = 'none';
+
+        interestsPanel.style.opacity = String(p);
+        interestsPanel.style.transform = `translateX(${50 - p * 50}px)`;
+        interestsPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
+        interestsPanel.style.visibility = 'visible';
+
+        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none';
+
+      } else if (totalProgress <= 12) {
+        // Stage 4: Interests → Connect (crossfade)
+        const p = (totalProgress - 10) / 2;
+
+        // Show Connect
+        connectPanel.style.opacity = String(p);
+        connectPanel.style.transform = `translateX(${50 - p * 50}px)`;
+        connectPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
+
+        // Hide Interests decisively once transition starts
+        if (p >= 0.3) {
+          interestsPanel.style.opacity = '0';
+          interestsPanel.style.transform = 'translateX(0)';
+          interestsPanel.style.pointerEvents = 'none';
+          interestsPanel.style.visibility = 'hidden';
+        } else {
+          interestsPanel.style.opacity = String(1 - p);
+          interestsPanel.style.transform = 'translateX(0)';
+          interestsPanel.style.pointerEvents = 'none';
+          interestsPanel.style.visibility = 'visible';
+        }
+
+        // Ensure others hidden
+        workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none';
+        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none';
+        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none';
+      }
 
 
 
