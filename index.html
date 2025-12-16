@@ -2240,6 +2240,10 @@
 
     const navObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        // Only activate if we're currently on the home view
+        const currentView = document.querySelector('.view.active');
+        if (!currentView || currentView.id !== 'homeView') return;
+
         const id = entry.target.getAttribute('id');
         const link = linkMap.get(id);
         if (!link) return;
@@ -2251,10 +2255,6 @@
           if (isHomeSection && homeLink) {
             homeLink.classList.add('active');
             homeSubtabs.classList.remove('hidden');
-          }
-          if (id === 'cooking') {
-            if (homeSubtabs) homeSubtabs.classList.add('hidden');
-            if (homeLink) homeLink.classList.remove('active');
           }
         }
       });
@@ -2364,21 +2364,30 @@
       }
 
       function updateNavActiveStates(viewId) {
-        // Remove active-view from all nav links (side and mobile)
+        // Remove BOTH 'active' and 'active-view' from all nav links (side and mobile)
         document.querySelectorAll('.side-nav a, .mobile-nav a').forEach(link => {
-          link.classList.remove('active-view');
+          link.classList.remove('active-view', 'active');
         });
 
         // Add active-view to current view link in side nav
         if (viewId === 'homeView') {
           const homeLink = document.getElementById('link-home');
-          if (homeLink) homeLink.classList.add('active-view');
+          if (homeLink) {
+            homeLink.classList.add('active-view');
+            homeLink.classList.add('active'); // Also add 'active' for consistency
+          }
         } else if (viewId === 'cookingView') {
           const cookingLink = document.getElementById('link-cooking');
-          if (cookingLink) cookingLink.classList.add('active-view');
+          if (cookingLink) {
+            cookingLink.classList.add('active-view');
+            cookingLink.classList.add('active');
+          }
         } else if (viewId === 'golfView') {
           const golfLink = document.querySelector('.side-nav a[href="#golf"]');
-          if (golfLink) golfLink.classList.add('active-view');
+          if (golfLink) {
+            golfLink.classList.add('active-view');
+            golfLink.classList.add('active');
+          }
         }
 
         // Add active-view to current view link in mobile nav
