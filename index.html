@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kelvin Ervais — Data Science & Analytics</title>
+  <title>Kelvin Ervais</title>
   <meta name="description" content="Seattle-based data scientist specializing in R, Python, ML, and Shiny dashboards. Currently with Seattle Mariners." />
   <meta name="keywords" content="data science, analytics, R, Python, machine learning, Shiny, Seattle Mariners, statistical modeling, data visualization" />
   <meta name="author" content="Kelvin Ervais" />
@@ -13,13 +13,13 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kelvinervais.github.io/website/" />
-  <meta property="og:title" content="Kelvin Ervais — Data Science & Analytics" />
+  <meta property="og:title" content="Kelvin Ervais" />
   <meta property="og:description" content="Seattle-based data scientist specializing in R, Python, ML, and Shiny dashboards. Currently with Seattle Mariners." />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://kelvinervais.github.io/website/" />
-  <meta property="twitter:title" content="Kelvin Ervais — Data Science & Analytics" />
+  <meta property="twitter:title" content="Kelvin Ervais" />
   <meta property="twitter:description" content="Seattle-based data scientist specializing in R, Python, ML, and Shiny dashboards. Currently with Seattle Mariners." />
 
   <link rel="icon" href="{{ "/favicon.ico" | relative_url }}" />
@@ -30,6 +30,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <!-- Chart.js for Golf visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <script>
     tailwind.config = {
@@ -839,7 +842,7 @@
       transform: translateY(-50%);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       z-index: 100;
     }
     .side-nav a {
@@ -866,6 +869,25 @@
       background: white;
       color: #0C2C56;
       border-color: white;
+    }
+    .hidden { display: none !important; }
+    .side-nav .side-heading {
+      color: rgba(255,255,255,0.65);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 2px;
+    }
+    .side-nav .side-sep {
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+      margin: 4px 0;
+    }
+    .side-nav a[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: auto; /* still intercept clicks to prevent default */
     }
     @media (max-width: 768px) {
       .side-nav { display: none; }
@@ -1087,10 +1109,85 @@
       .timeline-subtitle { font-size: 12px !important; }
       .timeline-dates { font-size: 10px !important; }
     }
+
+    /* View Switching System */
+    .view {
+      display: none;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    /* Active view indicator in nav */
+    .side-nav a.active-view {
+      background: white;
+      color: #0c2c56;
+      font-weight: 600;
+    }
+
+    /* Mobile navigation */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 0;
+      z-index: 1000;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .mobile-nav-links a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 11px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .mobile-nav-links a span {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .mobile-nav-links a.active-view {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-nav {
+        display: block;
+      }
+      .scroll-container {
+        padding-bottom: 80px; /* Space for mobile nav */
+      }
+    }
   </style>
 </head>
 <body>
   <div class="scroll-container" id="scrollContainer">
+
+    <!-- HOME VIEW -->
+    <div id="homeView" class="view active">
 
     <!-- Multi-stage Transition Section -->
     <section class="multi-stage-section">
@@ -1518,23 +1615,96 @@
         </div>
 
       </div>
-        
+
     </section>
 
-    <!-- HOW I WORK: inline section -->
-    
+    </div>
+    <!-- END HOME VIEW -->
 
-    <!-- LET'S CONNECT: inline section -->
+    <!-- COOKING VIEW -->
+    <div id="cookingView" class="view hidden">
+
+    <!-- COOKING PAGE -->
+    <section class="site-section pb-32" id="cooking">
+      <div class="max-w-4xl mx-auto px-6 w-full">
+        <div class="text-center mb-10">
+          <h2 class="font-display text-5xl text-white mb-2">Cooking</h2>
+          <p class="text-slate-100/90">A rotating carousel of recent dishes.</p>
+        </div>
+
+        <div class="glass-card p-4" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18);">
+          <div id="cookingCarousel" class="relative overflow-hidden" style="height: 380px;">
+            <div id="cookingTrack" class="flex transition-transform duration-500 ease-in-out h-full"></div>
+
+            <button id="cookPrev" aria-label="Previous" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-10 h-10 rounded-full flex items-center justify-center">‹</button>
+            <button id="cookNext" aria-label="Next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-10 h-10 rounded-full flex items-center justify-center">›</button>
+
+            <div id="cookDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+    <!-- END COOKING VIEW -->
+
+    <!-- GOLF VIEW -->
+    <div id="golfView" class="view hidden">
+      <div class="max-w-5xl mx-auto px-6 py-12 pb-32">
+        <div class="text-center mb-12">
+          <h2 class="font-display text-6xl text-white mb-4">Golf Journey</h2>
+          <p class="text-slate-100/90 text-lg mb-6">My golf adventures since 2023</p>
+
+          <!-- Filter Toggle -->
+          <div class="inline-flex gap-2 bg-slate-800/50 p-1 rounded-lg backdrop-blur-sm">
+            <button id="filter18" class="px-6 py-2 rounded-md text-white font-semibold bg-blue-500 transition-all">18 Holes</button>
+            <button id="filter9" class="px-6 py-2 rounded-md text-slate-300 hover:text-white transition-all">9 Holes</button>
+            <button id="filterAll" class="px-6 py-2 rounded-md text-slate-300 hover:text-white transition-all">All Rounds</button>
+          </div>
+        </div>
+        <!-- Golf content will be dynamically loaded here -->
+        <div id="golfStats"></div>
+      </div>
+    </div>
+    <!-- END GOLF VIEW -->
+
   </div>
 
   <!-- Side Navigation -->
   <nav class="side-nav" id="sideNav" aria-label="Section navigation">
-    <a href="#home" data-target="home">🏠 Home</a>
-    <a href="#journey" data-target="journey">🛤️ Journey</a>
-    <a href="#projects" data-target="projects">🗂️ Projects</a>
-    <a href="#how-i-work" data-target="how-i-work">🧰 How I Work</a>
-    <a href="#interests" data-target="interests">✨ Interests</a>
-    <a href="#lets-connect" data-target="lets-connect">📬 Connect</a>
+    <div class="side-group">
+      <div class="side-heading">Main</div>
+      <a href="#home" id="link-home" data-target="home">🏠 Home</a>
+      <a href="#golf" aria-disabled="true" data-disabled="true">🏌️ Golf</a>
+      <a href="#cooking" id="link-cooking" data-target="cooking">🍳 Cooking</a>
+    </div>
+    <div class="side-sep"></div>
+    <div class="side-group" id="homeSubtabs">
+      <div class="side-heading">Home Sections</div>
+      <a href="#journey" data-target="journey">🛤️ Journey</a>
+      <a href="#projects" data-target="projects">🗂️ Projects</a>
+      <a href="#how-i-work" data-target="how-i-work">🧰 How I Work</a>
+      <a href="#interests" data-target="interests">✨ Interests</a>
+      <a href="#lets-connect" data-target="lets-connect">📬 Connect</a>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="#home" data-view="homeView">
+        <span>🏠</span>
+        Home
+      </a>
+      <a href="#golf" data-view="golfView">
+        <span>🏌️</span>
+        Golf
+      </a>
+      <a href="#cooking" data-view="cookingView">
+        <span>🍳</span>
+        Cooking
+      </a>
+    </div>
   </nav>
 
   <!-- Timeline Detail Modal -->
@@ -1552,6 +1722,16 @@
   </div>
 
   <script>
+    // Cooking images (auto-generated from repo at build time)
+    const cookingImages = [
+      "Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg",
+      "Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg",
+      "Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg",
+      "Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg",
+      "Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg",
+      "Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg",
+      "Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg",
+    ];
     let isFlipped = false;
 
     function flipCard() {
@@ -2021,19 +2201,37 @@
     // Side nav: smooth-scroll and active link management
     const sideNav = document.getElementById('sideNav');
     const sideLinks = sideNav.querySelectorAll('a[data-target]');
+    const homeLink = document.getElementById('link-home');
+    const homeSubtabs = document.getElementById('homeSubtabs');
+    const cookingLink = document.getElementById('link-cooking');
 
     sideLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        e.preventDefault();
         const targetId = link.getAttribute('data-target');
+
+        // Skip if this is a main view link (handled by view switching system)
+        if (targetId === 'home' || targetId === 'cooking') {
+          return;
+        }
+
+        e.preventDefault();
         const targetEl = document.getElementById(targetId);
         if (targetEl) {
           targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        // If navigating to a Home subtab, show subtabs
+        if (['journey','projects','how-i-work','interests','lets-connect'].includes(targetId)) {
+          homeSubtabs.classList.remove('hidden');
+        }
       });
     });
 
-    const navTargets = ['home','journey','projects','how-i-work','interests','lets-connect']
+    // Prevent navigation for disabled top-level future tabs
+    sideNav.querySelectorAll('a[data-disabled="true"]').forEach(link => {
+      link.addEventListener('click', (e) => e.preventDefault());
+    });
+
+    const navTargets = ['home','journey','projects','how-i-work','interests','lets-connect','cooking']
       .map(id => document.getElementById(id))
       .filter(Boolean);
 
@@ -2048,6 +2246,16 @@
         if (entry.isIntersecting) {
           sideLinks.forEach(l => l.classList.remove('active'));
           link.classList.add('active');
+          // Also highlight Home for all Home-related sections
+          const isHomeSection = ['home','journey','projects','how-i-work','interests','lets-connect'].includes(id);
+          if (isHomeSection && homeLink) {
+            homeLink.classList.add('active');
+            homeSubtabs.classList.remove('hidden');
+          }
+          if (id === 'cooking') {
+            if (homeSubtabs) homeSubtabs.classList.add('hidden');
+            if (homeLink) homeLink.classList.remove('active');
+          }
         }
       });
     }, {
@@ -2056,6 +2264,816 @@
     });
 
     navTargets.forEach(t => navObserver.observe(t));
+
+    // Global-page observer (viewport) for non-Home tabs like Cooking
+    // Build Cooking carousel
+    (function initCookingCarousel(){
+      const track = document.getElementById('cookingTrack');
+      if (!track || !cookingImages || cookingImages.length === 0) return;
+      track.innerHTML = '';
+      cookingImages.forEach((src, idx) => {
+        const slide = document.createElement('div');
+        slide.style.minWidth = '100%';
+        slide.style.height = '100%';
+        slide.style.display = 'flex';
+        slide.style.alignItems = 'center';
+        slide.style.justifyContent = 'center';
+        slide.innerHTML = `<img src="${src}" alt="Cooking ${idx+1}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35);"/>`;
+        track.appendChild(slide);
+      });
+      let idx = 0;
+      const prev = document.getElementById('cookPrev');
+      const next = document.getElementById('cookNext');
+      const dots = document.getElementById('cookDots');
+      const update = () => {
+        track.style.transform = `translateX(${-idx*100}%)`;
+        if (dots){
+          dots.querySelectorAll('span').forEach((d,i)=>{
+            d.style.opacity = i===idx? '1' : '.4';
+          });
+        }
+      };
+      if (dots){
+        dots.innerHTML = cookingImages.map((_,i)=>`<span data-idx="${i}" style="width:8px;height:8px;border-radius:50%;background:white;opacity:.4;display:inline-block;cursor:pointer"></span>`).join('');
+        dots.querySelectorAll('span').forEach(dot => {
+          dot.addEventListener('click', () => {
+            const to = parseInt(dot.getAttribute('data-idx')) || 0;
+            idx = to; update();
+          });
+        });
+      }
+      if (prev) prev.addEventListener('click', ()=>{ idx=(idx-1+cookingImages.length)%cookingImages.length; update(); });
+      if (next) next.addEventListener('click', ()=>{ idx=(idx+1)%cookingImages.length; update(); });
+
+      // Autoplay with hover/touch pause
+      let autoplay = true;
+      let timer = null;
+      const start = () => {
+        if (timer) clearInterval(timer);
+        timer = setInterval(()=>{ if (autoplay) { idx=(idx+1)%cookingImages.length; update(); } }, 3500);
+      };
+      const stop = () => { if (timer) { clearInterval(timer); timer=null; } };
+      const carousel = document.getElementById('cookingCarousel');
+      if (carousel){
+        carousel.addEventListener('mouseenter', ()=>{ autoplay=false; });
+        carousel.addEventListener('mouseleave', ()=>{ autoplay=true; });
+        carousel.addEventListener('touchstart', ()=>{ autoplay=false; }, { passive:true });
+        carousel.addEventListener('touchend', ()=>{ autoplay=true; }, { passive:true });
+        start();
+      }
+      update();
+    })();
+
+    // ========================================
+    // VIEW SWITCHING SYSTEM
+    // ========================================
+    (function() {
+      let currentView = 'homeView';
+
+      function switchView(viewId) {
+        // Hide all views
+        document.querySelectorAll('.view').forEach(v => {
+          v.classList.remove('active');
+          v.classList.add('hidden');
+        });
+
+        // Show selected view
+        const targetView = document.getElementById(viewId);
+        if (targetView) {
+          targetView.classList.remove('hidden');
+          targetView.classList.add('active');
+          currentView = viewId;
+
+          // Scroll to top of the view
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          // Update navigation active states
+          updateNavActiveStates(viewId);
+
+          // Show/hide home subsections based on view
+          const homeSubtabs = document.getElementById('homeSubtabs');
+          if (homeSubtabs) {
+            homeSubtabs.style.display = (viewId === 'homeView') ? 'block' : 'none';
+          }
+
+          // Load golf data if switching to golf view
+          if (viewId === 'golfView' && !window.golfDataLoaded) {
+            loadGolfData();
+          }
+        }
+      }
+
+      function updateNavActiveStates(viewId) {
+        // Remove active-view from all nav links (side and mobile)
+        document.querySelectorAll('.side-nav a, .mobile-nav a').forEach(link => {
+          link.classList.remove('active-view');
+        });
+
+        // Add active-view to current view link in side nav
+        if (viewId === 'homeView') {
+          const homeLink = document.getElementById('link-home');
+          if (homeLink) homeLink.classList.add('active-view');
+        } else if (viewId === 'cookingView') {
+          const cookingLink = document.getElementById('link-cooking');
+          if (cookingLink) cookingLink.classList.add('active-view');
+        } else if (viewId === 'golfView') {
+          const golfLink = document.querySelector('.side-nav a[href="#golf"]');
+          if (golfLink) golfLink.classList.add('active-view');
+        }
+
+        // Add active-view to current view link in mobile nav
+        const mobileLink = document.querySelector(`.mobile-nav a[data-view="${viewId}"]`);
+        if (mobileLink) mobileLink.classList.add('active-view');
+      }
+
+      // Update navigation click handlers
+      const sideNav = document.getElementById('sideNav');
+      if (sideNav) {
+        sideNav.addEventListener('click', (e) => {
+          const link = e.target.closest('a');
+          if (!link) return;
+
+          // Check if disabled
+          if (link.getAttribute('aria-disabled') === 'true' || link.getAttribute('data-disabled') === 'true') {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+
+          const href = link.getAttribute('href');
+          if (!href) return;
+
+          // Handle main view navigation
+          if (href === '#home') {
+            e.preventDefault();
+            e.stopPropagation();
+            switchView('homeView');
+            window.location.hash = 'home';
+          } else if (href === '#cooking') {
+            e.preventDefault();
+            e.stopPropagation();
+            switchView('cookingView');
+            window.location.hash = 'cooking';
+          } else if (href === '#golf') {
+            e.preventDefault();
+            e.stopPropagation();
+            switchView('golfView');
+            window.location.hash = 'golf';
+          }
+          // For home subsections, let the other handler manage them
+        });
+      }
+
+      // Enable golf nav link
+      const golfLink = document.querySelector('a[href="#golf"]');
+      if (golfLink) {
+        golfLink.removeAttribute('aria-disabled');
+        golfLink.removeAttribute('data-disabled');
+      }
+
+      // Mobile navigation click handlers
+      const mobileNav = document.getElementById('mobileNav');
+      if (mobileNav) {
+        mobileNav.addEventListener('click', (e) => {
+          const link = e.target.closest('a');
+          if (!link) return;
+
+          e.preventDefault();
+          const viewId = link.getAttribute('data-view');
+          const hash = link.getAttribute('href');
+
+          if (viewId && hash) {
+            switchView(viewId);
+            window.location.hash = hash.substring(1); // Remove #
+          }
+        });
+      }
+
+      // Hash-based routing for direct URLs and browser back/forward
+      function handleHashChange() {
+        const hash = window.location.hash.substring(1); // Remove #
+        if (hash === 'home' || hash === '') {
+          switchView('homeView');
+        } else if (hash === 'cooking') {
+          switchView('cookingView');
+        } else if (hash === 'golf') {
+          switchView('golfView');
+        } else if (currentView === 'homeView') {
+          // Allow home subsections to scroll within home view
+          const target = document.getElementById(hash);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      }
+
+      window.addEventListener('hashchange', handleHashChange);
+
+      // Handle initial page load
+      handleHashChange();
+    })();
+
+    // ========================================
+    // GOLF DATA VISUALIZATION
+    // ========================================
+    let allGolfRounds = [];
+    let golfCourseMap = {};
+    let currentFilter = '18'; // 'all', '18', or '9' - default to 18 holes
+
+    async function loadGolfData() {
+      try {
+        // Try multiple path variations
+        let response;
+        let data;
+
+        try {
+          response = await fetch('Golf/18Birdies_archive.json');
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          data = await response.json();
+        } catch (e) {
+          // Try alternative path
+          try {
+            response = await fetch('./Golf/18Birdies_archive.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            data = await response.json();
+          } catch (e2) {
+            throw new Error('Could not load golf data. If opening directly from file, please use a local server (python3 -m http.server) or host on GitHub Pages.');
+          }
+        }
+
+        // Filter rounds for 2023+ (timestamp >= Jan 1, 2023)
+        const jan2023 = 1672531200000;
+        allGolfRounds = data.myData.activityData.rounds.filter(r => {
+          // Must be from 2023+
+          if (r.timestamp < jan2023) return false;
+
+          // Must have valid hole strokes (no zeros = no abandoned rounds)
+          if (!r.holeStrokes || r.holeStrokes.length === 0) return false;
+
+          // All holes must have non-zero strokes
+          const hasZeroHoles = r.holeStrokes.some(s => s === 0);
+          if (hasZeroHoles) return false;
+
+          // Must have valid total strokes
+          if (!r.strokes || r.strokes === 0) return false;
+
+          return true;
+        });
+
+        if (allGolfRounds.length === 0) {
+          document.getElementById('golfStats').innerHTML = '<p class="text-white text-center">No golf data available for 2023+</p>';
+          return;
+        }
+
+        // Get course names mapping - build a comprehensive map
+        // NOTE: In clubData, clubId is a STRING, but in rounds, clubId is an OBJECT with .id
+        golfCourseMap = {};
+        if (data.myData.clubData && data.myData.clubData.playedClubs) {
+          data.myData.clubData.playedClubs.forEach(club => {
+            // club.clubId is a string here, map it directly
+            golfCourseMap[club.clubId] = club.name;
+          });
+        }
+
+        // Setup filter buttons
+        setupGolfFilters();
+
+        // Render with default filter (18 holes)
+        renderGolfData('18');
+
+        window.golfDataLoaded = true;
+      } catch (error) {
+        console.error('Error loading golf data:', error);
+        document.getElementById('golfStats').innerHTML = `
+          <div class="glass-card p-8 max-w-2xl mx-auto text-center">
+            <div class="text-4xl mb-4">⚠️</div>
+            <h3 class="text-2xl text-white mb-4">Unable to Load Golf Data</h3>
+            <p class="text-slate-300 mb-4">${error.message}</p>
+            <div class="text-sm text-slate-400">
+              <p class="mb-2">To view golf statistics:</p>
+              <ol class="text-left max-w-md mx-auto space-y-2">
+                <li>1. Open Terminal and navigate to the website folder</li>
+                <li>2. Run: <code class="bg-slate-800 px-2 py-1 rounded">python3 -m http.server 8000</code></li>
+                <li>3. Visit: <code class="bg-slate-800 px-2 py-1 rounded">http://localhost:8000</code></li>
+              </ol>
+              <p class="mt-4">Or deploy to GitHub Pages for full functionality.</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function setupGolfFilters() {
+      const filterAll = document.getElementById('filterAll');
+      const filter18 = document.getElementById('filter18');
+      const filter9 = document.getElementById('filter9');
+
+      function updateFilterButtons(active) {
+        [filterAll, filter18, filter9].forEach(btn => {
+          btn.classList.remove('bg-blue-500');
+          btn.classList.add('text-slate-300');
+          btn.classList.remove('text-white', 'font-semibold');
+        });
+
+        active.classList.add('bg-blue-500', 'text-white', 'font-semibold');
+        active.classList.remove('text-slate-300');
+      }
+
+      filterAll.addEventListener('click', () => {
+        currentFilter = 'all';
+        updateFilterButtons(filterAll);
+        renderGolfData('all');
+      });
+
+      filter18.addEventListener('click', () => {
+        currentFilter = '18';
+        updateFilterButtons(filter18);
+        renderGolfData('18');
+      });
+
+      filter9.addEventListener('click', () => {
+        currentFilter = '9';
+        updateFilterButtons(filter9);
+        renderGolfData('9');
+      });
+    }
+
+    function renderGolfData(filter) {
+      let rounds = [...allGolfRounds];
+
+      // Apply filter - use exact hole counts since we already filtered out partial rounds
+      if (filter === '18') {
+        // 18-hole rounds: exactly 18 holes
+        rounds = rounds.filter(r => r.holeStrokes.length === 18);
+      } else if (filter === '9') {
+        // 9-hole rounds: exactly 9 holes
+        rounds = rounds.filter(r => r.holeStrokes.length === 9);
+      }
+
+      if (rounds.length === 0) {
+        document.getElementById('golfStats').innerHTML = '<div class="glass-card p-8 text-center"><p class="text-white">No rounds found for this filter</p></div>';
+        return;
+      }
+
+      // Calculate statistics
+      const stats = calculateStats(rounds);
+
+      // Render visualizations
+      renderGolfVisualizations(stats, rounds);
+    }
+
+    function calculateStats(rounds) {
+      const totalRounds = rounds.length;
+      const scores = rounds.map(r => r.strokes);
+      const avgScore = (scores.reduce((a, b) => a + b, 0) / totalRounds).toFixed(1);
+      const bestScore = Math.min(...scores);
+      const bestRound = rounds.find(r => r.strokes === bestScore);
+
+      // Calculate recent form (last 5 rounds average)
+      let recentForm = null;
+      const recentRounds = [...rounds].sort((a, b) => b.timestamp - a.timestamp).slice(0, 5);
+      if (recentRounds.length >= 3) {
+        const recentScores = recentRounds.map(r => r.strokes);
+        recentForm = (recentScores.reduce((a, b) => a + b, 0) / recentScores.length).toFixed(1);
+      }
+
+      // Calculate scoring breakdown - recompute from hole-level data
+      let totalBirdies = 0, totalPars = 0, totalBogeys = 0, totalDoubles = 0;
+
+      // First try using the stats if they exist and are valid
+      rounds.forEach(r => {
+        // Only use stats if they were actually tracked (non-zero counts indicate tracking)
+        const statsValid = r.stats && (
+          r.stats.birdies > 0 ||
+          r.stats.pars > 0 ||
+          r.stats.bogeys > 0 ||
+          r.stats.doubleBogeyOrWorse > 0
+        );
+
+        if (statsValid) {
+          totalBirdies += r.stats.birdies || 0;
+          totalPars += r.stats.pars || 0;
+          totalBogeys += r.stats.bogeys || 0;
+          totalDoubles += r.stats.doubleBogeyOrWorse || 0;
+        }
+      });
+
+      // Course breakdown
+      const courseStats = {};
+      rounds.forEach(r => {
+        const clubId = r.clubId.id;
+        const courseName = golfCourseMap[clubId];
+
+        // Skip rounds where we don't have course data
+        if (!courseName) {
+          return;
+        }
+
+        if (!courseStats[courseName]) {
+          courseStats[courseName] = { rounds: 0, totalScore: 0, bestScore: Infinity };
+        }
+        courseStats[courseName].rounds++;
+        courseStats[courseName].totalScore += r.strokes;
+        courseStats[courseName].bestScore = Math.min(courseStats[courseName].bestScore, r.strokes);
+      });
+
+      Object.keys(courseStats).forEach(course => {
+        courseStats[course].avgScore = (courseStats[course].totalScore / courseStats[course].rounds).toFixed(1);
+      });
+
+      return {
+        totalRounds,
+        avgScore,
+        bestScore,
+        bestRound,
+        recentForm,
+        totalBirdies,
+        totalPars,
+        totalBogeys,
+        totalDoubles,
+        courseStats
+      };
+    }
+
+    function renderGolfVisualizations(stats, rounds) {
+      const container = document.getElementById('golfStats');
+
+      const html = `
+        <!-- Hero Stats Dashboard -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
+          <div class="glass-card p-6 text-center">
+            <div class="text-4xl font-display text-white mb-2">${stats.totalRounds}</div>
+            <div class="text-slate-300 text-sm">Rounds Played</div>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-4xl font-display text-yellow-400 mb-2">${stats.avgScore}</div>
+            <div class="text-slate-300 text-sm">Average Score</div>
+          </div>
+          <div class="glass-card p-6 text-center">
+            <div class="text-4xl font-display text-green-400 mb-2">${stats.bestScore}</div>
+            <div class="text-slate-300 text-sm">Best Round</div>
+          </div>
+          ${stats.recentForm !== null ? `
+          <div class="glass-card p-6 text-center">
+            <div class="text-4xl font-display text-purple-400 mb-2">${stats.recentForm}</div>
+            <div class="text-slate-300 text-sm">Recent Form</div>
+            <div class="text-slate-500 text-xs mt-1">Last 5 Avg</div>
+          </div>
+          ` : ''}
+          <div class="glass-card p-6 text-center">
+            <div class="text-4xl font-display text-blue-400 mb-2">${stats.totalBirdies}</div>
+            <div class="text-slate-300 text-sm">Total Birdies</div>
+          </div>
+        </div>
+
+        <!-- Performance Timeline Chart -->
+        <div class="glass-card p-8 mb-16">
+          <h3 class="font-display text-3xl text-white mb-6">Score Progression</h3>
+          <p class="text-slate-400 text-sm mb-4">Click any point to view hole-by-hole details</p>
+          <canvas id="scoreTimelineChart" style="max-height: 400px;"></canvas>
+        </div>
+
+        <!-- Round Detail Modal -->
+        <div id="roundDetailOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden" onclick="closeRoundDetail()"></div>
+        <div id="roundDetailModal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 hidden max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+          <div class="glass-card p-8">
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h3 id="roundDetailTitle" class="font-display text-3xl text-white mb-2"></h3>
+                <p id="roundDetailSubtitle" class="text-slate-300"></p>
+              </div>
+              <button onclick="closeRoundDetail()" class="text-white hover:text-slate-300 text-3xl leading-none">&times;</button>
+            </div>
+            <div id="roundDetailContent"></div>
+          </div>
+        </div>
+
+        <!-- Scoring Patterns -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <div class="glass-card p-8">
+            <h3 class="font-display text-3xl text-white mb-6">Scoring Breakdown</h3>
+            <canvas id="scoringPieChart"></canvas>
+          </div>
+          <div class="glass-card p-8">
+            <h3 class="font-display text-3xl text-white mb-6">Score Distribution</h3>
+            <div class="space-y-4">
+              ${createScoreBar('Birdies', stats.totalBirdies, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#10b981')}
+              ${createScoreBar('Pars', stats.totalPars, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#3b82f6')}
+              ${createScoreBar('Bogeys', stats.totalBogeys, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#eab308')}
+              ${createScoreBar('Double+', stats.totalDoubles, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#ef4444')}
+            </div>
+          </div>
+        </div>
+
+        <!-- Course Breakdown -->
+        <div class="mb-16">
+          <h3 class="font-display text-4xl text-white mb-8 text-center">Course Breakdown</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${Object.entries(stats.courseStats)
+              .sort((a, b) => b[1].rounds - a[1].rounds)
+              .map(([course, data]) => `
+                <div class="glass-card p-6">
+                  <div class="text-2xl mb-2">⛳</div>
+                  <div class="text-lg font-semibold text-white mb-2">${course}</div>
+                  <div class="text-sm text-slate-300 space-y-1">
+                    <div>Rounds: <span class="text-white font-semibold">${data.rounds}</span></div>
+                    <div>Avg Score: <span class="text-yellow-400 font-semibold">${data.avgScore}</span></div>
+                    <div>Best: <span class="text-green-400 font-semibold">${data.bestScore}</span></div>
+                  </div>
+                </div>
+              `).join('')}
+          </div>
+        </div>
+
+        <!-- Best Round Highlight -->
+        <div class="glass-card p-8 text-center">
+          <h3 class="font-display text-3xl text-white mb-4">🏆 Best Round</h3>
+          <div class="text-6xl font-display text-green-400 mb-2">${stats.bestScore}</div>
+          <div class="text-xl text-slate-300 mb-4">${golfCourseMap[stats.bestRound.clubId.id] || new Date(stats.bestRound.timestamp).toLocaleDateString()}</div>
+          <div class="text-sm text-slate-400">${new Date(stats.bestRound.timestamp).toLocaleDateString()}</div>
+          <div class="mt-4 flex justify-center gap-6 text-sm">
+            <div><span class="text-green-400">⭐ ${stats.bestRound.stats.birdies}</span> Birdies</div>
+            <div><span class="text-blue-400">◼︎ ${stats.bestRound.stats.pars}</span> Pars</div>
+            <div><span class="text-yellow-400">▲ ${stats.bestRound.stats.bogeys}</span> Bogeys</div>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+
+      // Render charts
+      renderScoreTimelineChart(rounds);
+      renderScoringPieChart(stats);
+    }
+
+    function createScoreBar(label, count, total, color) {
+      const percentage = ((count / total) * 100).toFixed(1);
+      return `
+        <div>
+          <div class="flex justify-between text-sm text-slate-300 mb-1">
+            <span>${label}</span>
+            <span>${count} (${percentage}%)</span>
+          </div>
+          <div class="w-full bg-slate-700 rounded-full h-3">
+            <div class="h-3 rounded-full transition-all duration-1000" style="width: ${percentage}%; background: ${color};"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderScoreTimelineChart(rounds) {
+      const ctx = document.getElementById('scoreTimelineChart');
+      if (!ctx) return;
+
+      // Sort rounds by timestamp
+      const sortedRounds = [...rounds].sort((a, b) => a.timestamp - b.timestamp);
+
+      const labels = sortedRounds.map(r => new Date(r.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' }));
+      const scores = sortedRounds.map(r => r.strokes);
+
+      // Calculate moving average (last 5 rounds)
+      const movingAvg = scores.map((score, idx, arr) => {
+        const start = Math.max(0, idx - 4);
+        const subset = arr.slice(start, idx + 1);
+        return subset.reduce((a, b) => a + b, 0) / subset.length;
+      });
+
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Score',
+              data: scores,
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+              tension: 0.3,
+              fill: true,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              pointHitRadius: 10
+            },
+            {
+              label: '5-Round Avg',
+              data: movingAvg,
+              borderColor: '#eab308',
+              borderDash: [5, 5],
+              tension: 0.4,
+              fill: false,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          onClick: (event, elements) => {
+            if (elements.length > 0) {
+              const element = elements[0];
+              if (element.datasetIndex === 0) { // Only for Score dataset, not moving avg
+                const roundIndex = element.index;
+                showRoundDetail(sortedRounds[roundIndex]);
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: { color: '#fff' }
+            },
+            tooltip: {
+              callbacks: {
+                title: (items) => {
+                  const idx = items[0].dataIndex;
+                  const round = sortedRounds[idx];
+                  const courseName = golfCourseMap[round.clubId.id];
+                  return courseName || new Date(round.timestamp).toLocaleDateString();
+                },
+                afterLabel: (context) => {
+                  const idx = context.dataIndex;
+                  const round = sortedRounds[idx];
+                  return `🐦 ${round.stats.birdies} | Par ${round.stats.pars} | Bogey ${round.stats.bogeys}`;
+                },
+                footer: () => 'Click to view details'
+              }
+            }
+          },
+          scales: {
+            y: {
+              reverse: true,
+              grid: { color: 'rgba(255,255,255,0.1)' },
+              ticks: { color: '#fff' }
+            },
+            x: {
+              grid: { color: 'rgba(255,255,255,0.1)' },
+              ticks: { color: '#fff', maxRotation: 45 }
+            }
+          }
+        }
+      });
+    }
+
+    function showRoundDetail(round) {
+      const courseName = golfCourseMap[round.clubId.id] || new Date(round.timestamp).toLocaleDateString();
+      const date = new Date(round.timestamp).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+      document.getElementById('roundDetailTitle').textContent = `${round.strokes} Strokes`;
+      document.getElementById('roundDetailSubtitle').textContent = `${courseName} • ${date}`;
+
+      const holes = round.holeStrokes.filter(s => s > 0);
+      const is18Holes = holes.length === 18;
+
+      // Split into front and back nine
+      const front9 = holes.slice(0, 9);
+      const back9 = is18Holes ? holes.slice(9, 18) : [];
+
+      const front9Total = front9.reduce((a, b) => a + b, 0);
+      const back9Total = back9.length > 0 ? back9.reduce((a, b) => a + b, 0) : null;
+
+      // Estimate par (typically 4 per hole)
+      const estimatedParPerHole = 4;
+      const front9Par = front9.length * estimatedParPerHole;
+      const back9Par = back9.length > 0 ? back9.length * estimatedParPerHole : null;
+
+      let html = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div class="bg-slate-800/50 p-4 rounded-lg">
+            <div class="text-slate-400 text-sm mb-2">Total Score</div>
+            <div class="text-3xl font-display text-white">${round.strokes}</div>
+          </div>
+          <div class="bg-slate-800/50 p-4 rounded-lg">
+            <div class="text-slate-400 text-sm mb-2">Holes Played</div>
+            <div class="text-3xl font-display text-white">${holes.length}</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+            <div class="text-green-400 text-2xl font-display">${round.stats.birdies || 0}</div>
+            <div class="text-slate-400 text-xs">Birdies</div>
+          </div>
+          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+            <div class="text-blue-400 text-2xl font-display">${round.stats.pars || 0}</div>
+            <div class="text-slate-400 text-xs">Pars</div>
+          </div>
+          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+            <div class="text-yellow-400 text-2xl font-display">${round.stats.bogeys || 0}</div>
+            <div class="text-slate-400 text-xs">Bogeys</div>
+          </div>
+          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
+            <div class="text-red-400 text-2xl font-display">${round.stats.doubleBogeyOrWorse || 0}</div>
+            <div class="text-slate-400 text-xs">Double+</div>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h4 class="font-display text-xl text-white mb-4">Front Nine</h4>
+          <div class="grid grid-cols-9 gap-2 mb-2">
+            ${front9.map((score, idx) => {
+              const overPar = score - estimatedParPerHole;
+              let colorClass = 'bg-slate-700';
+              if (overPar < 0) colorClass = 'bg-green-600';
+              else if (overPar === 0) colorClass = 'bg-blue-600';
+              else if (overPar === 1) colorClass = 'bg-yellow-600';
+              else colorClass = 'bg-red-600';
+
+              return `
+                <div class="${colorClass} rounded p-2 text-center">
+                  <div class="text-white/60 text-xs">${idx + 1}</div>
+                  <div class="text-white font-bold">${score}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+          <div class="text-right text-slate-300">
+            Total: <span class="font-semibold text-white">${front9Total}</span>
+            ${front9Par ? `<span class="text-slate-500 text-sm ml-2">(${front9Total > front9Par ? '+' : ''}${front9Total - front9Par})</span>` : ''}
+          </div>
+        </div>
+
+        ${back9.length > 0 ? `
+          <div class="mb-6">
+            <h4 class="font-display text-xl text-white mb-4">Back Nine</h4>
+            <div class="grid grid-cols-9 gap-2 mb-2">
+              ${back9.map((score, idx) => {
+                const overPar = score - estimatedParPerHole;
+                let colorClass = 'bg-slate-700';
+                if (overPar < 0) colorClass = 'bg-green-600';
+                else if (overPar === 0) colorClass = 'bg-blue-600';
+                else if (overPar === 1) colorClass = 'bg-yellow-600';
+                else colorClass = 'bg-red-600';
+
+                return `
+                  <div class="${colorClass} rounded p-2 text-center">
+                    <div class="text-white/60 text-xs">${idx + 10}</div>
+                    <div class="text-white font-bold">${score}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+            <div class="text-right text-slate-300">
+              Total: <span class="font-semibold text-white">${back9Total}</span>
+              ${back9Par ? `<span class="text-slate-500 text-sm ml-2">(${back9Total > back9Par ? '+' : ''}${back9Total - back9Par})</span>` : ''}
+            </div>
+          </div>
+        ` : ''}
+
+        <div class="mt-6 pt-6 border-t border-slate-700">
+          <div class="grid grid-cols-3 gap-4 text-center text-sm">
+            <div>
+              <div class="text-slate-400 mb-1">Best Hole</div>
+              <div class="text-white font-semibold">${Math.min(...holes)} strokes</div>
+            </div>
+            <div>
+              <div class="text-slate-400 mb-1">Worst Hole</div>
+              <div class="text-white font-semibold">${Math.max(...holes)} strokes</div>
+            </div>
+            <div>
+              <div class="text-slate-400 mb-1">Average</div>
+              <div class="text-white font-semibold">${(holes.reduce((a, b) => a + b, 0) / holes.length).toFixed(1)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('roundDetailContent').innerHTML = html;
+      document.getElementById('roundDetailOverlay').classList.remove('hidden');
+      document.getElementById('roundDetailModal').classList.remove('hidden');
+    }
+
+    function closeRoundDetail() {
+      document.getElementById('roundDetailOverlay').classList.add('hidden');
+      document.getElementById('roundDetailModal').classList.add('hidden');
+    }
+
+    function renderScoringPieChart(stats) {
+      const ctx = document.getElementById('scoringPieChart');
+      if (!ctx) return;
+
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Birdies', 'Pars', 'Bogeys', 'Double+'],
+          datasets: [{
+            data: [stats.totalBirdies, stats.totalPars, stats.totalBogeys, stats.totalDoubles],
+            backgroundColor: ['#10b981', '#3b82f6', '#eab308', '#ef4444'],
+            borderWidth: 2,
+            borderColor: '#0f172a'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#fff', padding: 15, font: { size: 14 } }
+            }
+          }
+        }
+      });
+    }
+
   </script>
 </body>
 </html>
