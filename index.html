@@ -1797,24 +1797,27 @@
         const cardTranslateX = -50 + (stage1Progress * -50);
         cardWrapper.style.transform = `translateX(${cardTranslateX}%)`;
         cardWrapper.style.opacity = '1';
+        cardWrapper.style.visibility = 'visible';
 
         const timelineOpacity = stage1Progress;
         const timelineTranslateX = 50 - (stage1Progress * 50);
         timelineWrapper.style.opacity = String(timelineOpacity);
         timelineWrapper.style.transform = `translateX(${timelineTranslateX}px)`;
         timelineWrapper.style.pointerEvents = timelineOpacity > 0.1 ? 'auto' : 'none';
+        timelineWrapper.style.visibility = timelineOpacity > 0.01 ? 'visible' : 'hidden';
 
         // Hide others
-        deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none';
-        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none';
-        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none';
-        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none';
+        deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
+        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
+        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
+        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
 
       } else if (totalProgress <= 6) {
         // Stage 2: Timeline → Projects
         const stage2Progress = (totalProgress - 2) / 4;
         cardWrapper.style.transform = `translateX(-100%)`;
         cardWrapper.style.opacity = '1';
+        cardWrapper.style.visibility = 'visible';
 
         if (stage2Progress < 0.5) {
           const fadeOutProgress = stage2Progress * 2;
@@ -1822,21 +1825,23 @@
           timelineWrapper.style.opacity = String(timelineOpacity);
           timelineWrapper.style.transform = 'translateX(0)';
           timelineWrapper.style.pointerEvents = timelineOpacity > 0.1 ? 'auto' : 'none';
+          timelineWrapper.style.visibility = timelineOpacity > 0.01 ? 'visible' : 'hidden';
 
-          deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none';
+          deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
         } else {
           let fadeInProgress = (stage2Progress - 0.5) * 2; // 0→1
           fadeInProgress = Math.min(Math.max(fadeInProgress, 0), 1);
-          timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none';
+          timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
           deckWrapper.style.opacity = String(fadeInProgress);
           const deckTranslateX = 50 - (fadeInProgress * 50);
           deckWrapper.style.transform = `translateX(${deckTranslateX}px)`;
           deckWrapper.style.pointerEvents = 'auto';
+          deckWrapper.style.visibility = fadeInProgress > 0.01 ? 'visible' : 'hidden';
         }
 
-        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none';
-        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none';
-        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none';
+        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
+        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
+        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
 
       } else if (totalProgress <= 8) {
         // Stage 3a: Projects → How I Work
@@ -1844,15 +1849,18 @@
         deckWrapper.style.opacity = String(1 - p);
         deckWrapper.style.transform = 'translateX(0)';
         deckWrapper.style.pointerEvents = 'none';
+        deckWrapper.style.visibility = (1 - p) > 0.01 ? 'visible' : 'hidden';
 
         workPanel.style.opacity = String(p);
         workPanel.style.transform = `translateX(${50 - p * 50}px)`;
         workPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
+        workPanel.style.visibility = p > 0.01 ? 'visible' : 'hidden';
 
         // Hide others
-        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none';
-        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none';
-        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none';
+        cardWrapper.style.visibility = 'hidden';
+        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
+        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
+        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
 
       } else if (totalProgress <= 10) {
         // Stage 3b: How I Work → Interests (crossfade)
@@ -1860,13 +1868,16 @@
         workPanel.style.opacity = String(1 - p);
         workPanel.style.transform = 'translateX(0)';
         workPanel.style.pointerEvents = 'none';
+        workPanel.style.visibility = (1 - p) > 0.01 ? 'visible' : 'hidden';
 
         interestsPanel.style.opacity = String(p);
         interestsPanel.style.transform = `translateX(${50 - p * 50}px)`;
         interestsPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
-        interestsPanel.style.visibility = 'visible';
+        interestsPanel.style.visibility = p > 0.01 ? 'visible' : 'hidden';
 
-        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none';
+        cardWrapper.style.visibility = 'hidden';
+        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
+        timelineWrapper.style.visibility = 'hidden';
 
       } else if (totalProgress <= 12) {
         // Stage 4: Interests → Connect (crossfade)
@@ -1876,6 +1887,7 @@
         connectPanel.style.opacity = String(p);
         connectPanel.style.transform = `translateX(${50 - p * 50}px)`;
         connectPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
+        connectPanel.style.visibility = 'visible';
 
         // Hide Interests decisively once transition starts
         if (p >= 0.3) {
@@ -1891,9 +1903,23 @@
         }
 
         // Ensure others hidden
-        workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none';
-        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none';
-        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none';
+        workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
+        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
+        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
+
+      } else {
+        // Stage 5: Beyond 12vh - Keep Connect fully visible
+        connectPanel.style.opacity = '1';
+        connectPanel.style.transform = 'translateX(0)';
+        connectPanel.style.pointerEvents = 'auto';
+        connectPanel.style.visibility = 'visible';
+
+        // Hide all others
+        interestsPanel.style.opacity = '0'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
+        workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
+        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
+        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
+        cardWrapper.style.opacity = '0'; cardWrapper.style.visibility = 'hidden';
       }
 
 
