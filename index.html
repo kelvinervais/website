@@ -2337,6 +2337,12 @@
           v.classList.add('hidden');
         });
 
+        // Hide any open modals/overlays from home view
+        const timelineDetail = document.getElementById('timelineDetail');
+        const timelineOverlay = document.getElementById('timelineOverlay');
+        if (timelineDetail) timelineDetail.classList.remove('active');
+        if (timelineOverlay) timelineOverlay.classList.remove('active');
+
         // Show selected view
         const targetView = document.getElementById(viewId);
         if (targetView) {
