@@ -1856,8 +1856,12 @@
         workPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
         workPanel.style.visibility = p > 0.01 ? 'visible' : 'hidden';
 
+        // Keep card visible at its final position
+        cardWrapper.style.transform = 'translateX(-100%)';
+        cardWrapper.style.opacity = '1';
+        cardWrapper.style.visibility = 'visible';
+
         // Hide others
-        cardWrapper.style.visibility = 'hidden';
         timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
         interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
         connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
@@ -1875,7 +1879,11 @@
         interestsPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
         interestsPanel.style.visibility = p > 0.01 ? 'visible' : 'hidden';
 
-        cardWrapper.style.visibility = 'hidden';
+        // Keep card visible at its final position
+        cardWrapper.style.transform = 'translateX(-100%)';
+        cardWrapper.style.opacity = '1';
+        cardWrapper.style.visibility = 'visible';
+
         deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
         timelineWrapper.style.visibility = 'hidden';
 
@@ -1902,6 +1910,11 @@
           interestsPanel.style.visibility = 'visible';
         }
 
+        // Keep card visible at its final position
+        cardWrapper.style.transform = 'translateX(-100%)';
+        cardWrapper.style.opacity = '1';
+        cardWrapper.style.visibility = 'visible';
+
         // Ensure others hidden
         workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
         deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
@@ -1914,12 +1927,16 @@
         connectPanel.style.pointerEvents = 'auto';
         connectPanel.style.visibility = 'visible';
 
+        // Keep card visible at its final position
+        cardWrapper.style.transform = 'translateX(-100%)';
+        cardWrapper.style.opacity = '1';
+        cardWrapper.style.visibility = 'visible';
+
         // Hide all others
         interestsPanel.style.opacity = '0'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
         workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
         deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
         timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
-        cardWrapper.style.opacity = '0'; cardWrapper.style.visibility = 'hidden';
       }
 
 
@@ -1937,7 +1954,7 @@
 
     function setMobileDefaults() {
       // Stack everything, all visible
-      cardWrapper.style.transform = 'none'; cardWrapper.style.opacity = '1';
+      cardWrapper.style.transform = 'none'; cardWrapper.style.opacity = '1'; cardWrapper.style.visibility = 'visible';
       timelineWrapper.style.opacity = '1'; timelineWrapper.style.transform = 'none'; timelineWrapper.style.pointerEvents = 'auto';
       deckWrapper.style.opacity = '1'; deckWrapper.style.transform = 'none'; deckWrapper.style.pointerEvents = 'auto';
       if (workPanel) { workPanel.style.opacity = '1'; workPanel.style.transform = 'none'; workPanel.style.pointerEvents = 'auto'; }
@@ -2378,6 +2395,18 @@
 
           // Scroll to top of the view
           window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          // Reset scroll position and component styles for home view
+          if (viewId === 'homeView') {
+            const scrollContainer = document.getElementById('scrollContainer');
+            if (scrollContainer) {
+              scrollContainer.scrollTop = 0;
+              // Trigger handleScroll to reset all component positions
+              if (typeof handleScroll === 'function') {
+                handleScroll();
+              }
+            }
+          }
 
           // Update navigation active states
           updateNavActiveStates(viewId);
