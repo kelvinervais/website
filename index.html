@@ -217,9 +217,23 @@
     .plates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .plates img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; background: var(--panel-2); }
 
+    .mbar { display: none; }
     @media (max-width: 960px) {
       html, body { height: auto; }
-      .shell, .shell.landing { grid-template-columns: 1fr; height: auto; }
+      .mbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: rgba(13,22,38,.94); backdrop-filter: blur(10px); border-top: 1px solid var(--line); padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)); gap: 4px; }
+      .shell.landing ~ .mbar { display: none; }
+      .mbar button { flex: 1; min-height: 44px; background: none; border: 0; border-radius: 10px; color: var(--mute); font-size: 13px; font-weight: 600; }
+      .mbar button.on { background: var(--gold); color: var(--gold-ink); }
+      .shell:not(.landing) .side { padding: 18px 22px 14px; gap: 10px; }
+      .shell:not(.landing) .side h1 { font-size: 30px; }
+      .shell:not(.landing) .side .role, .shell:not(.landing) .side .loc { display: none; }
+      .shell:not(.landing) .field-wrap { display: none; }
+      .shell:not(.landing) .links a { min-height: 36px; padding: 6px 12px; font-size: 13px; }
+      .shell.landing .diamond { max-width: min(100%, 380px); }
+      .stage { padding-bottom: 90px; }
+      .gaxis span span:nth-child(even) { display: none; }
+      .shell, .shell.landing { grid-template-columns: minmax(0, 1fr); height: auto; }
+      .stage, .view { min-width: 0; }
       .shell.landing .stage { display: none; }
       .shell.landing .side { min-height: 100vh; }
       .side { border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 22px 20px; gap: 16px; }
@@ -237,11 +251,15 @@
       .stop .logo { width: 40px; height: 40px; }
       .stop .when { grid-column: 2; }
       .stop p { margin-left: 0; }
-      .mx { min-width: 520px; }
-      .mx tbody td { width: 44px; }
+      .mx { min-width: 0; font-size: 12px; }
+      .mx tbody td { width: 30px; }
+      .mx tbody th { white-space: normal; padding-right: 6px; }
+      .mx td b { width: 9px; height: 9px; }
+      .col img, .col em { width: 26px; height: 26px; }
       .col i { display: none; }
       .statrow, .breakdown { grid-template-columns: 1fr 1fr; }
       .plates { grid-template-columns: 1fr 1fr; }
+      #courses th:last-child, #courses td:last-child { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       .view { animation: none; }
@@ -461,6 +479,13 @@
 
   </main>
 </div>
+<nav class="mbar" aria-label="Sections">
+  <button type="button" data-view="home">Home</button>
+  <button type="button" data-view="career">Career</button>
+  <button type="button" data-view="projects">Projects</button>
+  <button type="button" data-view="skills">Skills</button>
+  <button type="button" data-view="dugout">Dugout</button>
+</nav>
 
 <script>
 (function () {
@@ -533,8 +558,10 @@
       shell.classList.toggle('landing', toLanding);
     }
     bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
+    document.querySelectorAll('.mbar button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
     stage.scrollTop = 0;
-    if (window.innerWidth <= 960 && view !== 'landing') stage.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 60);
+    if (window.innerWidth <= 960 && view !== 'landing') window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     if (push) history.replaceState(null, '', view === 'landing' ? location.pathname : '#' + view);
   }
 
@@ -546,6 +573,9 @@
     show(view, true);
   }
 
+  document.querySelectorAll('.mbar button').forEach(function (b) {
+    b.addEventListener('click', function () { go(b.getAttribute('data-view')); });
+  });
   bases.forEach(function (b) {
     b.addEventListener('click', function () { go(b.getAttribute('data-view')); });
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(b.getAttribute('data-view')); } });
@@ -618,9 +648,11 @@
     var lo = Math.min.apply(null, recent.map(function (r) { return r.strokes; })) - 4;
     var hi = Math.max.apply(null, recent.map(function (r) { return r.strokes; })) + 4;
     var W = 800, H = 130, padL = 30, padB = 20;
-    var bw = (W - padL) / recent.length;
     var y = function (v) { return (H - padB) - (v - lo) / (hi - lo) * (H - padB - 10); };
     var svg = document.getElementById('trend');
+    W = Math.max(320, Math.round(svg.getBoundingClientRect().width) || 800);
+    bw = (W - padL) / recent.length;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var mean = avg(recent);
     var html = '';
     [lo + 4, Math.round(mean), hi - 4].forEach(function (v) {
@@ -693,6 +725,7 @@
     });
   });
   render();
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(render, 150); });
 })();
 </script>
 </body>
