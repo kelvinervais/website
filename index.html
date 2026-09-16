@@ -222,6 +222,7 @@
     @media (max-width: 960px) {
       html, body { height: auto; }
       .side { transition: opacity .22s ease; }
+      .side h1 { transition: none; }
       .side.switching { opacity: 0; }
       .view { animation-delay: .15s; }
       .shell:not(.landing) .side { position: sticky; top: 0; z-index: 30; background: rgba(13,22,38,.94); backdrop-filter: blur(10px); display: grid; grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: auto auto; align-items: center; gap: 6px 12px; padding: 10px 16px 8px; }
@@ -561,14 +562,15 @@
       side.classList.add('switching');
       setTimeout(function () {
         shell.classList.toggle('landing', toLanding);
+        svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
         requestAnimationFrame(function () { requestAnimationFrame(function () { side.classList.remove('switching'); }); });
       }, window.innerWidth <= 960 ? 240 : 200);
     } else {
       shell.classList.toggle('landing', toLanding);
+      svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
     }
     bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
     document.getElementById('now-label').textContent = LABELS[view] || '';
-    svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
     stage.scrollTop = 0;
     setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 60);
     if (window.innerWidth <= 960 && view !== 'landing') window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
@@ -587,7 +589,7 @@
     b.addEventListener('click', function () { go(b.getAttribute('data-view')); });
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(b.getAttribute('data-view')); } });
   });
-  window.addEventListener('resize', function () { svgEl.setAttribute('viewBox', (current !== 'landing' && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX); });
+  window.addEventListener('resize', function () { svgEl.setAttribute('viewBox', (!shell.classList.contains('landing') && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX); });
   window.addEventListener('hashchange', function () { var v = location.hash.slice(1); if (SPOTS[v]) go(v); });
   var initial = location.hash.slice(1);
   if (SPOTS[initial] && initial !== 'landing') { current = initial; place(SPOTS[initial]); show(initial, false); }
