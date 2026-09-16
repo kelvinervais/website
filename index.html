@@ -74,6 +74,7 @@
     .side h1 { font-size: clamp(44px, 4.2vw, 60px); font-variation-settings: "opsz" 96; }
     .side .role { color: var(--chalk); font-weight: 600; margin: 8px 0 2px; }
     .side .loc { color: var(--mute); margin: 0; }
+    .now-label { display: none; color: var(--gold); font-weight: 600; font-size: 13px; }
     .links { display: flex; flex-wrap: wrap; gap: 8px; }
     .links a { border: 1px solid var(--line); color: var(--chalk); padding: 8px 14px; border-radius: 999px; font-size: 14px; min-height: 40px; display: inline-flex; align-items: center; }
     .links a:hover { text-decoration: none; border-color: var(--teal); color: var(--teal); }
@@ -87,12 +88,13 @@
     .diamond .mound { fill: var(--teal); }
     .diamond .pads rect, .diamond .pads path { fill: var(--chalk); }
     .base { cursor: pointer; }
-    .base rect { fill: var(--panel); stroke: var(--chalk); stroke-width: 3; transition: fill .2s, stroke .2s; }
+    .base rect.tile { fill: var(--panel); stroke: var(--chalk); stroke-width: 3; transition: fill .2s, stroke .2s; }
+    .base rect.hit { fill: transparent; stroke: none; }
     .base text { font-family: var(--display); font-weight: 800; font-size: 21px; fill: var(--chalk); text-anchor: middle; letter-spacing: -0.02em; pointer-events: none; }
-    .base:hover rect { fill: var(--panel-2); }
-    .base.on rect { fill: var(--gold); stroke: var(--gold); }
+    .base:hover rect.tile { fill: var(--panel-2); }
+    .base.on rect.tile { fill: var(--gold); stroke: var(--gold); }
     .base.on text { fill: var(--gold-ink); }
-    .base.dugout rect { stroke-dasharray: 6 5; }
+    .base.dugout rect.tile { stroke-dasharray: 6 5; }
     .runner { fill: var(--gold); stroke: var(--bg); stroke-width: 3; }
     .runner-ring { fill: none; stroke: var(--gold); stroke-width: 2; opacity: 0; }
 
@@ -217,20 +219,27 @@
     .plates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .plates img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; background: var(--panel-2); }
 
-    .mbar { display: none; }
     @media (max-width: 960px) {
       html, body { height: auto; }
-      .mbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: rgba(13,22,38,.94); backdrop-filter: blur(10px); border-top: 1px solid var(--line); padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)); gap: 4px; }
-      .shell.landing ~ .mbar { display: none; }
-      .mbar button { flex: 1; min-height: 44px; background: none; border: 0; border-radius: 10px; color: var(--mute); font-size: 13px; font-weight: 600; }
-      .mbar button.on { background: var(--gold); color: var(--gold-ink); }
-      .shell:not(.landing) .side { padding: 18px 22px 14px; gap: 10px; }
-      .shell:not(.landing) .side h1 { font-size: 30px; }
-      .shell:not(.landing) .side .role, .shell:not(.landing) .side .loc { display: none; }
-      .shell:not(.landing) .field-wrap { display: none; }
-      .shell:not(.landing) .links a { min-height: 36px; padding: 6px 12px; font-size: 13px; }
+      .shell:not(.landing) .side { position: sticky; top: 0; z-index: 30; background: rgba(13,22,38,.94); backdrop-filter: blur(10px); display: grid; grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: auto auto; align-items: center; gap: 6px 12px; padding: 10px 16px 8px; }
+      .shell:not(.landing) .side > div:first-child { grid-column: 1; grid-row: 1; }
+      .shell:not(.landing) .links { grid-column: 1; grid-row: 2; }
+      .shell:not(.landing) .field-wrap { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+      .shell:not(.landing) .side h1 { font-size: 22px; }
+      .shell:not(.landing) .side .role, .shell:not(.landing) .side .loc, .shell:not(.landing) .field-hint { display: none; }
+      .shell:not(.landing) .now-label { display: block; }
+      .shell:not(.landing) .links a { min-height: 32px; padding: 4px 10px; font-size: 12px; }
+      .shell:not(.landing) .diamond { max-width: 150px; }
+      .shell:not(.landing) .diamond .pads { display: none; }
+      .shell:not(.landing) .base text { display: none; }
+      .shell:not(.landing) .base rect.tile { x: -22px; y: -22px; width: 44px; height: 44px; rx: 7px; stroke-width: 4px; }
+      .shell:not(.landing) .base[data-view="projects"] { transform: translate(200px, 20px); }
+      .shell:not(.landing) .base[data-view="career"] { transform: translate(380px, 200px); }
+      .shell:not(.landing) .base[data-view="skills"] { transform: translate(20px, 200px); }
+      .shell:not(.landing) .base[data-view="home"] { transform: translate(200px, 380px); }
+      .shell:not(.landing) .base[data-view="dugout"] { transform: translate(330px, 420px); }
+      .shell:not(.landing) .runner { r: 14px; }
       .shell.landing .diamond { max-width: min(100%, 380px); }
-      .stage { padding-bottom: 90px; }
       .gaxis span span:nth-child(even) { display: none; }
       .shell, .shell.landing { grid-template-columns: minmax(0, 1fr); height: auto; }
       .stage, .view { min-width: 0; }
@@ -272,6 +281,7 @@
   <aside class="side">
     <div class="fade">
       <h1>Kelvin Ervais</h1>
+      <span class="now-label" id="now-label"></span>
       <p class="role">Analyst, Baseball Projects · Seattle Mariners</p>
       <p class="loc">Seattle, WA</p>
     </div>
@@ -289,11 +299,11 @@
         <g class="pads"><rect x="190" y="10" width="20" height="20" transform="rotate(45 200 20)"/><rect x="370" y="190" width="20" height="20" transform="rotate(45 380 200)"/><rect x="10" y="190" width="20" height="20" transform="rotate(45 20 200)"/><path d="M188 372h24v10l-12 10-12-10z"/></g>
         <circle class="runner-ring" data-ring r="16" cx="200" cy="380" />
         <circle class="runner" data-runner r="11" cx="200" cy="380" />
-        <g class="base" data-view="projects" tabindex="0" role="button" transform="translate(200 -26)"><rect x="-58" y="-24" width="116" height="48" rx="6" /><text y="7">Projects</text></g>
-        <g class="base" data-view="career" tabindex="0" role="button" transform="translate(448 200)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Career</text></g>
-        <g class="base" data-view="skills" tabindex="0" role="button" transform="translate(-48 200)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Skills</text></g>
-        <g class="base" data-view="home" tabindex="0" role="button" transform="translate(200 426)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
-        <g class="base dugout" data-view="dugout" tabindex="0" role="button" transform="translate(360 486)"><rect x="-58" y="-22" width="116" height="44" rx="6" /><text y="7">Dugout</text></g>
+        <g class="base" data-view="projects" tabindex="0" role="button" transform="translate(200 -26)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-58" y="-24" width="116" height="48" rx="6" /><text y="7">Projects</text></g>
+        <g class="base" data-view="career" tabindex="0" role="button" transform="translate(448 200)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Career</text></g>
+        <g class="base" data-view="skills" tabindex="0" role="button" transform="translate(-48 200)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Skills</text></g>
+        <g class="base" data-view="home" tabindex="0" role="button" transform="translate(200 426)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
+        <g class="base dugout" data-view="dugout" tabindex="0" role="button" transform="translate(360 486)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-58" y="-22" width="116" height="44" rx="6" /><text y="7">Dugout</text></g>
       </svg>
       <p class="field-hint fade">Click a base. The runner takes you there.</p>
     </div>
@@ -479,13 +489,6 @@
 
   </main>
 </div>
-<nav class="mbar" aria-label="Sections">
-  <button type="button" data-view="home">Home</button>
-  <button type="button" data-view="career">Career</button>
-  <button type="button" data-view="projects">Projects</button>
-  <button type="button" data-view="skills">Skills</button>
-  <button type="button" data-view="dugout">Dugout</button>
-</nav>
 
 <script>
 (function () {
@@ -493,6 +496,9 @@
   // sits off the field past home plate.
   var SPOTS = { landing: [200, 380], home: [200, 380], career: [380, 200], projects: [200, 20], skills: [20, 200], dugout: [300, 450] };
   var ORDER = ['home', 'career', 'projects', 'skills'];
+  var LABELS = { home: 'Home', career: 'Career', projects: 'Projects', skills: 'Skills', dugout: 'Dugout' };
+  var svgEl = document.querySelector('.diamond');
+  var FULLBOX = svgEl.getAttribute('viewBox');
   var bases = document.querySelectorAll('.base');
   var views = document.querySelectorAll('.view');
   var runner = document.querySelector('[data-runner]');
@@ -558,7 +564,8 @@
       shell.classList.toggle('landing', toLanding);
     }
     bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
-    document.querySelectorAll('.mbar button').forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
+    document.getElementById('now-label').textContent = LABELS[view] || '';
+    svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
     stage.scrollTop = 0;
     setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 60);
     if (window.innerWidth <= 960 && view !== 'landing') window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
@@ -573,13 +580,11 @@
     show(view, true);
   }
 
-  document.querySelectorAll('.mbar button').forEach(function (b) {
-    b.addEventListener('click', function () { go(b.getAttribute('data-view')); });
-  });
   bases.forEach(function (b) {
     b.addEventListener('click', function () { go(b.getAttribute('data-view')); });
     b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(b.getAttribute('data-view')); } });
   });
+  window.addEventListener('resize', function () { svgEl.setAttribute('viewBox', (current !== 'landing' && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX); });
   window.addEventListener('hashchange', function () { var v = location.hash.slice(1); if (SPOTS[v]) go(v); });
   var initial = location.hash.slice(1);
   if (SPOTS[initial] && initial !== 'landing') { current = initial; place(SPOTS[initial]); show(initial, false); }
