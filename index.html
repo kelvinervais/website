@@ -152,17 +152,24 @@
     .stop.now .when { color: var(--gold); font-weight: 600; }
     .stop p { display: none; margin: 0 0 16px 64px; font-size: 14px; color: #c7d0dc; max-width: 60ch; }
     .stop button[aria-expanded="true"] + p { display: block; }
-    /* Skills */
-    .drivers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-bottom: 36px; }
-    .drivers div { border-top: 3px solid var(--gold); padding-top: 12px; }
-    .drivers b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(40px, 4.5vw, 64px); line-height: .95; letter-spacing: -0.03em; margin-bottom: 8px; }
-    .drivers span { display: block; font-size: 14px; color: #c7d0dc; max-width: 26ch; }
-    .sk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .sk { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; }
-    .sk h3 { font-size: 20px; letter-spacing: -0.02em; margin-bottom: 12px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-    .chips span { border: 1px solid var(--line); background: var(--panel-2); color: var(--chalk); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 500; }
-    .sk p { margin: 0; font-size: 13px; color: var(--mute); }
+    /* Skills: tool x place matrix */
+    .mx-note { color: var(--mute); font-size: 14px; margin: -16px 0 20px; }
+    .mx-wrap { overflow-x: auto; }
+    .mx { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 560px; font-size: 14px; }
+    .mx thead th { padding: 0 0 10px; border-bottom: 1px solid var(--line); vertical-align: bottom; text-align: center; }
+    .mx thead th:first-child { text-align: left; }
+    .col { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; }
+    .col img { width: 34px; height: 34px; border-radius: 8px; background: var(--chalk); padding: 3px; object-fit: contain; }
+    .col i { font-style: normal; font-size: 11px; color: var(--mute); white-space: nowrap; }
+    .col em { font-style: normal; border: 1px solid var(--line); border-radius: 8px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 800; font-size: 13px; color: var(--chalk); }
+    .mx tbody th { text-align: left; font-weight: 500; color: var(--chalk); padding: 7px 12px 7px 0; white-space: nowrap; border-bottom: 1px solid var(--line); }
+    .mx tbody td { text-align: center; border-bottom: 1px solid var(--line); padding: 7px 0; width: 66px; }
+    .mx tbody td:nth-child(7) { background: rgba(230,192,105,.05); }
+    .mx tbody tr:hover th { color: var(--teal); }
+    .mx tbody tr:hover td { background: var(--panel); }
+    .mx td b { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); vertical-align: middle; }
+    .mx tbody td:nth-child(7) b { background: var(--gold); }
+    .mx .grp td { text-align: left; padding: 18px 0 4px; font-size: 12px; font-weight: 600; color: var(--mute); border-bottom: 0; background: none !important; }
     .sk-foot { margin: 20px 0 0; font-size: 14px; color: var(--mute); }
     /* Dugout tabs + golf */
     .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
@@ -226,8 +233,9 @@
       .stop .logo { width: 40px; height: 40px; }
       .stop .when { grid-column: 2; }
       .stop p { margin-left: 0; }
-      .drivers { grid-template-columns: 1fr; gap: 14px; }
-      .sk-grid { grid-template-columns: 1fr; }
+      .mx { min-width: 520px; }
+      .mx tbody td { width: 44px; }
+      .col i { display: none; }
       .statrow, .breakdown { grid-template-columns: 1fr 1fr; }
       .plates { grid-template-columns: 1fr 1fr; }
     }
@@ -400,34 +408,14 @@
 
     <section class="view" id="skills" data-view="skills">
       <h2>Skills</h2>
-      <div class="drivers">
-        <div><b>R</b><span>Production Shiny apps, tidymodels, ggplot2. The language most of my shipped work is in.</span></div>
-        <div><b>Python</b><span>Pipelines, modeling, and the tooling around LLMs.</span></div>
-        <div><b>SQL</b><span>Warehouse-scale queries behind every app and model.</span></div>
+      <p class="mx-note">Each tool, and where I've used it.</p>
+      <div class="mx-wrap">
+        <table class="mx">
+          <thead><tr><th></th><th><span class="col"><img src="logos/cal_baseball.png" alt="" /><i>Cal</i></span></th><th><span class="col"><img src="logos/everytown.png" alt="" /><i>Everytown</i></span></th><th><span class="col"><img src="logos/mets.png" alt="" /><i>Mets</i></span></th><th><span class="col"><img src="logos/gt.png" alt="" /><i>GT</i></span></th><th><span class="col"><img src="logos/aclu.png" alt="" /><i>ACLU</i></span></th><th><span class="col"><img src="logos/mariners.png" alt="" /><i>Mariners</i></span></th><th><span class="col"><em>SP</em><i>Projects</i></span></th></tr></thead>
+          <tbody><tr class="grp"><td colspan="8">Languages</td></tr><tr><th scope="row">R</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Python</th><td><b></b></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">SQL</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td></td></tr><tr class="grp"><td colspan="8">Apps</td></tr><tr><th scope="row">R Shiny</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">ggplot2, Plotly</th><td></td><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Tableau</th><td><b></b></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr class="grp"><td colspan="8">Modeling</td></tr><tr><th scope="row">scikit-learn, XGBoost</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Time series, Monte Carlo</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Recommender systems</th><td></td><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td></tr><tr><th scope="row">NLP, sentiment</th><td></td><td><b></b></td><td></td><td></td><td></td><td></td><td><b></b></td></tr><tr class="grp"><td colspan="8">Data</td></tr><tr><th scope="row">Elasticsearch</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr><th scope="row">MongoDB</th><td></td><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td></tr><tr><th scope="row">geopandas, GIS</th><td></td><td></td><td></td><td></td><td><b></b></td><td></td><td></td></tr><tr class="grp"><td colspan="8">Infra</td></tr><tr><th scope="row">LLM tooling: vLLM, OpenAI API</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr><th scope="row">Azure, Airflow</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr class="grp"><td colspan="8">Ballpark tech</td></tr><tr><th scope="row">Trackman</th><td><b></b></td><td></td><td><b></b></td><td></td><td></td><td></td><td></td></tr><tr><th scope="row">KinaTrax, Trajekt</th><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td><td></td></tr></tbody>
+        </table>
       </div>
-      <div class="sk-grid">
-        <div class="sk">
-          <h3>Modeling</h3>
-          <div class="chips"><span>scikit-learn</span><span>XGBoost</span><span>tidymodels</span><span>forecast</span><span>rugarch</span><span>Monte Carlo</span></div>
-          <p>Used for: recommendation systems, time-series projections, and applied ML.</p>
-        </div>
-        <div class="sk">
-          <h3>Apps and visualization</h3>
-          <div class="chips"><span>R Shiny</span><span>Shiny for Python</span><span>bslib</span><span>ggplot2</span><span>Plotly</span><span>Tableau</span></div>
-          <p>Used for: the internal tools coaches and analysts open daily, plus the projects on this site.</p>
-        </div>
-        <div class="sk">
-          <h3>Data</h3>
-          <div class="chips"><span>Elasticsearch</span><span>MongoDB</span><span>pandas</span><span>numpy</span><span>geopandas</span><span>quantmod</span></div>
-          <p>Used for: analytics backends, user interaction stores, GIS work, and market data.</p>
-        </div>
-        <div class="sk">
-          <h3>LLMs and infrastructure</h3>
-          <div class="chips"><span>vLLM</span><span>OpenAI API</span><span>structured output</span><span>Azure</span><span>Airflow</span><span>Git</span></div>
-          <p>Used for: self-hosted inference, structured-output tooling around analytics, and scheduled pipelines.</p>
-        </div>
-      </div>
-      <p class="sk-foot">Also: Spanish, California Seal of Biliteracy. Trackman, KinaTrax, and Trajekt on the ballpark technology side.</p>
+      <p class="sk-foot">Also: Spanish, California Seal of Biliteracy.</p>
     </section>
 
     <section class="view" id="dugout" data-view="dugout">
