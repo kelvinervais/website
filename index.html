@@ -121,29 +121,37 @@
     .rows .meta a { margin-right: 14px; }
     .rows.nowhen li { grid-template-columns: 1fr; }
 
-    /* Timeline */
-    .tl-hint { color: var(--mute); font-size: 13px; margin: -16px 0 22px; }
-    .tl { position: relative; display: grid; gap: 0; padding: 6px 0; }
-    .tl-item + .tl-item { margin-top: -34px; }
-    .tl-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--line); transform: translateX(-50%); }
-    .tl-item { display: grid; grid-template-columns: 1fr 1fr; align-items: center; position: relative; }
-    .tl-item::before { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 3px solid var(--chalk); transform: translate(-50%, -50%); z-index: 1; }
-    .tl-item.now::before { background: var(--gold); border-color: var(--gold); }
-    .tl-item.left .tl-card { grid-column: 1; margin-right: 28px; }
-    .tl-item.right .tl-card { grid-column: 2; margin-left: 28px; }
-    .tl-card { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; background: var(--panel); color: var(--chalk); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; transition: border-color .2s, background .2s; }
-    .tl-card:hover { border-color: var(--teal); background: var(--panel-2); }
-    .tl-card[aria-expanded="true"] { border-color: var(--gold); }
-    .tl-mark { flex: 0 0 auto; width: 48px; height: 48px; padding: 5px; border-radius: 10px; background: var(--chalk); color: var(--bg); font-family: var(--display); font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; letter-spacing: 0; overflow: hidden; }
-    .tl-mark img { width: 100%; height: 100%; object-fit: contain; }
-    .tl-item.now .tl-mark { box-shadow: 0 0 0 2px var(--gold); }
-    .tl-body { display: block; min-width: 0; }
-    .tl-body b { display: block; font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -0.02em; line-height: 1.1; }
-    .tl-body span { display: block; font-size: 14px; color: #c7d0dc; margin-top: 3px; }
-    .tl-body i { display: block; font-style: normal; font-size: 12px; color: var(--mute); margin-top: 4px; }
-    .tl-body p { display: none; margin: 10px 0 0; font-size: 14px; color: #c7d0dc; }
-    .tl-card[aria-expanded="true"] .tl-body p { display: block; }
-
+    /* Career: seasons chart + ledger */
+    .gantt { margin: 0 0 40px; }
+    .gr, .gaxis { display: grid; grid-template-columns: 150px 1fr; gap: 0 12px; align-items: center; }
+    .gr { height: 30px; }
+    .gr:hover .gl, .gr.hi .gl { color: var(--chalk); }
+    .gl { font-size: 13px; color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .15s; }
+    .gt { position: relative; height: 100%; background-image: linear-gradient(to right, var(--line) 1px, transparent 1px); background-size: calc(100% / 9) 100%; }
+    .gaxis .gt { height: 20px; background: none; }
+    .gaxis span span { position: absolute; top: 0; transform: translateX(-50%); font-size: 11px; color: var(--mute); font-variant-numeric: tabular-nums; }
+    .gaxis span span:first-child { transform: none; }
+    .gb { position: absolute; top: 50%; transform: translateY(-50%); height: 14px; border-radius: 7px; background: var(--teal); cursor: pointer; transition: filter .15s; }
+    .gb.school { background: transparent; border: 2px solid var(--chalk); opacity: .8; }
+    .gb.now { background: var(--gold); }
+    .gr:hover .gb, .gr.hi .gb { filter: brightness(1.15); }
+    .gkey { display: flex; gap: 18px; margin-top: 10px; padding-left: 162px; font-size: 12px; color: var(--mute); }
+    .gkey span { display: inline-flex; align-items: center; gap: 6px; }
+    .gkey .gb { position: static; transform: none; width: 22px; height: 10px; border-radius: 5px; }
+    .ledger { border-top: 1px solid var(--line); }
+    .stop { border-bottom: 1px solid var(--line); }
+    .stop button { display: grid; grid-template-columns: 48px 1fr auto; gap: 16px; align-items: center; width: 100%; padding: 14px 0; background: none; border: 0; color: var(--chalk); text-align: left; }
+    .stop button:hover .who b { color: var(--teal); }
+    .stop.hi button .who b { color: var(--teal); }
+    .stop .logo { width: 48px; height: 48px; border-radius: 10px; background: var(--chalk); padding: 5px; display: flex; align-items: center; justify-content: center; }
+    .stop.now .logo { box-shadow: 0 0 0 2px var(--gold); }
+    .stop .logo img { width: 100%; height: 100%; object-fit: contain; }
+    .stop .who b { display: block; font-family: var(--display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; line-height: 1.1; transition: color .15s; }
+    .stop .who span { display: block; font-size: 14px; color: #c7d0dc; margin-top: 3px; }
+    .stop .when { font-size: 13px; color: var(--mute); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .stop.now .when { color: var(--gold); font-weight: 600; }
+    .stop p { display: none; margin: 0 0 16px 64px; font-size: 14px; color: #c7d0dc; max-width: 60ch; }
+    .stop button[aria-expanded="true"] + p { display: block; }
     /* Skills */
     .skills { display: grid; grid-template-columns: 150px 1fr; gap: 12px 24px; margin-bottom: 40px; }
     .skills dt { color: var(--mute); font-size: 14px; padding-top: 2px; }
@@ -204,11 +212,13 @@
       .about { grid-template-columns: 1fr; }
       .portrait { order: -1; width: 120px; height: 120px; }
       .rows li { grid-template-columns: 1fr; gap: 2px; }
-      .tl-line { left: 9px; transform: none; }
-      .tl-item { grid-template-columns: 1fr; }
-      .tl-item + .tl-item { margin-top: 12px; }
-      .tl-item::before { left: 10px; }
-      .tl-item.left .tl-card, .tl-item.right .tl-card { grid-column: 1; margin: 0 0 0 30px; width: calc(100% - 30px); }
+      .gr, .gaxis { grid-template-columns: 96px 1fr; gap: 0 8px; }
+      .gl { font-size: 12px; }
+      .gkey { padding-left: 0; }
+      .stop button { grid-template-columns: 40px 1fr; }
+      .stop .logo { width: 40px; height: 40px; }
+      .stop .when { grid-column: 2; }
+      .stop p { margin-left: 0; }
       .skills { grid-template-columns: 1fr; gap: 4px 0; }
       .skills dd { margin-bottom: 12px; }
       .statrow, .breakdown { grid-template-columns: 1fr 1fr; }
@@ -269,87 +279,96 @@
 
     <section class="view" id="career" data-view="career">
       <h2>Career</h2>
-      <p class="tl-hint">Click a stop for detail.</p>
-      <div class="tl">
-        <div class="tl-line"></div>
-        <div class="tl-item left now">
-          <button class="tl-card" type="button" aria-expanded="true">
-            <span class="tl-mark"><img src="logos/mariners.png" alt="" /></span>
-            <span class="tl-body">
-              <b>Seattle Mariners</b>
-              <span>Analyst, Baseball Projects</span>
-              <i>Apr 2023 – now</i>
-              <p>Build and maintain internal data products and decision-support tools for Baseball Operations, working directly with coaches, analysts, and performance staff.</p>
-            </span>
-          </button>
+      <div class="gantt" aria-label="Timeline of roles and degrees, 2018 to now">
+        <div class="gaxis"><span class="gl"></span><span class="gt"><span style="left:0.00%">2018</span><span style="left:11.11%">2019</span><span style="left:22.22%">2020</span><span style="left:33.33%">2021</span><span style="left:44.44%">2022</span><span style="left:55.56%">2023</span><span style="left:66.67%">2024</span><span style="left:77.78%">2025</span><span style="left:88.89%">2026</span></span></div>
+        <div class="gr" data-stop="mariners">
+          <span class="gl">Seattle Mariners</span>
+          <span class="gt"><i class="gb work now" style="left:58.33%;width:38.89%" title="Seattle Mariners, Apr 2023 – now"></i></span>
         </div>
-        <div class="tl-item right">
-          <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark"><img src="logos/aclu.png" alt="" /></span>
-            <span class="tl-body">
-              <b>ACLU</b>
-              <span>Graduate Intern, Analytics</span>
-              <i>Jan – Apr 2023</i>
-              <p>Election, voting-rights, and redistricting data for litigation and policy research. R Shiny dashboards with GIS visualizations and reproducible Python-to-R pipelines.</p>
-            </span>
-          </button>
+        <div class="gr" data-stop="aclu">
+          <span class="gl">ACLU</span>
+          <span class="gt"><i class="gb work" style="left:55.56%;width:3.67%" title="ACLU, Jan – Apr 2023"></i></span>
         </div>
-        <div class="tl-item left">
-          <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark"><img src="logos/gt.png" alt="" /></span>
-            <span class="tl-body">
-              <b>Georgia Tech</b>
-              <span>M.S. Analytics, Computational Data Analytics</span>
-              <i>2022 – 2025</i>
-              <p>Completed December 2025 while working full time. Machine learning, statistical modeling, and data and visual analytics.</p>
-            </span>
-          </button>
+        <div class="gr" data-stop="gt">
+          <span class="gl">Georgia Tech</span>
+          <span class="gt"><i class="gb school" style="left:51.11%;width:37.22%" title="Georgia Tech, Aug 2022 – Dec 2025"></i></span>
         </div>
-        <div class="tl-item right">
-          <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark"><img src="logos/mets.png" alt="" /></span>
-            <span class="tl-body">
-              <b>New York Mets</b>
-              <span>Systems Video Associate</span>
-              <i>May – Dec 2022</i>
-              <p>Deployed, operated, and validated player-tracking and biomechanics technology at Citi Field (Trajekt, KinaTrax). Statistical validation and Shiny development for Systems, Major League Strategy, and Minor League Analytics.</p>
-            </span>
-          </button>
+        <div class="gr" data-stop="mets">
+          <span class="gl">New York Mets</span>
+          <span class="gt"><i class="gb work" style="left:48.11%;width:6.89%" title="New York Mets, May – Dec 2022"></i></span>
         </div>
-        <div class="tl-item left">
-          <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark"><img src="logos/everytown.png" alt="" /></span>
-            <span class="tl-body">
-              <b>Everytown for Gun Safety</b>
-              <span>Data Intern</span>
-              <i>Aug – Nov 2021</i>
-              <p>NLP and sentiment analysis on peer-to-peer texting campaigns, database maintenance, and campaign administration.</p>
-            </span>
-          </button>
+        <div class="gr" data-stop="everytown">
+          <span class="gl">Everytown</span>
+          <span class="gt"><i class="gb work" style="left:39.78%;width:3.33%" title="Everytown for Gun Safety, Aug – Nov 2021"></i></span>
         </div>
-        <div class="tl-item right">
-          <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark"><img src="logos/cal_baseball.png" alt="" /></span>
-            <span class="tl-body">
-              <b>Cal Baseball</b>
-              <span>Director of Baseball Analytics</span>
-              <i>2018 – 2022</i>
-              <p>Joined as a student manager and bullpen catcher, then founded the program's first analytics group: scouting reports, pitch-classification models from Trackman, an Effective Velocity calculator, opponent matchup modeling, and WAR and FIP tools for the staff.</p>
-            </span>
-          </button>
+        <div class="gr" data-stop="calbaseball">
+          <span class="gl">Cal Baseball</span>
+          <span class="gt"><i class="gb work" style="left:6.67%;width:42.22%" title="Cal Baseball, Aug 2018 – May 2022"></i></span>
         </div>
-        <div class="tl-item left">
-          <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark"><img src="logos/cal.png" alt="" /></span>
-            <span class="tl-body">
-              <b>UC Berkeley</b>
-              <span>B.A. Political Economy, minor in Data Science</span>
-              <i>2018 – 2022</i>
-              <p>Concentration in technology and the economy. Regents' and Chancellor's Scholar.</p>
-            </span>
-          </button>
+        <div class="gr" data-stop="berkeley">
+          <span class="gl">UC Berkeley</span>
+          <span class="gt"><i class="gb school" style="left:5.00%;width:43.89%" title="UC Berkeley, Jun 2018 – May 2022"></i></span>
         </div>
+        <div class="gkey"><span><i class="gb work"></i>Work</span><span><i class="gb school"></i>School</span><span><i class="gb work now"></i>Current</span></div>
       </div>
+      <ul class="ledger">
+        <li class="stop now" data-stop="mariners">
+          <button type="button" aria-expanded="true">
+            <span class="logo"><img src="logos/mariners.png" alt="" /></span>
+            <span class="who"><b>Seattle Mariners</b><span>Analyst, Baseball Projects</span></span>
+            <span class="when">Apr 2023 – now</span>
+          </button>
+          <p>Build and maintain internal data products and decision-support tools for Baseball Operations, working directly with coaches, analysts, and performance staff.</p>
+        </li>
+        <li class="stop" data-stop="aclu">
+          <button type="button" aria-expanded="false">
+            <span class="logo"><img src="logos/aclu.png" alt="" /></span>
+            <span class="who"><b>ACLU</b><span>Graduate Intern, Analytics</span></span>
+            <span class="when">Jan – Apr 2023</span>
+          </button>
+          <p>Election, voting-rights, and redistricting data for litigation and policy research. R Shiny dashboards with GIS visualizations and reproducible Python-to-R pipelines.</p>
+        </li>
+        <li class="stop" data-stop="gt">
+          <button type="button" aria-expanded="false">
+            <span class="logo"><img src="logos/gt.png" alt="" /></span>
+            <span class="who"><b>Georgia Tech</b><span>M.S. Analytics, Computational Data Analytics</span></span>
+            <span class="when">Aug 2022 – Dec 2025</span>
+          </button>
+          <p>Completed December 2025 while working full time. Machine learning, statistical modeling, and data and visual analytics.</p>
+        </li>
+        <li class="stop" data-stop="mets">
+          <button type="button" aria-expanded="false">
+            <span class="logo"><img src="logos/mets.png" alt="" /></span>
+            <span class="who"><b>New York Mets</b><span>Systems Video Associate</span></span>
+            <span class="when">May – Dec 2022</span>
+          </button>
+          <p>Deployed, operated, and validated player-tracking and biomechanics technology at Citi Field (Trajekt, KinaTrax). Statistical validation and Shiny development for Systems, Major League Strategy, and Minor League Analytics.</p>
+        </li>
+        <li class="stop" data-stop="everytown">
+          <button type="button" aria-expanded="false">
+            <span class="logo"><img src="logos/everytown.png" alt="" /></span>
+            <span class="who"><b>Everytown for Gun Safety</b><span>Data Intern</span></span>
+            <span class="when">Aug – Nov 2021</span>
+          </button>
+          <p>NLP and sentiment analysis on peer-to-peer texting campaigns, database maintenance, and campaign administration.</p>
+        </li>
+        <li class="stop" data-stop="calbaseball">
+          <button type="button" aria-expanded="false">
+            <span class="logo"><img src="logos/cal_baseball.png" alt="" /></span>
+            <span class="who"><b>Cal Baseball</b><span>Director of Baseball Analytics</span></span>
+            <span class="when">Aug 2018 – May 2022</span>
+          </button>
+          <p>Joined as a student manager and bullpen catcher, then founded the program's first analytics group: scouting reports, pitch-classification models from Trackman, an Effective Velocity calculator, opponent matchup modeling, and WAR and FIP tools for the staff.</p>
+        </li>
+        <li class="stop" data-stop="berkeley">
+          <button type="button" aria-expanded="false">
+            <span class="logo"><img src="logos/cal.png" alt="" /></span>
+            <span class="who"><b>UC Berkeley</b><span>B.A. Political Economy, minor in Data Science</span></span>
+            <span class="when">Jun 2018 – May 2022</span>
+          </button>
+          <p>Concentration in technology and the economy. Regents' and Chancellor's Scholar.</p>
+        </li>
+      </ul>
     </section>
 
     <section class="view" id="projects" data-view="projects">
@@ -517,9 +536,22 @@
   if (SPOTS[initial] && initial !== 'landing') { current = initial; place(SPOTS[initial]); show(initial, false); }
 })();
 
-// Timeline cards expand in place.
-document.querySelectorAll('.tl-card').forEach(function (c) {
-  c.addEventListener('click', function () { c.setAttribute('aria-expanded', c.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
+// Career: ledger rows expand in place; chart bars and rows highlight each other.
+document.querySelectorAll('.stop button').forEach(function (b) {
+  b.addEventListener('click', function () { b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); });
+});
+document.querySelectorAll('.gr, .stop').forEach(function (el) {
+  var key = el.getAttribute('data-stop');
+  var twins = function () { return document.querySelectorAll('[data-stop="' + key + '"]'); };
+  el.addEventListener('mouseenter', function () { twins().forEach(function (t) { t.classList.add('hi'); }); });
+  el.addEventListener('mouseleave', function () { twins().forEach(function (t) { t.classList.remove('hi'); }); });
+});
+document.querySelectorAll('.gr').forEach(function (row) {
+  row.addEventListener('click', function () {
+    var stop = document.querySelector('.stop[data-stop="' + row.getAttribute('data-stop') + '"]');
+    stop.querySelector('button').setAttribute('aria-expanded', 'true');
+    stop.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 });
 
 // Dugout: golf stats, trend, scorecards, course table, cooking gallery.
