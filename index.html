@@ -53,7 +53,18 @@
     button { font: inherit; cursor: pointer; }
 
     /* Two-column app shell */
-    .shell { display: grid; grid-template-columns: 460px 1fr; height: 100vh; height: 100dvh; }
+    .shell { display: grid; grid-template-columns: 460px 1fr; height: 100vh; height: 100dvh; transition: grid-template-columns .55s cubic-bezier(.4,0,.2,1); }
+    .shell.landing { grid-template-columns: 1fr 0px; }
+    .shell.landing .stage { opacity: 0; pointer-events: none; padding: 0; overflow: hidden; }
+    .stage { transition: opacity .3s ease .2s; }
+    .intro { display: none; font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; letter-spacing: -0.02em; max-width: 24ch; margin: 0; }
+    .shell.landing .intro { display: block; }
+    .shell.landing .side { max-width: 760px; width: 100%; margin: 0 auto; border-right: 0; align-items: center; text-align: center; justify-content: center; gap: 18px; }
+    .shell.landing .side h1 { font-size: clamp(56px, 6vw, 84px); }
+    .shell.landing .links { justify-content: center; }
+    .shell.landing .field-wrap { margin-top: 10px; width: 100%; }
+    .shell.landing .diamond { max-width: 460px; }
+    .diamond { transition: max-width .55s cubic-bezier(.4,0,.2,1); }
     .side { padding: 40px 36px 28px; display: flex; flex-direction: column; gap: 22px; border-right: 1px solid var(--line); min-height: 0; }
     .side h1 { font-size: clamp(44px, 4.2vw, 60px); font-variation-settings: "opsz" 96; }
     .side .role { color: var(--chalk); font-weight: 600; margin: 8px 0 2px; }
@@ -177,7 +188,9 @@
 
     @media (max-width: 960px) {
       html, body { height: auto; }
-      .shell { grid-template-columns: 1fr; height: auto; }
+      .shell, .shell.landing { grid-template-columns: 1fr; height: auto; }
+      .shell.landing .stage { display: none; }
+      .shell.landing .side { min-height: 100vh; }
       .side { border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 22px 20px; gap: 16px; }
       .side h1 { font-size: 40px; }
       .field-wrap { margin-top: 4px; }
@@ -203,13 +216,14 @@
   </style>
 </head>
 <body>
-<div class="shell">
+<div class="shell landing">
   <aside class="side">
     <div>
       <h1>Kelvin Ervais</h1>
       <p class="role">Analyst, Baseball Projects · Seattle Mariners</p>
       <p class="loc">Seattle, WA</p>
     </div>
+    <p class="intro">I build data products that MLB front offices use every day.</p>
     <div class="links">
       <a href="mailto:kelvinervais@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/kelvinervais/" rel="me">LinkedIn</a>
@@ -235,17 +249,6 @@
 
   <main class="stage" id="stage">
 
-    <section class="view on" id="home" data-view="home">
-      <h2 class="lede">I build data products that MLB front offices use every day.</h2>
-      <div class="about">
-        <div>
-          <p>Analyst in Baseball Projects with the Seattle Mariners since 2023. I build and maintain the internal tools Baseball Operations staff work from, and I sit close to the coaches and analysts who use them.</p>
-          <p>Before Seattle: the Mets' systems group, an analytics internship at the ACLU, and Cal Baseball, where I went from bullpen catcher to founding the program's analytics group.</p>
-          <p class="soft">M.S. Analytics, Georgia Tech. B.A. Political Economy with a Data Science minor, UC Berkeley. Email is the fastest way to reach me.</p>
-        </div>
-        <img class="portrait" src="headshot.jpeg" alt="Kelvin Ervais" width="200" height="200" />
-      </div>
-    </section>
 
     <section class="view" id="career" data-view="career">
       <h2>Career</h2>
@@ -415,6 +418,7 @@
   var runner = document.querySelector('[data-runner]');
   var ring = document.querySelector('[data-ring]');
   var stage = document.getElementById('stage');
+  var shell = document.querySelector('.shell');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var current = 'home';
   var anim = null;
@@ -461,9 +465,10 @@
 
   function show(view, push) {
     views.forEach(function (v) { v.classList.toggle('on', v.getAttribute('data-view') === view); });
+    shell.classList.toggle('landing', view === 'home');
     bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
     stage.scrollTop = 0;
-    if (window.innerWidth <= 960) stage.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    if (window.innerWidth <= 960 && view !== 'home') stage.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     if (push) history.replaceState(null, '', view === 'home' ? location.pathname : '#' + view);
   }
 
