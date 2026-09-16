@@ -97,11 +97,11 @@
     .runner-ring { fill: none; stroke: var(--gold); stroke-width: 2; opacity: 0; }
 
     /* Content stage */
-    .stage { min-height: 0; overflow-y: auto; padding: 30px 48px 40px; scroll-behavior: smooth; }
+    .stage { min-height: 0; overflow-y: auto; padding: 22px 48px 20px; scroll-behavior: smooth; }
     .view { display: none; max-width: 880px; animation: rise .35s ease both; }
     .view.on { display: block; }
     @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-    .view h2 { font-size: clamp(30px, 3vw, 42px); margin-bottom: 18px; font-variation-settings: "opsz" 96; }
+    .view h2 { font-size: clamp(28px, 2.8vw, 38px); margin-bottom: 12px; font-variation-settings: "opsz" 96; }
     .view h2.lede { font-size: clamp(32px, 3.2vw, 46px); line-height: 1.05; max-width: 20ch; }
 
     /* Home */
@@ -155,41 +155,41 @@
     /* Skills: tool x place matrix */
     .mx-note { color: var(--mute); font-size: 14px; margin: -8px 0 12px; }
     .mx-wrap { overflow-x: auto; }
-    .mx { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 560px; font-size: 14px; }
-    .mx thead th { padding: 0 0 10px; border-bottom: 1px solid var(--line); vertical-align: bottom; text-align: center; }
+    .mx { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 560px; font-size: 13px; }
+    .mx thead th { padding: 0 0 6px; border-bottom: 1px solid var(--line); vertical-align: bottom; text-align: center; }
     .mx thead th:first-child { text-align: left; }
     .col { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; }
     .col img { width: 30px; height: 30px; border-radius: 8px; background: var(--chalk); padding: 3px; object-fit: contain; }
     .col i { font-style: normal; font-size: 11px; color: var(--mute); white-space: nowrap; }
     .col em { font-style: normal; border: 1px solid var(--line); border-radius: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 800; font-size: 13px; color: var(--chalk); }
-    .mx tbody th { text-align: left; font-weight: 500; color: var(--chalk); padding: 4px 12px 4px 0; white-space: nowrap; border-bottom: 1px solid var(--line); }
-    .mx tbody td { text-align: center; border-bottom: 1px solid var(--line); padding: 4px 0; width: 66px; }
+    .mx tbody th { text-align: left; font-weight: 500; color: var(--chalk); padding: 2px 12px 2px 0; white-space: nowrap; border-bottom: 1px solid var(--line); }
+    .mx tbody td { text-align: center; border-bottom: 1px solid var(--line); padding: 2px 0; width: 66px; }
     .mx tbody tr.g0 th, .mx tbody tr.g0 td { border-top: 2px solid var(--line); }
     .mx tbody tr.g0:first-child th, .mx tbody tr.g0:first-child td { border-top: 0; }
     .mx tbody th[data-g]::before { content: attr(data-g); display: block; font-size: 11px; color: var(--mute); font-weight: 600; margin-bottom: 1px; }
     .mx tbody td:nth-child(7) { background: rgba(230,192,105,.05); }
     .mx tbody tr:hover th { color: var(--teal); }
     .mx tbody tr:hover td { background: var(--panel); }
-    .mx td b { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); vertical-align: middle; }
+    .mx td b { display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: var(--teal); vertical-align: middle; }
     .mx tbody td:nth-child(7) b { background: var(--gold); }
     .mx .grp td { text-align: left; padding: 18px 0 4px; font-size: 12px; font-weight: 600; color: var(--mute); border-bottom: 0; background: none !important; }
     .linkish { background: none; border: 0; color: var(--teal); font: inherit; font-size: 13px; font-weight: 600; padding: 0; }
     .sk-foot { margin: 12px 0 0; font-size: 13px; color: var(--mute); }
     /* Dugout tabs + golf */
-    .tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
     .tab { background: transparent; color: var(--chalk); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600; min-height: 36px; }
     .tab.on { background: var(--gold); color: var(--gold-ink); border-color: var(--gold); }
     .sub { display: none; }
     .sub.on { display: block; }
-    .statrow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
-    .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
-    .stat b { font-family: var(--display); font-weight: 800; font-size: 28px; line-height: 1; display: block; }
+    .statrow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; }
+    .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 6px 12px; }
+    .stat b { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1; display: block; }
     .stat span { font-size: 12px; color: var(--mute); font-weight: 600; }
-    .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px 8px; margin-bottom: 14px; }
-    .chart .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+    .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px 6px; margin-bottom: 10px; }
+    .chart .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 4px; flex-wrap: wrap; }
     .chart .head b { font-weight: 600; }
     .chart .head span { color: var(--mute); font-size: 13px; }
-    .trend { width: 100%; height: 150px; display: block; overflow: visible; }
+    .trend { width: 100%; height: 130px; display: block; overflow: visible; }
     .trend rect { cursor: pointer; fill: var(--teal); opacity: .8; }
     .trend rect:hover, .trend rect.sel { opacity: 1; fill: var(--gold); }
     .trend line { stroke: var(--chalk); stroke-opacity: .35; stroke-dasharray: 4 4; }
@@ -212,7 +212,7 @@
     .par-note { color: var(--mute); font-size: 12px; margin: 10px 0 0; }
     table { width: 100%; border-collapse: collapse; font-size: 14px; }
     th { text-align: left; color: var(--mute); font-weight: 600; font-size: 12px; padding: 0 0 8px; border-bottom: 1px solid var(--line); }
-    td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    td { padding: 5px 0; border-bottom: 1px solid var(--line); }
     td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
     .plates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .plates img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; background: var(--panel-2); }
@@ -413,14 +413,13 @@
 
     <section class="view" id="skills" data-view="skills">
       <h2>Skills</h2>
-      <p class="mx-note">Each tool, and where I've used it.</p>
+      <p class="mx-note">Each tool, and where I've used it. Also Spanish, California Seal of Biliteracy.</p>
       <div class="mx-wrap">
         <table class="mx">
           <thead><tr><th></th><th><span class="col"><img src="logos/cal_baseball.png" alt="" /><i>Cal</i></span></th><th><span class="col"><img src="logos/everytown.png" alt="" /><i>Everytown</i></span></th><th><span class="col"><img src="logos/mets.png" alt="" /><i>Mets</i></span></th><th><span class="col"><img src="logos/gt.png" alt="" /><i>GT</i></span></th><th><span class="col"><img src="logos/aclu.png" alt="" /><i>ACLU</i></span></th><th><span class="col"><img src="logos/mariners.png" alt="" /><i>Mariners</i></span></th><th><span class="col"><em>SP</em><i>Projects</i></span></th></tr></thead>
-          <tbody><tr class="g0"><th scope="row" data-g="Languages">R</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Python</th><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">SQL</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td></td></tr><tr class="g0"><th scope="row" data-g="Apps">R Shiny</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">ggplot2, Plotly</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Tableau</th><td><b></b></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr class="g0"><th scope="row" data-g="Modeling">scikit-learn, XGBoost</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Time series, Monte Carlo</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Recommender systems</th><td></td><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td></tr><tr><th scope="row">NLP, sentiment</th><td></td><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td></tr><tr class="g0"><th scope="row" data-g="Data">Elasticsearch</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr><th scope="row">MongoDB</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">geopandas, GIS</th><td><b></b></td><td></td><td></td><td><b></b></td><td><b></b></td><td></td><td></td></tr><tr class="g0"><th scope="row" data-g="Infra">LLM tooling: vLLM, OpenAI API</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Azure, Airflow</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr class="g0"><th scope="row" data-g="Ballpark tech">Trackman</th><td><b></b></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td><td></td></tr><tr><th scope="row">KinaTrax, Trajekt</th><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td><td></td></tr></tbody>
+          <tbody><tr class="g0"><th scope="row" data-g="Languages">R</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Python</th><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">SQL</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td></td></tr><tr class="g0"><th scope="row" data-g="Apps">R Shiny</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">ggplot2, Plotly</th><td></td><td></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Tableau</th><td><b></b></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr class="g0"><th scope="row" data-g="Modeling">scikit-learn, XGBoost</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Time series, Monte Carlo</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Recommender systems</th><td></td><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td></tr><tr><th scope="row">NLP, sentiment</th><td></td><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td></tr><tr class="g0"><th scope="row" data-g="Data">Elasticsearch</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr><th scope="row">MongoDB</th><td></td><td></td><td></td><td><b></b></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">geopandas, GIS</th><td><b></b></td><td></td><td></td><td><b></b></td><td><b></b></td><td></td><td></td></tr><tr class="g0"><th scope="row" data-g="Infra">LLM tooling (vLLM, OpenAI API)</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td><b></b></td></tr><tr><th scope="row">Azure, Airflow</th><td></td><td></td><td></td><td></td><td></td><td><b></b></td><td></td></tr><tr class="g0"><th scope="row" data-g="Ballpark tech">Trackman</th><td><b></b></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td><td></td></tr><tr><th scope="row">KinaTrax, Trajekt</th><td></td><td></td><td><b></b></td><td></td><td></td><td><b></b></td><td></td></tr></tbody>
         </table>
       </div>
-      <p class="sk-foot">Also: Spanish, California Seal of Biliteracy.</p>
     </section>
 
     <section class="view" id="dugout" data-view="dugout">
@@ -438,7 +437,7 @@
         <div class="statrow" id="golf-stats"></div>
         <div class="chart">
           <div class="head"><b>Scores by round</b><span id="trend-note">Click a bar for the scorecard.</span></div>
-          <svg class="trend" id="trend" viewBox="0 0 800 150" preserveAspectRatio="none"></svg>
+          <svg class="trend" id="trend" viewBox="0 0 800 130" preserveAspectRatio="none"></svg>
         </div>
         <div class="detail" id="detail" hidden></div>
         <div class="chart">
@@ -618,7 +617,7 @@
     var recent = rs.slice(-40);
     var lo = Math.min.apply(null, recent.map(function (r) { return r.strokes; })) - 4;
     var hi = Math.max.apply(null, recent.map(function (r) { return r.strokes; })) + 4;
-    var W = 800, H = 150, padL = 30, padB = 20;
+    var W = 800, H = 130, padL = 30, padB = 20;
     var bw = (W - padL) / recent.length;
     var y = function (v) { return (H - padB) - (v - lo) / (hi - lo) * (H - padB - 10); };
     var svg = document.getElementById('trend');
@@ -651,16 +650,16 @@
     });
     var keys = Object.keys(by).sort(function (a, b) { return by[b].n - by[a].n; });
     var rows = keys.map(function (c, i) {
-      return '<tr' + (i >= 8 ? ' class="more" hidden' : '') + '><td>' + c + '</td><td class="n">' + by[c].n + '</td><td class="n">' + (by[c].sum / by[c].n).toFixed(1) + '</td><td class="n">' + by[c].best + '</td><td class="n">' + new Date(by[c].last).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) + '</td></tr>';
+      return '<tr' + (i >= 6 ? ' class="more" hidden' : '') + '><td>' + c + '</td><td class="n">' + by[c].n + '</td><td class="n">' + (by[c].sum / by[c].n).toFixed(1) + '</td><td class="n">' + by[c].best + '</td><td class="n">' + new Date(by[c].last).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) + '</td></tr>';
     }).join('');
     document.getElementById('courses').innerHTML = '<thead><tr><th>Course</th><th class="n">Rounds</th><th class="n">Avg</th><th class="n">Best</th><th class="n">Last played</th></tr></thead><tbody>' + rows + '</tbody>';
     var note = document.getElementById('course-note');
-    note.innerHTML = keys.length > 8 ? '<button class="linkish" type="button">Show all ' + keys.length + ' courses</button>' : keys.length + ' courses';
+    note.innerHTML = keys.length > 6 ? '<button class="linkish" type="button">Show all ' + keys.length + ' courses</button>' : keys.length + ' courses';
     var btn = note.querySelector('button');
     if (btn) btn.addEventListener('click', function () {
       var hidden = document.querySelector('#courses tr.more').hidden;
       document.querySelectorAll('#courses tr.more').forEach(function (tr) { tr.hidden = !hidden; });
-      btn.textContent = hidden ? 'Show top 8' : 'Show all ' + keys.length + ' courses';
+      btn.textContent = hidden ? 'Show top 6' : 'Show all ' + keys.length + ' courses';
     });
   }
 
