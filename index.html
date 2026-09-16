@@ -118,8 +118,9 @@
     .tl-card { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; background: var(--panel); color: var(--chalk); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; transition: border-color .2s, background .2s; }
     .tl-card:hover { border-color: var(--teal); background: var(--panel-2); }
     .tl-card[aria-expanded="true"] { border-color: var(--gold); }
-    .tl-mark { flex: 0 0 auto; min-width: 44px; padding: 6px 6px; border-radius: 8px; background: var(--panel-2); color: var(--chalk); font-family: var(--display); font-weight: 800; font-size: 12px; text-align: center; letter-spacing: 0; }
-    .tl-item.now .tl-mark { background: var(--gold); color: var(--gold-ink); }
+    .tl-mark { flex: 0 0 auto; width: 48px; height: 48px; padding: 5px; border-radius: 10px; background: var(--chalk); color: var(--bg); font-family: var(--display); font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; letter-spacing: 0; overflow: hidden; }
+    .tl-mark img { width: 100%; height: 100%; object-fit: contain; }
+    .tl-item.now .tl-mark { box-shadow: 0 0 0 2px var(--gold); }
     .tl-body { display: block; min-width: 0; }
     .tl-body b { display: block; font-family: var(--display); font-weight: 800; font-size: 18px; letter-spacing: -0.02em; line-height: 1.1; }
     .tl-body span { display: block; font-size: 14px; color: #c7d0dc; margin-top: 3px; }
@@ -253,7 +254,7 @@
         <div class="tl-line"></div>
         <div class="tl-item left now">
           <button class="tl-card" type="button" aria-expanded="true">
-            <span class="tl-mark">SEA</span>
+            <span class="tl-mark"><img src="logos/mariners.png" alt="" /></span>
             <span class="tl-body">
               <b>Seattle Mariners</b>
               <span>Analyst, Baseball Projects</span>
@@ -264,7 +265,7 @@
         </div>
         <div class="tl-item right">
           <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark">ACLU</span>
+            <span class="tl-mark"><img src="logos/aclu.png" alt="" /></span>
             <span class="tl-body">
               <b>ACLU</b>
               <span>Graduate Intern, Analytics</span>
@@ -275,7 +276,7 @@
         </div>
         <div class="tl-item left">
           <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark">GT</span>
+            <span class="tl-mark"><img src="logos/gt.png" alt="" /></span>
             <span class="tl-body">
               <b>Georgia Tech</b>
               <span>M.S. Analytics, Computational Data Analytics</span>
@@ -297,7 +298,7 @@
         </div>
         <div class="tl-item left">
           <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark">ETown</span>
+            <span class="tl-mark"><img src="logos/everytown.png" alt="" /></span>
             <span class="tl-body">
               <b>Everytown for Gun Safety</b>
               <span>Data Intern</span>
@@ -308,7 +309,7 @@
         </div>
         <div class="tl-item right">
           <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark">CAL</span>
+            <span class="tl-mark"><img src="logos/cal_baseball.png" alt="" /></span>
             <span class="tl-body">
               <b>Cal Baseball</b>
               <span>Director of Baseball Analytics</span>
@@ -319,7 +320,7 @@
         </div>
         <div class="tl-item left">
           <button class="tl-card" type="button" aria-expanded="false">
-            <span class="tl-mark">CAL</span>
+            <span class="tl-mark"><img src="logos/cal.png" alt="" /></span>
             <span class="tl-body">
               <b>UC Berkeley</b>
               <span>B.A. Political Economy, minor in Data Science</span>
