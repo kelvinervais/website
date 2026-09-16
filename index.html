@@ -69,6 +69,7 @@
     .diamond .grass { fill: var(--field); stroke: var(--chalk); stroke-width: 3; }
     .diamond .path { fill: none; stroke: var(--chalk); stroke-opacity: .45; stroke-width: 3; stroke-dasharray: 8 8; }
     .diamond .mound { fill: var(--teal); }
+    .diamond .pads rect, .diamond .pads path { fill: var(--chalk); }
     .base { cursor: pointer; }
     .base rect { fill: var(--panel); stroke: var(--chalk); stroke-width: 3; transition: fill .2s, stroke .2s; }
     .base text { font-family: var(--display); font-weight: 800; font-size: 21px; fill: var(--chalk); text-anchor: middle; letter-spacing: -0.02em; pointer-events: none; }
@@ -187,17 +188,18 @@
       <a href="https://github.com/kelvinervais" rel="me">GitHub</a>
     </div>
     <div class="field-wrap">
-      <svg class="diamond" viewBox="-70 -30 540 500" role="navigation" aria-label="Site sections, laid out as a baseball diamond">
+      <svg class="diamond" viewBox="-100 -60 610 580" role="navigation" aria-label="Site sections, laid out as a baseball diamond">
         <path class="grass" d="M200 20 L380 200 L200 380 L20 200 Z" />
         <path class="path" d="M200 60 L340 200 L200 340 L60 200 Z" />
         <circle class="mound" cx="200" cy="200" r="20" />
-        <circle class="runner-ring" data-ring r="16" cx="200" cy="340" />
-        <circle class="runner" data-runner r="10" cx="200" cy="340" />
-        <g class="base" data-view="projects" tabindex="0" role="button" transform="translate(200 20)"><rect x="-58" y="-24" width="116" height="48" rx="6" /><text y="7">Projects</text></g>
-        <g class="base" data-view="career" tabindex="0" role="button" transform="translate(380 200)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Career</text></g>
-        <g class="base" data-view="skills" tabindex="0" role="button" transform="translate(20 200)"><rect x="-46" y="-24" width="92" height="48" rx="6" /><text y="7">Skills</text></g>
-        <g class="base on" data-view="home" tabindex="0" role="button" transform="translate(200 380)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
-        <g class="base dugout" data-view="dugout" tabindex="0" role="button" transform="translate(340 430)"><rect x="-58" y="-22" width="116" height="44" rx="6" /><text y="7">Dugout</text></g>
+        <g class="pads"><rect x="190" y="10" width="20" height="20" transform="rotate(45 200 20)"/><rect x="370" y="190" width="20" height="20" transform="rotate(45 380 200)"/><rect x="10" y="190" width="20" height="20" transform="rotate(45 20 200)"/><path d="M188 372h24v10l-12 10-12-10z"/></g>
+        <circle class="runner-ring" data-ring r="16" cx="200" cy="380" />
+        <circle class="runner" data-runner r="11" cx="200" cy="380" />
+        <g class="base" data-view="projects" tabindex="0" role="button" transform="translate(200 -26)"><rect x="-58" y="-24" width="116" height="48" rx="6" /><text y="7">Projects</text></g>
+        <g class="base" data-view="career" tabindex="0" role="button" transform="translate(444 200)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Career</text></g>
+        <g class="base" data-view="skills" tabindex="0" role="button" transform="translate(-44 200)"><rect x="-46" y="-24" width="92" height="48" rx="6" /><text y="7">Skills</text></g>
+        <g class="base on" data-view="home" tabindex="0" role="button" transform="translate(200 426)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
+        <g class="base dugout" data-view="dugout" tabindex="0" role="button" transform="translate(360 486)"><rect x="-58" y="-22" width="116" height="44" rx="6" /><text y="7">Dugout</text></g>
       </svg>
       <p class="field-hint">Click a base. The runner takes you there.</p>
     </div>
@@ -345,7 +347,7 @@
 (function () {
   // Where the runner stands for each view, on the inner basepath. The dugout
   // sits off the field past home plate.
-  var SPOTS = { home: [200, 340], career: [340, 200], projects: [200, 60], skills: [60, 200], dugout: [270, 410] };
+  var SPOTS = { home: [200, 380], career: [380, 200], projects: [200, 20], skills: [20, 200], dugout: [300, 450] };
   var ORDER = ['home', 'career', 'projects', 'skills'];
   var bases = document.querySelectorAll('.base');
   var views = document.querySelectorAll('.view');
