@@ -221,11 +221,12 @@
 
     @media (max-width: 960px) {
       html, body { height: auto; }
-      .side { transition: opacity .22s ease; }
+      .side { transition: opacity .32s ease; }
       .side h1 { transition: none; }
       .side.switching { opacity: 0; }
-      .view { animation-delay: .15s; }
-      .shell:not(.landing) .side { position: sticky; top: 0; z-index: 30; background: rgba(13,22,38,.94); backdrop-filter: blur(10px); display: grid; grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: auto auto; align-items: center; gap: 6px 12px; padding: 10px 16px 8px; }
+      .stage { transition: opacity .45s ease .1s; }
+      .view { animation: rise .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: .1s; }
+      .shell:not(.landing) .side { position: sticky; top: 0; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: auto auto; align-items: center; gap: 6px 12px; padding: 10px 16px 8px; }
       .shell:not(.landing) .side > div:first-child { grid-column: 1; grid-row: 1; }
       .shell:not(.landing) .links { grid-column: 1; grid-row: 2; }
       .shell:not(.landing) .field-wrap { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
@@ -564,7 +565,7 @@
         shell.classList.toggle('landing', toLanding);
         svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
         requestAnimationFrame(function () { requestAnimationFrame(function () { side.classList.remove('switching'); }); });
-      }, window.innerWidth <= 960 ? 240 : 200);
+      }, window.innerWidth <= 960 ? 340 : 200);
     } else {
       shell.classList.toggle('landing', toLanding);
       svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
