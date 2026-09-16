@@ -221,6 +221,9 @@
 
     @media (max-width: 960px) {
       html, body { height: auto; }
+      .side { transition: opacity .22s ease; }
+      .side.switching { opacity: 0; }
+      .view { animation-delay: .15s; }
       .shell:not(.landing) .side { position: sticky; top: 0; z-index: 30; background: rgba(13,22,38,.94); backdrop-filter: blur(10px); display: grid; grid-template-columns: minmax(0, 1fr) 150px; grid-template-rows: auto auto; align-items: center; gap: 6px 12px; padding: 10px 16px 8px; }
       .shell:not(.landing) .side > div:first-child { grid-column: 1; grid-row: 1; }
       .shell:not(.landing) .links { grid-column: 1; grid-row: 2; }
@@ -559,7 +562,7 @@
       setTimeout(function () {
         shell.classList.toggle('landing', toLanding);
         requestAnimationFrame(function () { requestAnimationFrame(function () { side.classList.remove('switching'); }); });
-      }, 200);
+      }, window.innerWidth <= 960 ? 240 : 200);
     } else {
       shell.classList.toggle('landing', toLanding);
     }
