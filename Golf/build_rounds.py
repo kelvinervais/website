@@ -27,6 +27,8 @@ def main(path):
             "holeStrokes": holes,
             "clubId": {"id": r["clubId"]["id"]},
             "roundHandicap": r.get("roundHandicap"),
+            "stats": {k: (r.get("stats") or {}).get(k, 0)
+                      for k in ("eagles", "birdies", "pars", "bogeys", "doubleBogeyOrWorse")},
         })
     rounds.sort(key=lambda r: r["timestamp"])
 
