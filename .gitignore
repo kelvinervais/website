@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+.playwright-mcp/
+.DS_Store
+18Birdies_archive.json*

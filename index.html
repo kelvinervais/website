@@ -1,3149 +1,486 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kelvin Ervais</title>
-  <meta name="description" content="Seattle-based data scientist specializing in R, Python, ML, and Shiny dashboards. Currently with Seattle Mariners." />
-  <meta name="keywords" content="data science, analytics, R, Python, machine learning, Shiny, Seattle Mariners, statistical modeling, data visualization" />
+  <meta name="description" content="Kelvin Ervais is a data scientist in Seattle who builds production analytics tools for sports front offices. Analyst, Baseball Projects at the Seattle Mariners. M.S. Analytics, Georgia Tech." />
   <meta name="author" content="Kelvin Ervais" />
-  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="theme-color" content="#1f5d3f" />
+  <link rel="canonical" href="https://kelvinervais.github.io/website/" />
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kelvinervais.github.io/website/" />
   <meta property="og:title" content="Kelvin Ervais" />
-  <meta property="og:description" content="Seattle-based data scientist specializing in R, Python, ML, and Shiny dashboards. Currently with Seattle Mariners." />
+  <meta property="og:description" content="Data scientist building production analytics tools for sports front offices. Seattle Mariners. Georgia Tech M.S. Analytics." />
+  <meta property="og:image" content="https://kelvinervais.github.io/website/headshot.jpeg" />
+  <meta name="twitter:card" content="summary" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://kelvinervais.github.io/website/" />
-  <meta property="twitter:title" content="Kelvin Ervais" />
-  <meta property="twitter:description" content="Seattle-based data scientist specializing in R, Python, ML, and Shiny dashboards. Currently with Seattle Mariners." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f5d3f'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23f3f4f1' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
 
-  <link rel="icon" href="{{ "/favicon.ico" | relative_url }}" />
-  <link rel="canonical" href="https://kelvinervais.github.io/website/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
-
-  <!-- Chart.js for Golf visualizations -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["Inter","ui-sans-serif","system-ui","-apple-system","sans-serif"],
-            display: ["Bebas Neue", "Arial Black", "sans-serif"]
-          },
-          colors: {
-            brand: {
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              800: '#075985'
-            },
-            mariners: {
-              navy: '#0C2C56',
-              teal: '#005C5C',
-              silver: '#C4CED4'
-            }
-          }
-        }
-      }
-    }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Kelvin Ervais",
+    "url": "https://kelvinervais.github.io/website/",
+    "image": "https://kelvinervais.github.io/website/headshot.jpeg",
+    "jobTitle": "Analyst, Baseball Projects",
+    "worksFor": { "@type": "Organization", "name": "Seattle Mariners" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology" },
+      { "@type": "CollegeOrUniversity", "name": "University of California, Berkeley" }
+    ],
+    "address": { "@type": "PostalAddress", "addressLocality": "Seattle", "addressRegion": "WA" },
+    "email": "mailto:kelvinervais@gmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/kelvinervais/",
+      "https://github.com/kelvinervais"
+    ]
+  }
   </script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --paper: #f3f4f1;
+      --paper-2: #e9ebe6;
+      --ink: #14201b;
+      --ink-2: #4f5a54;
+      --ink-3: #8a938e;
+      --rule: #cfd4ce;
+      --green: #1f5d3f;
+      --ochre: #a67c1b;
+      --chart-line: #1f5d3f;
+      --chart-avg: #a67c1b;
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+      --gutter: 11rem;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #131a16;
+        --paper-2: #1b241f;
+        --ink: #eef1ec;
+        --ink-2: #b4bcb6;
+        --ink-3: #7d8781;
+        --rule: #2e3a33;
+        --green: #7fc19c;
+        --ochre: #d9b04c;
+        --chart-line: #7fc19c;
+        --chart-avg: #d9b04c;
+        color-scheme: dark;
+      }
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      background: #0f172a;
-    }
-
-    /* Scroll container */
-    .scroll-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-behavior: smooth;
-      scroll-snap-type: y mandatory;
-      overscroll-behavior-y: contain;
-    }
-
-    /* Multi-stage transition section */
-    .multi-stage-section {
-      height: 1400vh;
-      position: relative;
-      background: transparent;
-    }
-
-    /* Generic full-screen scroll sections */
-    .site-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      padding: 60px 0;
-    }
-
-    /* Fade/slide animation for inline sections */
-    .section-fade {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.4s linear, transform 0.4s linear;
-      will-change: opacity, transform;
-    }
-    .section-fade.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .sticky-container {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .snap-point {
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      pointer-events: none;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-
-    .snap-point-1 { top: 0; }
-    .snap-point-2 { top: 200vh; }
-    .snap-point-3 { top: 600vh; }
-    .snap-point-4 { top: 800vh; }
-    .snap-point-5 { top: 1000vh; }
-    .snap-point-6 { top: 1200vh; }
-
-    .card-wrapper {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: transform 0.1s linear;
-      z-index: 10;
-    }
-
-    .timeline-wrapper {
-      position: absolute;
-      right: 0;
-      width: 50%;
-      height: 80%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.1s linear, transform 0.1s linear;
-      padding: 40px;
-      pointer-events: none;
-      z-index: 20;
-    }
-
-    .deck-wrapper {
-      position: absolute;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.1s linear, transform 0.1s linear;
-      padding: 40px;
-      pointer-events: none;
-    }
-
-    /* Panel sections for later stages (right side) */
-    .work-panel,
-    .interests-panel,
-    .connect-panel {
-      position: absolute;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.1s linear, transform 0.1s linear;
-      padding: 40px;
-      pointer-events: none;
-      z-index: 24;
-    }
-
-    .work-panel { z-index: 23; }
-    .interests-panel { z-index: 24; }
-    .connect-panel { z-index: 25; }
-
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(14px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-    }
-
-
-    /* Baseball card styles */
-    .card-container {
-      perspective: 1500px;
-      width: 350px;
-      height: 500px;
-      cursor: pointer;
-    }
-
-    @media (min-width: 640px) {
-      .card-container {
-        width: 400px;
-        height: 580px;
-      }
-    }
-
-    .card {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
-    }
-
-    .card.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .card-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-    }
-
-    .card-front {
-      background: linear-gradient(135deg, #0C2C56 0%, #005C5C 100%);
-    }
-
-    .card-back {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      transform: rotateY(180deg);
-    }
-
-    /* Baseball card design elements */
-    .card-border {
-      position: absolute;
-      inset: 12px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      pointer-events: none;
-    }
-
-    .card-header {
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
-      padding: 16px 20px;
-      text-align: center;
-    }
-
-    /* Star rating styles */
-    .stat-container {
-      margin: 16px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .stat-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: #374151;
-    }
-
-    .stars-container {
-      display: flex;
-      gap: 4px;
-    }
-
-    .star {
-      font-size: 24px;
-      color: #d1d5db;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-
-    .star.filled {
-      color: #fbbf24;
-      transform: scale(1);
-      animation: star-pop 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    }
-
-    .star.half-filled {
-      background: linear-gradient(90deg, #fbbf24 50%, #d1d5db 50%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: star-pop 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-    }
-
-    @keyframes star-pop {
-      0% {
-        transform: scale(0);
-        opacity: 0;
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    /* CTA button styles */
-    .card-cta {
-      display: inline-block;
-      padding: 10px 24px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.6);
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-cta::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: white;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-    }
-
-    .card-cta:hover {
-      background: rgba(255, 255, 255, 0.25);
-      border-color: white;
-      transform: translateY(-2px);
-    }
-
-    .card-cta:hover::before {
-      transform: translateX(0);
-    }
-
-    @keyframes gradient-shift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce-slow 2s infinite;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    @keyframes bounce-slow {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-10px); }
-    }
-
-    /* Photo styles */
-    .player-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid rgba(255, 255, 255, 0.9);
-      object-fit: cover;
-      margin: 0 auto;
-    }
-
-    .team-logo {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      opacity: 0.2;
-    }
-
-    /* Timeline styles */
-    .timeline-header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .timeline-content {
-      width: 100%;
-      max-width: 550px;
-      position: relative;
-    }
-
-    .timeline-line {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 20px;
-      bottom: 20px;
-      width: 3px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-
-    .timeline-items {
-      position: relative;
-      padding: 10px 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 30px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 20px;
-      min-height: 80px;
-      isolation: isolate;
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-item:hover {
-      transform: scale(1.05);
-    }
-
-    .timeline-item:hover .timeline-card {
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Left side items */
-    .timeline-item.left .timeline-card {
-      grid-column: 1;
-      text-align: right;
-      justify-self: end;
-      width: 100%;
-    }
-
-    .timeline-item.left .timeline-dot {
-      grid-column: 2;
-    }
-
-    .timeline-item.left .timeline-spacer {
-      grid-column: 3;
-    }
-
-    /* Right side items */
-    .timeline-item.right .timeline-spacer {
-      grid-column: 1;
-      pointer-events: none;
-    }
-
-    .timeline-item.right .timeline-dot {
-      grid-column: 2;
-    }
-
-    .timeline-item.right .timeline-card {
-      grid-column: 3;
-      text-align: left;
-      justify-self: start;
-      width: 100%;
-    }
-
-    .timeline-spacer {
-      width: 100%;
-      pointer-events: none;
-    }
-
-    .timeline-dot {
-      width: 24px;
-      height: 24px;
-      background: white;
-      border: 4px solid rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-      z-index: 2;
-      position: relative;
-    }
-
-    .timeline-item.active .timeline-dot {
-      background: #fbbf24;
-      border-color: #fbbf24;
-      box-shadow: 0 0 30px rgba(251, 191, 36, 0.8);
-      animation: pulse-dot 2s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 40px rgba(251, 191, 36, 0.9);
-        transform: scale(1.1);
-      }
-    }
-
-    .timeline-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      padding: 14px 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s ease;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .timeline-item.left .timeline-card {
-      flex-direction: row-reverse;
-    }
-
-    .timeline-logo {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      flex-shrink: 0;
-    }
-
-    .timeline-logo img {
-      max-width: 70%;
-      max-height: 70%;
-      object-fit: contain;
-    }
-
-    .timeline-info {
-      flex: 1;
-    }
-
-    .timeline-item.left .timeline-info {
-      text-align: right;
-    }
-
-    .timeline-title {
-      font-weight: 700;
-      color: #1e293b;
-      font-size: 15px;
-      margin-bottom: 2px;
-    }
-
-    .timeline-subtitle {
-      font-size: 11px;
-      color: #64748b;
-      line-height: 1.3;
-      margin-bottom: 2px;
-    }
-
-    .timeline-dates {
-      font-size: 9px;
-      color: #94a3b8;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* Timeline detail modal */
-    .timeline-detail {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
-      background: white;
-      border-radius: 16px;
-      padding: 40px;
-      max-width: 600px;
-      width: 90%;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease;
-    }
-
-    .timeline-detail.active {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      pointer-events: all;
-    }
-
-    .timeline-detail-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .timeline-detail-overlay.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .timeline-detail-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      margin-bottom: 20px;
-    }
-
-    .timeline-detail-close {
-      background: #f1f5f9;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .timeline-detail-close:hover {
-      background: #e2e8f0;
-    }
-
-    .timeline-detail-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 4px;
-    }
-
-    .timeline-detail-subtitle {
-      font-size: 16px;
-      color: #64748b;
-      margin-bottom: 8px;
-    }
-
-    .timeline-detail-dates {
-      font-size: 14px;
-      color: #94a3b8;
-      font-weight: 600;
-    }
-
-    .timeline-detail-content {
-      color: #475569;
-      line-height: 1.7;
-    }
-
-    .timeline-detail-content ul {
-      margin: 16px 0;
-      padding-left: 20px;
-    }
-
-    .timeline-detail-content li {
-      margin: 12px 0;
-    }
-
-    .timeline-detail-content strong {
-      color: #1e293b;
-      font-weight: 600;
-    }
-
-    /* Card deck styles */
-    .deck-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .deck-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .deck-carousel {
-      position: relative;
-      width: 100%;
-      max-width: 500px;
-      height: 550px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: grab;
-      user-select: none;
-    }
-
-    .deck-carousel:active {
-      cursor: grabbing;
-    }
-
-    .deck-track {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .deck-card {
-      position: absolute;
-      width: 100%;
-      max-width: 420px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
-      border-radius: 20px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
-      opacity: 0;
-      transform: translateX(100px) scale(0.85);
-      pointer-events: none;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .deck-card.active {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-      pointer-events: all;
-      z-index: 3;
-    }
-
-    .deck-card.prev {
-      opacity: 0.4;
-      transform: translateX(-100px) scale(0.85);
-      z-index: 1;
-    }
-
-    .deck-card.next {
-      opacity: 0.4;
-      transform: translateX(100px) scale(0.85);
-      z-index: 1;
-    }
-
-    .deck-nav {
-      display: flex;
-      gap: 16px;
-      margin-top: 30px;
-      align-items: center;
-    }
-
-    .deck-nav-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      color: white;
-      font-size: 20px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .deck-nav-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.1);
-    }
-
-    .deck-nav-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-
-    .deck-indicators {
-      display: flex;
-      gap: 10px;
-    }
-
-    .deck-indicator {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .deck-indicator.active {
-      background: white;
-      width: 30px;
-      border-radius: 5px;
-    }
-
-    /* Vertical side navbar */
-    .side-nav {
-      position: fixed;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 100;
-    }
-    .side-nav a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 12px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
-      backdrop-filter: blur(10px);
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    }
-    .side-nav a:hover { 
-      transform: translateX(2px);
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.45);
-    }
-    .side-nav a.active {
-      background: white;
-      color: #0C2C56;
-      border-color: white;
-    }
-    .hidden { display: none !important; }
-    .side-nav .side-heading {
-      color: rgba(255,255,255,0.65);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 2px;
-    }
-    .side-nav .side-sep {
-      height: 1px;
-      background: rgba(255,255,255,0.15);
-      margin: 4px 0;
-    }
-    .side-nav a[aria-disabled="true"] {
-      opacity: 0.5;
-      cursor: not-allowed;
-      pointer-events: auto; /* still intercept clicks to prevent default */
-    }
-    @media (max-width: 768px) {
-      .side-nav { display: none; }
-    }
-
-
-    .project-icon {
-      font-size: 40px;
-      margin-bottom: 16px;
-      display: block;
-    }
-
-    .project-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 8px;
-    }
-
-    .project-category {
-      font-size: 13px;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .project-problem {
-      font-size: 14px;
-      color: #0ea5e9;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .project-description {
-      font-size: 14px;
-      color: #475569;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .project-stack {
-      font-size: 12px;
-      color: #94a3b8;
-      margin-bottom: 20px;
-      padding: 12px;
-      background: rgba(241, 245, 249, 0.6);
-      border-radius: 8px;
-      font-family: 'Courier New', monospace;
-    }
-
-    .project-stack strong {
-      color: #64748b;
-      font-weight: 600;
-    }
-
-    .project-link {
-      display: inline-block;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-    }
-
-    .project-link:hover {
-      background: linear-gradient(135deg, #764ba2, #667eea);
-      transform: translateX(4px);
-    }
-
-    /* Connect panel cards */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-    .contact-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 24px;
-      min-height: 120px;
-      text-decoration: none;
-    }
-    .contact-card .label { font-weight: 700; }
-    .contact-card .sub { opacity: 0.7; font-size: 13px; }
-
-    /* Responsive styles */
-    @media (max-width: 1024px) {
-      /* Disable snapping and container-scrolling on mobile/tablet */
-      .scroll-container {
-        height: auto;
-        overflow-y: visible;
-        scroll-snap-type: none;
-      }
-      .snap-point { display: none; }
-
-      .card-wrapper {
-        position: relative;
-        left: auto;
-        transform: none !important;
-      }
-
-      .timeline-wrapper,
-      .deck-wrapper,
-      .work-panel,
-      .interests-panel,
-      .connect-panel {
-        position: relative !important;
-        right: auto !important;
-        width: 100% !important;
-        height: auto !important;
-        opacity: 1 !important;
-        transform: none !important;
-        pointer-events: auto !important;
-        padding: 20px !important;
-        margin-top: 40px !important;
-      }
-
-      .sticky-container {
-        flex-direction: column;
-        height: auto;
-        position: relative;
-      }
-
-      .multi-stage-section {
-        height: auto;
-        min-height: 100vh;
-        padding: 40px 0;
-      }
-
-      /* Hide scroll indicator on mobile */
-      #scrollIndicator { display: none; }
-      /* Hide side nav on tablet/phone */
-      .side-nav { display: none; }
-    }
-
-    @media (max-width: 768px) {
-      .deck-carousel {
-        max-width: 100%;
-        height: 500px;
-      }
-
-      .deck-card {
-        max-width: 90%;
-        padding: 30px;
-      }
-
-      .deck-nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-      }
-
-      .timeline-content {
-        max-width: 100%;
-        padding-left: 48px; /* gutter for rail only */
-        padding-right: 16px;
-      }
-
-      .timeline-line {
-        left: 24px; /* rail position */
-        transform: none;
-        width: 2px;
-      }
-
-      .timeline-item {
-        display: block;
-        gap: 12px;
-        margin-bottom: 28px;
-      }
-
-      /* Hide dots entirely on mobile */
-      .timeline-item .timeline-dot,
-      .timeline-dot { display: none !important; }
-
-      .timeline-item .timeline-spacer { display: none; }
-
-      .timeline-item .timeline-card { text-align: left; width: 100%; }
-      .timeline-item.left .timeline-card { flex-direction: row; }
-      .timeline-item.left .timeline-info { text-align: left; }
-
-      .timeline-detail {
-        padding: 24px 16px;
-      }
-
-      /* Compact timeline elements for mobile */
-      .timeline-dot { width: 16px; height: 16px; border-width: 3px; }
-      .timeline-card { padding: 12px; border-radius: 10px; gap: 10px; }
-      .timeline-logo { width: 40px; height: 40px; border-radius: 8px; }
-      .timeline-title { font-size: 16px; }
-      .timeline-subtitle { font-size: 13px; }
-      .timeline-dates { font-size: 10px; }
-    }
-
-    /* Extra-tight layout for small phones */
-    @media (max-width: 480px) {
-      .timeline-content { padding-left: 44px !important; padding-right: 12px !important; }
-      .timeline-line { left: 22px !important; width: 2px !important; }
-      .timeline-item { gap: 10px !important; margin-bottom: 22px !important; }
-      .timeline-dot { display: none !important; }
-      .timeline-card { padding: 10px !important; border-radius: 10px !important; }
-      .timeline-logo { width: 36px !important; height: 36px !important; }
-      .timeline-title { font-size: 15px !important; }
-      .timeline-subtitle { font-size: 12px !important; }
-      .timeline-dates { font-size: 10px !important; }
-    }
-
-    /* View Switching System */
-    .view {
-      display: none;
-      width: 100%;
-      min-height: 100vh;
-    }
-
-    .view.active {
-      display: block;
-    }
-
-    /* Active view indicator in nav */
-    .side-nav a.active-view {
-      background: white;
-      color: #0c2c56;
-      font-weight: 600;
-    }
-
-    /* Mobile navigation */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 12px 0;
-      z-index: 1000;
-    }
-
-    .mobile-nav-links {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .mobile-nav-links a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-      font-size: 11px;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.2s;
-    }
-
-    .mobile-nav-links a span {
-      font-size: 20px;
-      margin-bottom: 4px;
-    }
-
-    .mobile-nav-links a.active-view {
-      background: rgba(255, 255, 255, 0.15);
-      color: white;
-      font-weight: 600;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-nav {
-        display: block;
-      }
-      .scroll-container {
-        padding-bottom: 80px; /* Space for mobile nav */
-      }
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      font-feature-settings: "ss01";
+    }
+    a { color: var(--ochre); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--ink); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+    img { max-width: 100%; display: block; }
+    p { margin: 0 0 1rem; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
+
+    .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Hero */
+    .hero { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: end; }
+    .hero h1 {
+      font-size: clamp(3.25rem, 9vw, 6.5rem);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-variation-settings: "opsz" 144;
+      margin-bottom: 1.5rem;
+    }
+    .hero .lede { font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.35; max-width: 30ch; margin-bottom: 1.5rem; font-variation-settings: "opsz" 30; }
+    .hero .facts { color: var(--ink-2); max-width: 52ch; }
+    .hero .facts p { margin-bottom: 0.35rem; }
+    .hero .links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1.5rem; }
+    .hero .links a { font-weight: 500; }
+    .portrait { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; border: 1px solid var(--rule); justify-self: start; order: -1; }
+
+    /* Sections: gutter label on the left, content on the right */
+    .section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+    .section-grid { display: grid; grid-template-columns: 1fr; gap: 1rem 2.5rem; }
+    .section h2 { font-size: 1.15rem; font-weight: 600; color: var(--ink-2); font-variation-settings: "opsz" 14; padding-top: 0.2rem; }
+    .content { max-width: 62ch; }
+    .content > p:last-child { margin-bottom: 0; }
+
+    /* Ledger rows for experience and education */
+    .ledger li { display: grid; grid-template-columns: 1fr; gap: 0.2rem 1.5rem; padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+    .ledger li:first-child { border-top: 0; padding-top: 0; }
+    .ledger .when { color: var(--ink-3); font-size: 0.95rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .ledger h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; line-height: 1.4; letter-spacing: 0; }
+    .ledger .org { font-weight: 400; color: var(--ink-2); }
+    .ledger p { margin: 0.35rem 0 0; color: var(--ink-2); }
+    .ledger ul { margin-top: 0.5rem; }
+    .ledger ul li { display: block; border: 0; padding: 0.15rem 0 0.15rem 1.1rem; position: relative; color: var(--ink-2); }
+    .ledger ul li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 0.45rem; height: 1px; background: var(--ink-3); }
+
+    /* Projects */
+    .project { padding: 1.25rem 0; border-top: 1px solid var(--rule); }
+    .project:first-child { border-top: 0; padding-top: 0; }
+    .project h3 { font-size: 1.55rem; margin-bottom: 0.5rem; font-variation-settings: "opsz" 40; }
+    .project .kicker { color: var(--ink-2); margin-bottom: 0.75rem; }
+    .project .stack { color: var(--ink-3); font-size: 0.95rem; margin: 0.25rem 0 0; }
+    .project .stack span + span::before { content: ", "; }
+    .project .more { margin-top: 0.5rem; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .also h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: 0; }
+    .also li { padding: 0.5rem 0; border-top: 1px solid var(--rule); color: var(--ink-2); }
+    .also li:first-of-type { border-top: 0; }
+
+    /* Skills table */
+    .skills { display: grid; grid-template-columns: 1fr; gap: 0.75rem 1.5rem; }
+    .skills dt { color: var(--ink-3); font-size: 0.95rem; }
+    .skills dd { margin: 0 0 0.5rem; }
+
+    /* Golf */
+    .golf-stats { display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; margin: 0 0 1.25rem; }
+    .golf-stats div { display: flex; flex-direction: column; }
+    .golf-stats b { font-family: var(--serif); font-weight: 500; font-size: 2rem; line-height: 1; font-variation-settings: "opsz" 60; font-variant-numeric: tabular-nums; }
+    .golf-stats span { color: var(--ink-3); font-size: 0.95rem; margin-top: 0.3rem; }
+    .chart-box { position: relative; height: 260px; margin-top: 0.5rem; }
+    .chart-note { color: var(--ink-3); font-size: 0.9rem; margin-top: 0.75rem; }
+
+    /* Cooking */
+    .plates { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+    .plates img { flex: 0 0 auto; width: 12rem; height: 15rem; object-fit: cover; border-radius: 4px; scroll-snap-align: start; background: var(--paper-2); }
+
+    /* Contact + footer */
+    .contact .links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 0.75rem; }
+    footer { padding: 2rem 0 3rem; color: var(--ink-3); font-size: 0.9rem; }
+
+    @media (min-width: 720px) {
+      .hero-grid { grid-template-columns: 1fr auto; }
+      .portrait { width: 11rem; height: 11rem; justify-self: end; order: 0; }
+      .section-grid { grid-template-columns: var(--gutter) 1fr; }
+      .section h2 { position: sticky; top: 1.5rem; }
+      .ledger li { grid-template-columns: 8.5rem 1fr; }
+      .skills { grid-template-columns: 8.5rem 1fr; }
+      .skills dd { margin-bottom: 0; }
+      .chart-box { height: 320px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="scroll-container" id="scrollContainer">
 
-    <!-- HOME VIEW -->
-    <div id="homeView" class="view active">
-
-    <!-- Multi-stage Transition Section -->
-    <section class="multi-stage-section">
-      <!-- Snap points for scroll-snap -->
-      <div class="snap-point snap-point-1" id="home"></div>
-      <div class="snap-point snap-point-2" id="journey"></div>
-      <div class="snap-point snap-point-3" id="projects"></div>
-      <div class="snap-point snap-point-4" id="how-i-work"></div>
-      <div class="snap-point snap-point-5" id="interests"></div>
-      <div class="snap-point snap-point-6" id="lets-connect"></div>
-
-      <div class="sticky-container">
-
-        <!-- Baseball Card (starts centered, moves left) -->
-        <div class="card-wrapper" id="cardWrapper">
-          <div class="card-container" onclick="flipCard()">
-            <div class="card" id="baseballCard">
-
-              <!-- Front of Card -->
-              <div class="card-face card-front">
-                <div class="card-border"></div>
-
-                <div class="card-header">
-                  <div class="font-display text-white text-4xl tracking-wider">KELVIN ERVAIS</div>
-                  <div class="text-teal-300 text-xs font-bold uppercase tracking-widest mt-1">Analyst, Baseball Projects</div>
-                  <div class="text-white/50 text-xs uppercase tracking-widest mt-2">Seattle Mariners</div>
-                </div>
-
-                <div class="flex flex-col items-center justify-center h-full px-8 -mt-24">
-                  <img src="headshot.jpeg" alt="Kelvin Ervais" class="player-photo">
-
-                  <div class="mt-6 text-center">
-                    <div class="text-white/95 text-xl leading-relaxed max-w-md px-4 font-medium">
-                      Building data products used daily by MLB front offices
-                    </div>
-                  </div>
-                </div>
-
-                <div class="absolute bottom-6 left-0 right-0 text-center">
-                  <button class="card-cta">View Skills</button>
-                </div>
-              </div>
-
-              <!-- Back of Card -->
-              <div class="card-face card-back">
-                <div class="h-full overflow-y-auto p-6">
-                  <div class="text-center mb-6">
-                    <div class="font-display text-3xl text-gray-800 tracking-wide">Skills</div>
-                    <div class="text-gray-500 text-xs uppercase tracking-widest mt-1">as of the 2025 Season</div>
-                  </div>
-
-                  <div class="px-4">
-                    <!-- R Programming -->
-                    <div class="stat-container">
-                      <span class="stat-label">R</span>
-                      <div class="stars-container" data-rating="5">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                      </div>
-                    </div>
-
-                    <!-- Python -->
-                    <div class="stat-container">
-                      <span class="stat-label">Python</span>
-                      <div class="stars-container" data-rating="4.5">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                      </div>
-                    </div>
-
-                    <!-- SQL -->
-                    <div class="stat-container">
-                      <span class="stat-label">SQL</span>
-                      <div class="stars-container" data-rating="4.5">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                      </div>
-                    </div>
-
-                    <!-- Machine Learning -->
-                    <div class="stat-container">
-                      <span class="stat-label">Machine Learning</span>
-                      <div class="stars-container" data-rating="4">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                      </div>
-                    </div>
-
-                    <!-- Data Visualization -->
-                    <div class="stat-container">
-                      <span class="stat-label">Data Visualization</span>
-                      <div class="stars-container" data-rating="5">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                      </div>
-                    </div>
-
-                    <!-- UI/UX Design -->
-                    <div class="stat-container">
-                      <span class="stat-label">UI/UX Design</span>
-                      <div class="stars-container" data-rating="3.5">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="absolute bottom-6 left-0 right-0 text-center">
-                  <div class="flip-hint text-gray-500 text-xs">Click to flip back →</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="scroll-indicator text-white" id="scrollIndicator">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Timeline (appears second, then fades out) -->
-        <div class="timeline-wrapper" id="timelineWrapper">
-          <div class="w-full h-full flex flex-col justify-center">
-            <div class="timeline-header">
-              <h2 class="font-display text-3xl text-white mb-1">JOURNEY</h2>
-              <p class="text-white/70 text-sm">From Berkeley to the Show...</p>
-              <p class="text-white/70 text-sm">Click on each section to learn more!</p>
-
-            </div>
-
-            <div class="timeline-content mx-auto">
-              <div class="timeline-line"></div>
-              <div class="timeline-items">
-                <!-- UC Berkeley - Left -->
-                <div class="timeline-item left" data-experience="berkeley">
-                  <div class="timeline-card">
-                    <div class="timeline-logo">🐻</div>
-                    <div class="timeline-info">
-                      <div class="timeline-title">UC Berkeley</div>
-                      <div class="timeline-subtitle">B.A. Political Economy</div>
-                      <div class="timeline-dates">Aug 2018 - May 2022</div>
-                    </div>
-                  </div>
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-spacer"></div>
-                </div>
-
-                <!-- NY Mets - Right -->
-                <div class="timeline-item right" data-experience="mets">
-                  <div class="timeline-spacer"></div>
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-card">
-                    <div class="timeline-logo">⚾</div>
-                    <div class="timeline-info">
-                      <div class="timeline-title">NY Mets</div>
-                      <div class="timeline-subtitle">Systems Video Associate</div>
-                      <div class="timeline-dates">May - Nov 2022</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- ACLU - Left -->
-                <div class="timeline-item left" data-experience="aclu">
-                  <div class="timeline-card">
-                    <div class="timeline-logo">⚖️</div>
-                    <div class="timeline-info">
-                      <div class="timeline-title">ACLU</div>
-                      <div class="timeline-subtitle">Analytics Intern</div>
-                      <div class="timeline-dates">Jan - Apr 2023</div>
-                    </div>
-                  </div>
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-spacer"></div>
-                </div>
-
-                <!-- Seattle Mariners - Right -->
-                <div class="timeline-item active right" data-experience="mariners">
-                  <div class="timeline-spacer"></div>
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-card">
-                    <div class="timeline-logo">⚓</div>
-                    <div class="timeline-info">
-                      <div class="timeline-title">Seattle Mariners</div>
-                      <div class="timeline-subtitle">Analyst, Baseball Projects</div>
-                      <div class="timeline-dates">Apr 2023 - Present</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Georgia Tech - Left -->
-                <div class="timeline-item active left" data-experience="gatech">
-                  <div class="timeline-card">
-                    <div class="timeline-logo">🐝</div>
-                    <div class="timeline-info">
-                      <div class="timeline-title">Georgia Tech</div>
-                      <div class="timeline-subtitle">M.S. Analytics</div>
-                      <div class="timeline-dates">Aug 2023 - Dec 2025</div>
-                    </div>
-                  </div>
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-spacer"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Card Deck (appears third, replaces timeline) -->
-        <div class="deck-wrapper" id="deckWrapper">
-          <div class="deck-container">
-            <div class="deck-header">
-              <h2 class="font-display text-3xl text-white mb-1">PROJECTS</h2>
-              <p class="text-white/70 text-sm">Swipe to explore</p>
-            </div>
-
-            <div class="deck-carousel">
-              <div class="deck-track">
-
-                <!-- Project 1: AI Golf Coach -->
-                <div class="deck-card active" data-index="0">
-                  <span class="project-icon">⛳</span>
-                  <h3 class="project-title">AI Golf Coach</h3>
-                  <p class="project-category">Computer Vision & AI</p>
-
-                  <div class="project-problem">
-                    <span>💡</span>
-                    <span>Problem: Expensive golf coaching limits skill development</span>
-                  </div>
-
-                  <p class="project-description">
-                    Uses computer vision and OpenAI API to produce interactive Plotly visualizations and personalized coaching advice based on the Titleist Performance Institute methodology.
-                  </p>
-
-                  <div class="project-stack">
-                    <strong>Stack:</strong> Python (OpenCV, OpenAI), Plotly
-                  </div>
-
-                  <a
-                    href="https://kelvinervais.shinyapps.io/ai_tpi_coach/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                  >
-                    Live Demo →
-                  </a>
-                </div>
-
-                <!-- Project 2: TrendTracker -->
-                <div class="deck-card next" data-index="1">
-                  <span class="project-icon">💹</span>
-                  <h3 class="project-title">TrendTracker</h3>
-                  <p class="project-category">Finance Analytics</p>
-
-                  <div class="project-problem">
-                    <span>💡</span>
-                    <span>Problem: Complex financial data needs simplification</span>
-                  </div>
-
-                  <p class="project-description">
-                    Designed an intuitive finance dashboard that transforms overwhelming market data into actionable insights. Features real-time retrieval, AR(1) forecasting, and Monte Carlo risk simulation.
-                  </p>
-
-                  <div class="project-stack">
-                    <strong>Stack:</strong> R (Shiny, quantmod), bslib
-                  </div>
-
-                  <a
-                    href="https://kelvinervais.shinyapps.io/TrendTracker/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                  >
-                    Live Demo →
-                  </a>
-
-                </div>
-
-                <!-- Project 3: foodPal -->
-                <div class="deck-card" data-index="2">
-                  <span class="project-icon">🍽️</span>
-                  <h3 class="project-title">foodPal</h3>
-                  <p class="project-category">Recipe Recommender</p>
-
-                  <div class="project-problem">
-                    <span>💡</span>
-                    <span>Problem: Decision fatigue in meal planning</span>
-                  </div>
-
-                  <p class="project-description">
-                    Built an ensemble recommendation system that understands both your taste preferences and what's actually in your pantry. Combines collaborative filtering with content-based matching and semantic embeddings. (Set user id as test_user)
-                  </p>
-
-                  <div class="project-stack">
-                    <strong>Stack:</strong> R (Shiny, tidyverse), embeddings
-                  </div>
-
-                  <a
-                    href="https://kelvinervais.shinyapps.io/foodPal/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                  >
-                    Live Demo →
-                  </a>
-
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Navigation -->
-            <div class="deck-nav">
-              <button class="deck-nav-btn" id="prevBtn">‹</button>
-              <div class="deck-indicators" id="deckIndicators">
-                <div class="deck-indicator active"></div>
-                <div class="deck-indicator"></div>
-                <div class="deck-indicator"></div>
-              </div>
-              <button class="deck-nav-btn" id="nextBtn">›</button>
-            </div>
-
-          </div>
-        </div>
-
-        
-        <!-- RIGHT-PANEL STAGES (inside sticky) -->
-        <div class="work-panel" id="workPanel" aria-label="How I Work panel">
-          <div class="max-w-5xl mx-auto px-6 w-full">
-            <div class="text-center mb-12">
-              <h2 class="font-display text-5xl text-white mb-4">How I Work</h2>
-              <p class="text-slate-100/90 max-w-2xl mx-auto">Behind every successful data project is a thoughtful process. Here’s how I approach complex problems and deliver solutions that actually get used.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div class="glass-card p-8">
-                <div class="text-brand-400 font-bold text-3xl mb-4">1</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Build Fast, Test Early</h3>
-                <p class="text-slate-200 text-sm leading-relaxed">With R Shiny, I can have a working prototype running in hours. Real user feedback beats theoretical perfection.</p>
-              </div>
-              <div class="glass-card p-8">
-                <div class="text-purple-300 font-bold text-3xl mb-4">2</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">User Feedback Loops</h3>
-                <p class="text-slate-200 text-sm leading-relaxed">I instrument apps from day one and let real usage patterns guide development.</p>
-              </div>
-              <div class="glass-card p-8">
-                <div class="text-green-300 font-bold text-3xl mb-4">3</div>
-                <h3 class="text-xl font-semibold mb-3 text-white">Performance First</h3>
-                <p class="text-slate-200 text-sm leading-relaxed">Responsive tools matter. I prioritize efficient logic and fast load times.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="interests-panel" id="interestsPanel" aria-label="Interests panel">
-          <div class="max-w-5xl mx-auto px-6 w-full">
-            <div class="text-center mb-12">
-              <h2 class="font-display text-5xl text-white mb-4">Interests</h2>
-              <p class="text-slate-100/90 max-w-2xl mx-auto">Areas I love exploring and building in.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-                <h3 class="text-xl font-semibold mb-2 text-slate-900">🤖 LLM Systems & ML</h3>
-                <p class="text-slate-700 text-sm">Focused on recommendation engines, RAG patterns, and production ML applications.</p>
-              </div>
-              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-                <h3 class="text-xl font-semibold mb-2 text-slate-900">🌍 Multilingual Communication</h3>
-                <p class="text-slate-700 text-sm">Spanish speaker with California Seal of Biliteracy.</p>
-              </div>
-              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-                <h3 class="text-xl font-semibold mb-2 text-slate-900">📊 Interactive Data Apps</h3>
-                <p class="text-slate-700 text-sm">Building intuitive R Shiny tools that make complex data accessible.</p>
-              </div>
-              <div class="bg-white/80 backdrop-blur rounded-2xl p-8">
-                <h3 class="text-xl font-semibold mb-2 text-slate-900">📚 Continuous Learning</h3>
-                <p class="text-slate-700 text-sm">Constantly exploring new methods in modeling, visualization, and decision science.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="connect-panel" id="connectPanel" aria-label="Connect panel">
-          <div class="max-w-5xl mx-auto px-6 w-full">
-            <div class="text-center mb-12">
-              <h2 class="font-display text-5xl text-white mb-4">Let's Connect</h2>
-              <p class="text-slate-100/90 max-w-2xl mx-auto">Find me on GitHub, LinkedIn, or send an email.</p>
-            </div>
-            <div class="contact-grid">
-              <a href="https://github.com/kelvinervais" target="_blank" rel="noopener noreferrer" class="glass-card contact-card text-white" aria-label="Visit my GitHub profile">
-                <span class="text-3xl">🐙</span>
-                <span class="label">GitHub</span>
-                <span class="sub">@kelvinervais</span>
-              </a>
-              <a href="https://www.linkedin.com/in/kelvinervais" target="_blank" rel="noopener noreferrer" class="glass-card contact-card text-white" aria-label="Visit my LinkedIn profile">
-                <span class="text-3xl">🔗</span>
-                <span class="label">LinkedIn</span>
-                <span class="sub">/in/kelvinervais</span>
-              </a>
-              <a href="mailto:kelvinervais@gmail.com" class="glass-card contact-card text-white" aria-label="Send me an email">
-                <span class="text-3xl">✉️</span>
-                <span class="label">Email</span>
-                <span class="sub">kelvinervais@gmail.com</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    </div>
-    <!-- END HOME VIEW -->
-
-    <!-- COOKING VIEW -->
-    <div id="cookingView" class="view hidden">
-
-    <!-- COOKING PAGE -->
-    <section class="site-section pb-32" id="cooking">
-      <div class="max-w-4xl mx-auto px-6 w-full">
-        <div class="text-center mb-10">
-          <h2 class="font-display text-5xl text-white mb-2">Cooking</h2>
-          <p class="text-slate-100/90">A rotating carousel of recent dishes.</p>
-        </div>
-
-        <div class="glass-card p-4" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18);">
-          <div id="cookingCarousel" class="relative overflow-hidden" style="height: 380px;">
-            <div id="cookingTrack" class="flex transition-transform duration-500 ease-in-out h-full"></div>
-
-            <button id="cookPrev" aria-label="Previous" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-10 h-10 rounded-full flex items-center justify-center">‹</button>
-            <button id="cookNext" aria-label="Next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white w-10 h-10 rounded-full flex items-center justify-center">›</button>
-
-            <div id="cookDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    </div>
-    <!-- END COOKING VIEW -->
-
-    <!-- GOLF VIEW -->
-    <div id="golfView" class="view hidden">
-      <div class="max-w-5xl mx-auto px-6 py-12 pb-32">
-        <div class="text-center mb-12">
-          <h2 class="font-display text-6xl text-white mb-4">Golf Journey</h2>
-          <p class="text-slate-100/90 text-lg mb-6">My golf adventures since 2023</p>
-
-          <!-- Filter Toggle -->
-          <div class="inline-flex gap-2 bg-slate-800/50 p-1 rounded-lg backdrop-blur-sm">
-            <button id="filter18" class="px-6 py-2 rounded-md text-white font-semibold bg-blue-500 transition-all">18 Holes</button>
-            <button id="filter9" class="px-6 py-2 rounded-md text-slate-300 hover:text-white transition-all">9 Holes</button>
-            <button id="filterAll" class="px-6 py-2 rounded-md text-slate-300 hover:text-white transition-all">All Rounds</button>
-          </div>
-        </div>
-        <!-- Golf content will be dynamically loaded here -->
-        <div id="golfStats"></div>
-      </div>
-    </div>
-    <!-- END GOLF VIEW -->
-
-  </div>
-
-  <!-- Side Navigation -->
-  <nav class="side-nav" id="sideNav" aria-label="Section navigation">
-    <div class="side-group">
-      <div class="side-heading">Main</div>
-      <a href="#home" id="link-home" data-target="home">🏠 Home</a>
-      <a href="#golf" aria-disabled="true" data-disabled="true">🏌️ Golf</a>
-      <a href="#cooking" id="link-cooking" data-target="cooking">🍳 Cooking</a>
-    </div>
-    <div class="side-sep"></div>
-    <div class="side-group" id="homeSubtabs">
-      <div class="side-heading">Home Sections</div>
-      <a href="#journey" data-target="journey">🛤️ Journey</a>
-      <a href="#projects" data-target="projects">🗂️ Projects</a>
-      <a href="#how-i-work" data-target="how-i-work">🧰 How I Work</a>
-      <a href="#interests" data-target="interests">✨ Interests</a>
-      <a href="#lets-connect" data-target="lets-connect">📬 Connect</a>
-    </div>
-  </nav>
-
-  <!-- Mobile Navigation -->
-  <nav class="mobile-nav" id="mobileNav">
-    <div class="mobile-nav-links">
-      <a href="#home" data-view="homeView">
-        <span>🏠</span>
-        Home
-      </a>
-      <a href="#golf" data-view="golfView">
-        <span>🏌️</span>
-        Golf
-      </a>
-      <a href="#cooking" data-view="cookingView">
-        <span>🍳</span>
-        Cooking
-      </a>
-    </div>
-  </nav>
-
-  <!-- Timeline Detail Modal -->
-  <div class="timeline-detail-overlay" id="timelineOverlay"></div>
-  <div class="timeline-detail" id="timelineDetail">
-    <div class="timeline-detail-header">
+  <header class="hero">
+    <div class="wrap hero-grid">
       <div>
-        <div class="timeline-detail-title" id="detailTitle"></div>
-        <div class="timeline-detail-subtitle" id="detailSubtitle"></div>
-        <div class="timeline-detail-dates" id="detailDates"></div>
+        <h1>Kelvin<br>Ervais</h1>
+        <p class="lede">I build the analytics tools that coaches and front-office staff open every day.</p>
+        <div class="facts">
+          <p>Analyst, Baseball Projects at the Seattle Mariners. M.S. Analytics from Georgia Tech. Based in Seattle.</p>
+          <p>Production R Shiny and Python apps, models on player-tracking data, and LLM tooling for people who don't write code.</p>
+        </div>
+        <div class="links">
+          <a href="mailto:kelvinervais@gmail.com">kelvinervais@gmail.com</a>
+          <a href="https://www.linkedin.com/in/kelvinervais/" rel="me">LinkedIn</a>
+          <a href="https://github.com/kelvinervais" rel="me">GitHub</a>
+        </div>
       </div>
-      <button class="timeline-detail-close" id="detailClose">×</button>
+      <img class="portrait" src="headshot.jpeg" alt="Kelvin Ervais" width="200" height="200" />
     </div>
-    <div class="timeline-detail-content" id="detailContent"></div>
-  </div>
-
-  <script>
-    // Cooking images (auto-generated from repo at build time)
-    const cookingImages = [
-      "Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg",
-      "Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg",
-      "Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg",
-      "Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg",
-      "Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg",
-      "Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg",
-      "Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg",
-    ];
-    let isFlipped = false;
-
-    function flipCard() {
-      const card = document.getElementById('baseballCard');
-      isFlipped = !isFlipped;
-
-      if (isFlipped) {
-        card.classList.add('flipped');
-        setTimeout(() => animateStatBars(), 400);
-      } else {
-        card.classList.remove('flipped');
-      }
-    }
-
-    function animateStatBars() {
-      const starContainers = document.querySelectorAll('.stars-container');
-      starContainers.forEach((container, containerIndex) => {
-        const rating = parseFloat(container.getAttribute('data-rating'));
-        const stars = container.querySelectorAll('.star');
-
-        stars.forEach((star, starIndex) => {
-          setTimeout(() => {
-            if (starIndex < Math.floor(rating)) {
-              // Full star
-              star.classList.add('filled');
-            } else if (starIndex < rating && rating % 1 !== 0) {
-              // Half star
-              star.classList.add('half-filled');
-            }
-          }, (containerIndex * 6 + starIndex) * 80);
-        });
-      });
-    }
-
-    // Multi-stage scroll-based animation
-    const scrollContainer = document.getElementById('scrollContainer');
-    const cardWrapper = document.getElementById('cardWrapper');
-    const timelineWrapper = document.getElementById('timelineWrapper');
-    const deckWrapper = document.getElementById('deckWrapper');
-    const scrollIndicator = document.getElementById('scrollIndicator');
-    const workPanel = document.getElementById('workPanel');
-    const interestsPanel = document.getElementById('interestsPanel');
-    const connectPanel = document.getElementById('connectPanel');
-
-    function handleScroll() {
-      // Early exit for mobile/tablet; CSS handles layout
-      if (window.innerWidth <= 1024) return;
-      const scrollTop = scrollContainer.scrollTop;
-      const viewportHeight = window.innerHeight;
-
-      // Total progress across 10 viewports (0 to 9)
-      const totalProgress = scrollTop / viewportHeight;
-
-      // Stage 1: 0–2 (Card → Timeline)
-      // Stage 2: 2–6 (Timeline → Projects)
-      // Stage 3a: 6–8 (Projects → How I Work)
-      // Stage 3b: 8–10 (How I Work → Interests)
-      // Stage 4: 10–12 (Interests → Connect)
-
-      if (totalProgress <= 2) {
-        // Stage 1: Card → Timeline
-        const stage1Progress = Math.min(totalProgress / 2, 1);
-        const cardTranslateX = -50 + (stage1Progress * -50);
-        cardWrapper.style.transform = `translateX(${cardTranslateX}%)`;
-        cardWrapper.style.opacity = '1';
-        cardWrapper.style.visibility = 'visible';
-
-        const timelineOpacity = stage1Progress;
-        const timelineTranslateX = 50 - (stage1Progress * 50);
-        timelineWrapper.style.opacity = String(timelineOpacity);
-        timelineWrapper.style.transform = `translateX(${timelineTranslateX}px)`;
-        timelineWrapper.style.pointerEvents = timelineOpacity > 0.1 ? 'auto' : 'none';
-        timelineWrapper.style.visibility = timelineOpacity > 0.01 ? 'visible' : 'hidden';
-
-        // Hide others
-        deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
-        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
-        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
-        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
-
-      } else if (totalProgress <= 6) {
-        // Stage 2: Timeline → Projects
-        const stage2Progress = (totalProgress - 2) / 4;
-        cardWrapper.style.transform = `translateX(-100%)`;
-        cardWrapper.style.opacity = '1';
-        cardWrapper.style.visibility = 'visible';
-
-        if (stage2Progress < 0.5) {
-          const fadeOutProgress = stage2Progress * 2;
-          const timelineOpacity = 1 - fadeOutProgress;
-          timelineWrapper.style.opacity = String(timelineOpacity);
-          timelineWrapper.style.transform = 'translateX(0)';
-          timelineWrapper.style.pointerEvents = timelineOpacity > 0.1 ? 'auto' : 'none';
-          timelineWrapper.style.visibility = timelineOpacity > 0.01 ? 'visible' : 'hidden';
-
-          deckWrapper.style.opacity = '0'; deckWrapper.style.transform = 'translateX(50px)'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
-        } else {
-          let fadeInProgress = (stage2Progress - 0.5) * 2; // 0→1
-          fadeInProgress = Math.min(Math.max(fadeInProgress, 0), 1);
-          timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
-          deckWrapper.style.opacity = String(fadeInProgress);
-          const deckTranslateX = 50 - (fadeInProgress * 50);
-          deckWrapper.style.transform = `translateX(${deckTranslateX}px)`;
-          deckWrapper.style.pointerEvents = 'auto';
-          deckWrapper.style.visibility = fadeInProgress > 0.01 ? 'visible' : 'hidden';
-        }
-
-        workPanel.style.opacity = '0'; workPanel.style.transform = 'translateX(50px)'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
-        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
-        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
-
-      } else if (totalProgress <= 8) {
-        // Stage 3a: Projects → How I Work
-        const p = (totalProgress - 6) / 2;
-        deckWrapper.style.opacity = String(1 - p);
-        deckWrapper.style.transform = 'translateX(0)';
-        deckWrapper.style.pointerEvents = 'none';
-        deckWrapper.style.visibility = (1 - p) > 0.01 ? 'visible' : 'hidden';
-
-        workPanel.style.opacity = String(p);
-        workPanel.style.transform = `translateX(${50 - p * 50}px)`;
-        workPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
-        workPanel.style.visibility = p > 0.01 ? 'visible' : 'hidden';
-
-        // Keep card visible at its final position
-        cardWrapper.style.transform = 'translateX(-100%)';
-        cardWrapper.style.opacity = '1';
-        cardWrapper.style.visibility = 'visible';
-
-        // Hide others
-        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
-        interestsPanel.style.opacity = '0'; interestsPanel.style.transform = 'translateX(50px)'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
-        connectPanel.style.opacity = '0'; connectPanel.style.transform = 'translateX(50px)'; connectPanel.style.pointerEvents = 'none'; connectPanel.style.visibility = 'hidden';
-
-      } else if (totalProgress <= 10) {
-        // Stage 3b: How I Work → Interests (crossfade)
-        const p = (totalProgress - 8) / 2;
-        workPanel.style.opacity = String(1 - p);
-        workPanel.style.transform = 'translateX(0)';
-        workPanel.style.pointerEvents = 'none';
-        workPanel.style.visibility = (1 - p) > 0.01 ? 'visible' : 'hidden';
-
-        interestsPanel.style.opacity = String(p);
-        interestsPanel.style.transform = `translateX(${50 - p * 50}px)`;
-        interestsPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
-        interestsPanel.style.visibility = p > 0.01 ? 'visible' : 'hidden';
-
-        // Keep card visible at its final position
-        cardWrapper.style.transform = 'translateX(-100%)';
-        cardWrapper.style.opacity = '1';
-        cardWrapper.style.visibility = 'visible';
-
-        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
-        timelineWrapper.style.visibility = 'hidden';
-
-      } else if (totalProgress <= 12) {
-        // Stage 4: Interests → Connect (crossfade)
-        const p = (totalProgress - 10) / 2;
-
-        // Show Connect
-        connectPanel.style.opacity = String(p);
-        connectPanel.style.transform = `translateX(${50 - p * 50}px)`;
-        connectPanel.style.pointerEvents = p > 0.2 ? 'auto' : 'none';
-        connectPanel.style.visibility = 'visible';
-
-        // Hide Interests decisively once transition starts
-        if (p >= 0.3) {
-          interestsPanel.style.opacity = '0';
-          interestsPanel.style.transform = 'translateX(0)';
-          interestsPanel.style.pointerEvents = 'none';
-          interestsPanel.style.visibility = 'hidden';
-        } else {
-          interestsPanel.style.opacity = String(1 - p);
-          interestsPanel.style.transform = 'translateX(0)';
-          interestsPanel.style.pointerEvents = 'none';
-          interestsPanel.style.visibility = 'visible';
-        }
-
-        // Keep card visible at its final position
-        cardWrapper.style.transform = 'translateX(-100%)';
-        cardWrapper.style.opacity = '1';
-        cardWrapper.style.visibility = 'visible';
-
-        // Ensure others hidden
-        workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
-        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
-        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
-
-      } else {
-        // Stage 5: Beyond 12vh - Keep Connect fully visible
-        connectPanel.style.opacity = '1';
-        connectPanel.style.transform = 'translateX(0)';
-        connectPanel.style.pointerEvents = 'auto';
-        connectPanel.style.visibility = 'visible';
-
-        // Keep card visible at its final position
-        cardWrapper.style.transform = 'translateX(-100%)';
-        cardWrapper.style.opacity = '1';
-        cardWrapper.style.visibility = 'visible';
-
-        // Hide all others
-        interestsPanel.style.opacity = '0'; interestsPanel.style.pointerEvents = 'none'; interestsPanel.style.visibility = 'hidden';
-        workPanel.style.opacity = '0'; workPanel.style.pointerEvents = 'none'; workPanel.style.visibility = 'hidden';
-        deckWrapper.style.opacity = '0'; deckWrapper.style.pointerEvents = 'none'; deckWrapper.style.visibility = 'hidden';
-        timelineWrapper.style.opacity = '0'; timelineWrapper.style.pointerEvents = 'none'; timelineWrapper.style.visibility = 'hidden';
-      }
-
-
-
-      // Hide scroll indicator after scrolling starts
-      if (totalProgress > 0.1) {
-        scrollIndicator.style.opacity = '0';
-      } else {
-        scrollIndicator.style.opacity = '1';
-      }
-    }
-
-    // Responsive: disable complex animation on tablets/phones
-    const mq = window.matchMedia('(max-width: 1024px)');
-
-    function setMobileDefaults() {
-      // Stack everything, all visible
-      cardWrapper.style.transform = 'none'; cardWrapper.style.opacity = '1'; cardWrapper.style.visibility = 'visible';
-      timelineWrapper.style.opacity = '1'; timelineWrapper.style.transform = 'none'; timelineWrapper.style.pointerEvents = 'auto';
-      deckWrapper.style.opacity = '1'; deckWrapper.style.transform = 'none'; deckWrapper.style.pointerEvents = 'auto';
-      if (workPanel) { workPanel.style.opacity = '1'; workPanel.style.transform = 'none'; workPanel.style.pointerEvents = 'auto'; }
-      if (interestsPanel) { interestsPanel.style.opacity = '1'; interestsPanel.style.transform = 'none'; interestsPanel.style.pointerEvents = 'auto'; interestsPanel.style.visibility = 'visible'; }
-      if (connectPanel) { connectPanel.style.opacity = '1'; connectPanel.style.transform = 'none'; connectPanel.style.pointerEvents = 'auto'; }
-      positionTimelineDotsMobile();
-    }
-
-    function updateMode() {
-      if (mq.matches) {
-        scrollContainer.removeEventListener('scroll', handleScroll);
-        setMobileDefaults();
-      } else {
-        scrollContainer.removeEventListener('scroll', handleScroll);
-        scrollContainer.addEventListener('scroll', handleScroll);
-        handleScroll();
-      }
-    }
-
-    // Compute precise dot centers on mobile
-    function positionTimelineDotsMobile() {
-      if (window.innerWidth > 1024) return;
-      const items = document.querySelectorAll('.timeline-item');
-      items.forEach(item => {
-        const dot = item.querySelector('.timeline-dot');
-        const card = item.querySelector('.timeline-card');
-        if (!dot || !card) return;
-        const top = card.offsetTop + card.offsetHeight / 2;
-        dot.style.top = `${top}px`;
-      });
-    }
-
-    window.addEventListener('resize', positionTimelineDotsMobile);
-    window.addEventListener('load', positionTimelineDotsMobile);
-
-    // Setup on load and when changed
-    updateMode();
-    if (mq.addEventListener) {
-      mq.addEventListener('change', updateMode);
-    } else if (mq.addListener) {
-      mq.addListener(updateMode);
-    }
-
-    // Card deck carousel
-    let currentCardIndex = 0;
-    const deckCards = document.querySelectorAll('.deck-card');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const indicators = document.querySelectorAll('.deck-indicator');
-
-    function updateDeck() {
-      deckCards.forEach((card, index) => {
-        card.classList.remove('active', 'prev', 'next');
-
-        if (index === currentCardIndex) {
-          card.classList.add('active');
-        } else if (index === currentCardIndex - 1) {
-          card.classList.add('prev');
-        } else if (index === currentCardIndex + 1) {
-          card.classList.add('next');
-        }
-      });
-
-      // Update indicators
-      indicators.forEach((indicator, index) => {
-        if (index === currentCardIndex) {
-          indicator.classList.add('active');
-        } else {
-          indicator.classList.remove('active');
-        }
-      });
-    }
-
-    prevBtn.addEventListener('click', () => {
-      currentCardIndex = (currentCardIndex - 1 + deckCards.length) % deckCards.length;
-      updateDeck();
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentCardIndex = (currentCardIndex + 1) % deckCards.length;
-      updateDeck();
-    });
-
-    indicators.forEach((indicator, index) => {
-      indicator.addEventListener('click', () => {
-        currentCardIndex = index;
-        updateDeck();
-      });
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        currentCardIndex = (currentCardIndex - 1 + deckCards.length) % deckCards.length;
-        updateDeck();
-      } else if (e.key === 'ArrowRight') {
-        currentCardIndex = (currentCardIndex + 1) % deckCards.length;
-        updateDeck();
-      }
-    });
-
-    // Touch swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isDragging = false;
-
-    const deckCarousel = document.querySelector('.deck-carousel');
-
-    deckCarousel.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      isDragging = true;
-    }, { passive: true });
-
-    deckCarousel.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      touchEndX = e.touches[0].clientX;
-    }, { passive: true });
-
-    deckCarousel.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-      handleSwipe();
-    });
-
-    // Mouse drag support
-    let mouseStartX = 0;
-    let isMouseDragging = false;
-
-    deckCarousel.addEventListener('mousedown', (e) => {
-      mouseStartX = e.clientX;
-      isMouseDragging = true;
-    });
-
-    deckCarousel.addEventListener('mousemove', (e) => {
-      if (!isMouseDragging) return;
-      touchEndX = e.clientX;
-    });
-
-    deckCarousel.addEventListener('mouseup', (e) => {
-      if (!isMouseDragging) return;
-      isMouseDragging = false;
-      touchStartX = mouseStartX;
-      touchEndX = e.clientX;
-      handleSwipe();
-    });
-
-    deckCarousel.addEventListener('mouseleave', (e) => {
-      if (isMouseDragging) {
-        isMouseDragging = false;
-      }
-    });
-
-    function handleSwipe() {
-      const swipeThreshold = 50;
-      const diff = touchStartX - touchEndX;
-
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-          // Swipe left - next card
-          currentCardIndex = (currentCardIndex + 1) % deckCards.length;
-        } else {
-          // Swipe right - prev card
-          currentCardIndex = (currentCardIndex - 1 + deckCards.length) % deckCards.length;
-        }
-        updateDeck();
-      }
-    }
-
-    // Initialize
-    updateDeck();
-
-    // Timeline experience details
-    const experienceData = {
-      mariners: {
-        title: 'Seattle Mariners',
-        subtitle: 'Analyst, Baseball Projects • Seattle, WA',
-        dates: 'Apr 2023 - Present',
-        content: `
-          <ul>
-            <li>Built and maintained interactive dashboards and <strong>R Shiny</strong> apps.</li>
-            <li>Applied data science and statistical modeling to organizational analytics projects.</li>
-            <li>Worked with large-scale datasets; modeling, visualization, and validation.</li>
-          </ul>
-        `
-      },
-      aclu: {
-        title: 'ACLU',
-        subtitle: 'Graduate Intern, Analytics • Remote',
-        dates: 'Jan 2023 - Apr 2023',
-        content: `
-          <ul>
-            <li>Analyzed election research and redistricting data; created visualizations.</li>
-            <li>Designed and deployed <strong>R Shiny</strong> dashboards and GIS tools.</li>
-            <li>Bridged <strong>Python</strong> and <strong>R</strong> workflows for reproducibility.</li>
-          </ul>
-        `
-      },
-      mets: {
-        title: 'New York Mets',
-        subtitle: 'Systems Video Associate • Flushing, NY',
-        dates: 'May 2022 - Nov 2022',
-        content: `
-          <ul>
-            <li>Supported player-tracking technologies (Trajekt, KinaTrax).</li>
-            <li>Performed data validation, analysis, and visualization across departments.</li>
-            <li>Built tools to streamline reporting and tech integration.</li>
-          </ul>
-        `
-      },
-      berkeley: {
-        title: 'UC Berkeley',
-        subtitle: 'B.A. Political Economy (Minor: Data Science)',
-        dates: 'Aug 2018 - May 2022',
-        content: `
-          <p>Completed undergraduate degree in Political Economy with a minor in Data Science. Focused on quantitative analysis, statistical modeling, and data-driven decision making.</p>
-        `
-      },
-      gatech: {
-        title: 'Georgia Tech',
-        subtitle: 'M.S. Analytics - Computational Data Analytics',
-        dates: 'Aug 2023 - Dec 2025',
-        content: `
-          <p>Completed Master of Science in Analytics with a concentration in Computational Data Analytics. Coursework includes advanced machine learning, statistical modeling, and data visualization techniques.</p>
-        `
-      }
-    };
-
-    // Timeline detail modal functionality
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const detailModal = document.getElementById('timelineDetail');
-    const detailOverlay = document.getElementById('timelineOverlay');
-    const detailClose = document.getElementById('detailClose');
-
-    function showExperienceDetail(experienceKey) {
-      const data = experienceData[experienceKey];
-      if (!data) return;
-
-      document.getElementById('detailTitle').textContent = data.title;
-      document.getElementById('detailSubtitle').textContent = data.subtitle;
-      document.getElementById('detailDates').textContent = data.dates;
-      document.getElementById('detailContent').innerHTML = data.content;
-
-      detailModal.classList.add('active');
-      detailOverlay.classList.add('active');
-    }
-
-    function hideExperienceDetail() {
-      detailModal.classList.remove('active');
-      detailOverlay.classList.remove('active');
-    }
-
-    timelineItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const experienceKey = item.getAttribute('data-experience');
-        showExperienceDetail(experienceKey);
-      });
-    });
-
-    detailClose.addEventListener('click', hideExperienceDetail);
-    detailOverlay.addEventListener('click', hideExperienceDetail);
-
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        hideExperienceDetail();
-      }
-    });
-
-    // Fade-in/out for inline sections within scroll container
-    const fadeSections = document.querySelectorAll('.section-fade');
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        } else {
-          entry.target.classList.remove('is-visible');
-        }
-      });
-    }, {
-      root: scrollContainer,
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px'
-    });
-
-    fadeSections.forEach(sec => sectionObserver.observe(sec));
-
-    // Side nav: smooth-scroll and active link management
-    const sideNav = document.getElementById('sideNav');
-    const sideLinks = sideNav.querySelectorAll('a[data-target]');
-    const homeLink = document.getElementById('link-home');
-    const homeSubtabs = document.getElementById('homeSubtabs');
-    const cookingLink = document.getElementById('link-cooking');
-
-    sideLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('data-target');
-
-        // Skip if this is a main view link (handled by view switching system)
-        if (targetId === 'home' || targetId === 'cooking') {
-          return;
-        }
-
-        e.preventDefault();
-        const targetEl = document.getElementById(targetId);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        // If navigating to a Home subtab, show subtabs
-        if (['journey','projects','how-i-work','interests','lets-connect'].includes(targetId)) {
-          homeSubtabs.classList.remove('hidden');
-        }
-      });
-    });
-
-    // Prevent navigation for disabled top-level future tabs
-    sideNav.querySelectorAll('a[data-disabled="true"]').forEach(link => {
-      link.addEventListener('click', (e) => e.preventDefault());
-    });
-
-    const navTargets = ['home','journey','projects','how-i-work','interests','lets-connect','cooking']
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
-
-    const linkMap = new Map();
-    sideLinks.forEach(link => linkMap.set(link.getAttribute('data-target'), link));
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // Only activate if we're currently on the home view
-        const currentView = document.querySelector('.view.active');
-        if (!currentView || currentView.id !== 'homeView') return;
-
-        const id = entry.target.getAttribute('id');
-        const link = linkMap.get(id);
-        if (!link) return;
-        if (entry.isIntersecting) {
-          sideLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-          // Also highlight Home for all Home-related sections
-          const isHomeSection = ['home','journey','projects','how-i-work','interests','lets-connect'].includes(id);
-          if (isHomeSection && homeLink) {
-            homeLink.classList.add('active');
-            homeSubtabs.classList.remove('hidden');
-          }
-        }
-      });
-    }, {
-      root: scrollContainer,
-      threshold: 0.6
-    });
-
-    navTargets.forEach(t => navObserver.observe(t));
-
-    // Global-page observer (viewport) for non-Home tabs like Cooking
-    // Build Cooking carousel
-    (function initCookingCarousel(){
-      const track = document.getElementById('cookingTrack');
-      if (!track || !cookingImages || cookingImages.length === 0) return;
-      track.innerHTML = '';
-      cookingImages.forEach((src, idx) => {
-        const slide = document.createElement('div');
-        slide.style.minWidth = '100%';
-        slide.style.height = '100%';
-        slide.style.display = 'flex';
-        slide.style.alignItems = 'center';
-        slide.style.justifyContent = 'center';
-        slide.innerHTML = `<img src="${src}" alt="Cooking ${idx+1}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35);"/>`;
-        track.appendChild(slide);
-      });
-      let idx = 0;
-      const prev = document.getElementById('cookPrev');
-      const next = document.getElementById('cookNext');
-      const dots = document.getElementById('cookDots');
-      const update = () => {
-        track.style.transform = `translateX(${-idx*100}%)`;
-        if (dots){
-          dots.querySelectorAll('span').forEach((d,i)=>{
-            d.style.opacity = i===idx? '1' : '.4';
-          });
-        }
-      };
-      if (dots){
-        dots.innerHTML = cookingImages.map((_,i)=>`<span data-idx="${i}" style="width:8px;height:8px;border-radius:50%;background:white;opacity:.4;display:inline-block;cursor:pointer"></span>`).join('');
-        dots.querySelectorAll('span').forEach(dot => {
-          dot.addEventListener('click', () => {
-            const to = parseInt(dot.getAttribute('data-idx')) || 0;
-            idx = to; update();
-          });
-        });
-      }
-      if (prev) prev.addEventListener('click', ()=>{ idx=(idx-1+cookingImages.length)%cookingImages.length; update(); });
-      if (next) next.addEventListener('click', ()=>{ idx=(idx+1)%cookingImages.length; update(); });
-
-      // Autoplay with hover/touch pause
-      let autoplay = true;
-      let timer = null;
-      const start = () => {
-        if (timer) clearInterval(timer);
-        timer = setInterval(()=>{ if (autoplay) { idx=(idx+1)%cookingImages.length; update(); } }, 3500);
-      };
-      const stop = () => { if (timer) { clearInterval(timer); timer=null; } };
-      const carousel = document.getElementById('cookingCarousel');
-      if (carousel){
-        carousel.addEventListener('mouseenter', ()=>{ autoplay=false; });
-        carousel.addEventListener('mouseleave', ()=>{ autoplay=true; });
-        carousel.addEventListener('touchstart', ()=>{ autoplay=false; }, { passive:true });
-        carousel.addEventListener('touchend', ()=>{ autoplay=true; }, { passive:true });
-        start();
-      }
-      update();
-    })();
-
-    // ========================================
-    // VIEW SWITCHING SYSTEM
-    // ========================================
-    (function() {
-      let currentView = 'homeView';
-
-      function switchView(viewId) {
-        // Hide all views
-        document.querySelectorAll('.view').forEach(v => {
-          v.classList.remove('active');
-          v.classList.add('hidden');
-        });
-
-        // Hide any open modals/overlays from home view
-        const timelineDetail = document.getElementById('timelineDetail');
-        const timelineOverlay = document.getElementById('timelineOverlay');
-        if (timelineDetail) timelineDetail.classList.remove('active');
-        if (timelineOverlay) timelineOverlay.classList.remove('active');
-
-        // Show selected view
-        const targetView = document.getElementById(viewId);
-        if (targetView) {
-          targetView.classList.remove('hidden');
-          targetView.classList.add('active');
-          currentView = viewId;
-
-          // Scroll to top of the view
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-
-          // Reset scroll position and component styles for home view
-          if (viewId === 'homeView') {
-            const scrollContainer = document.getElementById('scrollContainer');
-            if (scrollContainer) {
-              scrollContainer.scrollTop = 0;
-              // Trigger handleScroll to reset all component positions
-              if (typeof handleScroll === 'function') {
-                handleScroll();
-              }
-            }
-          }
-
-          // Update navigation active states
-          updateNavActiveStates(viewId);
-
-          // Show/hide home subsections based on view
-          const homeSubtabs = document.getElementById('homeSubtabs');
-          if (homeSubtabs) {
-            homeSubtabs.style.display = (viewId === 'homeView') ? 'block' : 'none';
-          }
-
-          // Load golf data if switching to golf view
-          if (viewId === 'golfView' && !window.golfDataLoaded) {
-            loadGolfData();
-          }
-        }
-      }
-
-      function updateNavActiveStates(viewId) {
-        // Remove BOTH 'active' and 'active-view' from all nav links (side and mobile)
-        document.querySelectorAll('.side-nav a, .mobile-nav a').forEach(link => {
-          link.classList.remove('active-view', 'active');
-        });
-
-        // Add active-view to current view link in side nav
-        if (viewId === 'homeView') {
-          const homeLink = document.getElementById('link-home');
-          if (homeLink) {
-            homeLink.classList.add('active-view');
-            homeLink.classList.add('active'); // Also add 'active' for consistency
-          }
-        } else if (viewId === 'cookingView') {
-          const cookingLink = document.getElementById('link-cooking');
-          if (cookingLink) {
-            cookingLink.classList.add('active-view');
-            cookingLink.classList.add('active');
-          }
-        } else if (viewId === 'golfView') {
-          const golfLink = document.querySelector('.side-nav a[href="#golf"]');
-          if (golfLink) {
-            golfLink.classList.add('active-view');
-            golfLink.classList.add('active');
-          }
-        }
-
-        // Add active-view to current view link in mobile nav
-        const mobileLink = document.querySelector(`.mobile-nav a[data-view="${viewId}"]`);
-        if (mobileLink) mobileLink.classList.add('active-view');
-      }
-
-      // Update navigation click handlers
-      const sideNav = document.getElementById('sideNav');
-      if (sideNav) {
-        sideNav.addEventListener('click', (e) => {
-          const link = e.target.closest('a');
-          if (!link) return;
-
-          // Check if disabled
-          if (link.getAttribute('aria-disabled') === 'true' || link.getAttribute('data-disabled') === 'true') {
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-          }
-
-          const href = link.getAttribute('href');
-          if (!href) return;
-
-          // Handle main view navigation
-          if (href === '#home') {
-            e.preventDefault();
-            e.stopPropagation();
-            switchView('homeView');
-            window.location.hash = 'home';
-          } else if (href === '#cooking') {
-            e.preventDefault();
-            e.stopPropagation();
-            switchView('cookingView');
-            window.location.hash = 'cooking';
-          } else if (href === '#golf') {
-            e.preventDefault();
-            e.stopPropagation();
-            switchView('golfView');
-            window.location.hash = 'golf';
-          }
-          // For home subsections, let the other handler manage them
-        });
-      }
-
-      // Enable golf nav link
-      const golfLink = document.querySelector('a[href="#golf"]');
-      if (golfLink) {
-        golfLink.removeAttribute('aria-disabled');
-        golfLink.removeAttribute('data-disabled');
-      }
-
-      // Mobile navigation click handlers
-      const mobileNav = document.getElementById('mobileNav');
-      if (mobileNav) {
-        mobileNav.addEventListener('click', (e) => {
-          const link = e.target.closest('a');
-          if (!link) return;
-
-          e.preventDefault();
-          const viewId = link.getAttribute('data-view');
-          const hash = link.getAttribute('href');
-
-          if (viewId && hash) {
-            switchView(viewId);
-            window.location.hash = hash.substring(1); // Remove #
-          }
-        });
-      }
-
-      // Hash-based routing for direct URLs and browser back/forward
-      function handleHashChange() {
-        const hash = window.location.hash.substring(1); // Remove #
-        if (hash === 'home' || hash === '') {
-          switchView('homeView');
-        } else if (hash === 'cooking') {
-          switchView('cookingView');
-        } else if (hash === 'golf') {
-          switchView('golfView');
-        } else if (currentView === 'homeView') {
-          // Allow home subsections to scroll within home view
-          const target = document.getElementById(hash);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }
-      }
-
-      window.addEventListener('hashchange', handleHashChange);
-
-      // Handle initial page load
-      handleHashChange();
-    })();
-
-    // ========================================
-    // GOLF DATA VISUALIZATION
-    // ========================================
-    let allGolfRounds = [];
-    let golfCourseMap = {};
-    let currentFilter = '18'; // 'all', '18', or '9' - default to 18 holes
-
-    async function loadGolfData() {
-      try {
-        // Try multiple path variations
-        let response;
-        let data;
-
-        try {
-          response = await fetch('Golf/18Birdies_archive.json');
-          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-          data = await response.json();
-        } catch (e) {
-          // Try alternative path
-          try {
-            response = await fetch('./Golf/18Birdies_archive.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            data = await response.json();
-          } catch (e2) {
-            throw new Error('Could not load golf data. If opening directly from file, please use a local server (python3 -m http.server) or host on GitHub Pages.');
-          }
-        }
-
-        // Filter rounds for 2023+ (timestamp >= Jan 1, 2023)
-        const jan2023 = 1672531200000;
-        allGolfRounds = data.myData.activityData.rounds.filter(r => {
-          // Must be from 2023+
-          if (r.timestamp < jan2023) return false;
-
-          // Must have valid hole strokes (no zeros = no abandoned rounds)
-          if (!r.holeStrokes || r.holeStrokes.length === 0) return false;
-
-          // All holes must have non-zero strokes
-          const hasZeroHoles = r.holeStrokes.some(s => s === 0);
-          if (hasZeroHoles) return false;
-
-          // Must have valid total strokes
-          if (!r.strokes || r.strokes === 0) return false;
-
-          return true;
-        });
-
-        if (allGolfRounds.length === 0) {
-          document.getElementById('golfStats').innerHTML = '<p class="text-white text-center">No golf data available for 2023+</p>';
-          return;
-        }
-
-        // Get course names mapping - build a comprehensive map
-        // NOTE: In clubData, clubId is a STRING, but in rounds, clubId is an OBJECT with .id
-        golfCourseMap = {};
-        if (data.myData.clubData && data.myData.clubData.playedClubs) {
-          data.myData.clubData.playedClubs.forEach(club => {
-            // club.clubId is a string here, map it directly
-            golfCourseMap[club.clubId] = club.name;
-          });
-        }
-
-        // Setup filter buttons
-        setupGolfFilters();
-
-        // Render with default filter (18 holes)
-        renderGolfData('18');
-
-        window.golfDataLoaded = true;
-      } catch (error) {
-        console.error('Error loading golf data:', error);
-        document.getElementById('golfStats').innerHTML = `
-          <div class="glass-card p-8 max-w-2xl mx-auto text-center">
-            <div class="text-4xl mb-4">⚠️</div>
-            <h3 class="text-2xl text-white mb-4">Unable to Load Golf Data</h3>
-            <p class="text-slate-300 mb-4">${error.message}</p>
-            <div class="text-sm text-slate-400">
-              <p class="mb-2">To view golf statistics:</p>
-              <ol class="text-left max-w-md mx-auto space-y-2">
-                <li>1. Open Terminal and navigate to the website folder</li>
-                <li>2. Run: <code class="bg-slate-800 px-2 py-1 rounded">python3 -m http.server 8000</code></li>
-                <li>3. Visit: <code class="bg-slate-800 px-2 py-1 rounded">http://localhost:8000</code></li>
-              </ol>
-              <p class="mt-4">Or deploy to GitHub Pages for full functionality.</p>
+  </header>
+
+  <main>
+
+    <section class="section" id="experience">
+      <div class="wrap section-grid">
+        <h2>Experience</h2>
+        <ul class="ledger content">
+          <li>
+            <span class="when">Apr 2023 – present</span>
+            <div>
+              <h3>Analyst, Baseball Projects <span class="org">· Seattle Mariners</span></h3>
+              <p>Build and maintain internal data products and decision-support tools for Baseball Operations, working directly with coaches, analysts, and performance staff.</p>
             </div>
+          </li>
+          <li>
+            <span class="when">Jan – Apr 2023</span>
+            <div>
+              <h3>Graduate Intern, Analytics <span class="org">· ACLU</span></h3>
+              <p>Analyzed election, voting-rights, and redistricting data to support litigation and policy research. Built R Shiny dashboards with GIS visualizations and reproducible Python-to-R pipelines.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">May – Dec 2022</span>
+            <div>
+              <h3>Systems Video Associate <span class="org">· New York Mets</span></h3>
+              <p>Deployed, operated, and validated player-tracking and biomechanics technology at Citi Field (Trajekt, KinaTrax). Contributed statistical validation and Shiny development to Systems, Major League Strategy, and Minor League Analytics.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2018 – 2022</span>
+            <div>
+              <h3>Director of Baseball Analytics <span class="org">· Cal Baseball</span></h3>
+              <p>Joined as a student manager and bullpen catcher, then founded and ran the program's first analytics group for the coaching staff.</p>
+              <ul>
+                <li>Scouting reports and pitch-classification models from Trackman data</li>
+                <li>Effective Velocity calculator to show which pitchers play up to hitters</li>
+                <li>Opponent matchup model, WAR and FIP calculators, and a Tableau dashboard for the staff</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <span class="when">Aug – Nov 2021</span>
+            <div>
+              <h3>Data Intern <span class="org">· Everytown for Gun Safety</span></h3>
+              <p>NLP and sentiment analysis on peer-to-peer texting campaigns, plus database upkeep.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap section-grid">
+        <h2>Projects</h2>
+        <div class="content">
+          <article class="project">
+            <h3>AI TPI Golf Coach</h3>
+            <p class="kicker">A computer-vision swing screen, built end to end in Python.</p>
+            <p>Upload a swing video and get a Titleist Performance Institute-style assessment. A custom-trained YOLOv8 detector and MediaPipe pose estimation track the body and club through the swing. The app then profiles the kinematic sequence (pelvis, torso, lead arm, trail arm velocities), computes X-Factor hip-to-shoulder separation, and turns the measurements into plain-language coaching notes with the OpenAI API. Deployed with Shiny for Python.</p>
+            <p class="stack"><span>Python</span><span>YOLOv8</span><span>MediaPipe</span><span>OpenCV</span><span>Plotly</span><span>OpenAI API</span><span>Shiny for Python</span></p>
+          </article>
+
+          <article class="project">
+            <h3>FlickFlow</h3>
+            <p class="kicker">A swipe-based movie recommender with no streaming-service bias. Georgia Tech CSE 6242, team of three.</p>
+            <p>New users answer three questions and start on content-based filtering over roughly 100,000 TMDB titles. After 25 swipes the app hands off to a custom counts-and-means collaborative filter built on a cosine similarity matrix of users, with every interaction stored in MongoDB. In the evaluation period 39 users made 579 swipes, and the collaborative model beat the content-based cold start on right-swipe rate.</p>
+            <p class="stack"><span>Python</span><span>MongoDB</span><span>TMDB API</span><span>collaborative filtering</span></p>
+            <p class="more">
+              <a href="https://github.com/kelvinervais/flickflow">Code</a>
+              <a href="https://github.com/kelvinervais/flickflow/blob/main/team192report.pdf">Project report</a>
+            </p>
+          </article>
+
+          <div class="project also">
+            <h3>Also built</h3>
+            <ul>
+              <li>Portfolio tracker in R Shiny: live quotes, technical indicators, ARIMA and AR(1)+GARCH forecasts, Monte Carlo scenario fans, and news and Reddit sentiment. <a href="https://github.com/kelvinervais/stock_tracking">Code</a></li>
+              <li>Effective Velocity calculator for Trackman exports, from release speed, extension, time to plate, and location. Built for the Cal staff. <a href="https://github.com/kelvinervais/EffectiveVelo">Code</a></li>
+            </ul>
           </div>
-        `;
-      }
-    }
+        </div>
+      </div>
+    </section>
 
-    function setupGolfFilters() {
-      const filterAll = document.getElementById('filterAll');
-      const filter18 = document.getElementById('filter18');
-      const filter9 = document.getElementById('filter9');
+    <section class="section" id="skills">
+      <div class="wrap section-grid">
+        <h2>Skills</h2>
+        <dl class="skills content">
+          <dt>Languages</dt><dd>Python, R, SQL</dd>
+          <dt>Modeling</dt><dd>scikit-learn, XGBoost, PyTorch, tidymodels, computer vision (YOLOv8, MediaPipe)</dd>
+          <dt>Data</dt><dd>Elasticsearch, MongoDB, pandas, numpy, geopandas</dd>
+          <dt>Apps and viz</dt><dd>R Shiny, Shiny for Python, ggplot2, Plotly, Tableau</dd>
+          <dt>LLM and infra</dt><dd>vLLM, OpenAI API, Azure, Airflow, Git</dd>
+          <dt>Language</dt><dd>Spanish, California Seal of Biliteracy</dd>
+        </dl>
+      </div>
+    </section>
 
-      function updateFilterButtons(active) {
-        [filterAll, filter18, filter9].forEach(btn => {
-          btn.classList.remove('bg-blue-500');
-          btn.classList.add('text-slate-300');
-          btn.classList.remove('text-white', 'font-semibold');
-        });
+    <section class="section" id="education">
+      <div class="wrap section-grid">
+        <h2>Education</h2>
+        <ul class="ledger content">
+          <li>
+            <span class="when">2022 – 2025</span>
+            <div>
+              <h3>M.S. Analytics <span class="org">· Georgia Institute of Technology</span></h3>
+              <p>Computational Data Analytics track. Completed December 2025 while working full time.</p>
+            </div>
+          </li>
+          <li>
+            <span class="when">2018 – 2022</span>
+            <div>
+              <h3>B.A. Political Economy, minor in Data Science <span class="org">· UC Berkeley</span></h3>
+              <p>Concentration in technology and the economy. Regents' and Chancellor's Scholar.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-        active.classList.add('bg-blue-500', 'text-white', 'font-semibold');
-        active.classList.remove('text-slate-300');
-      }
+    <section class="section" id="golf">
+      <div class="wrap section-grid">
+        <h2>Golf</h2>
+        <div class="content">
+          <p>Every round since late 2021, logged by hole. Mostly Seattle municipal courses.</p>
+          <div class="golf-stats" id="golf-stats" aria-live="polite"></div>
+          <div class="chart-box"><canvas id="golf-chart" aria-label="18-hole scores over time" role="img"></canvas></div>
+          <p class="chart-note" id="golf-note"></p>
+        </div>
+      </div>
+    </section>
 
-      filterAll.addEventListener('click', () => {
-        currentFilter = 'all';
-        updateFilterButtons(filterAll);
-        renderGolfData('all');
-      });
+    <section class="section" id="cooking">
+      <div class="wrap section-grid">
+        <h2>Cooking</h2>
+        <div class="content" style="max-width:none">
+          <p>The other thing I make on weekends.</p>
+          <div class="plates">
+            <img src="Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg" alt="A plated dish" />
+            <img src="Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg" alt="A plated dish" />
+            <img src="Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg" alt="A plated dish" />
+            <img src="Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg" alt="A plated dish" />
+            <img src="Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg" alt="A plated dish" />
+            <img src="Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg" alt="A plated dish" />
+            <img src="Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg" alt="A plated dish" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-      filter18.addEventListener('click', () => {
-        currentFilter = '18';
-        updateFilterButtons(filter18);
-        renderGolfData('18');
-      });
+    <section class="section contact" id="contact">
+      <div class="wrap section-grid">
+        <h2>Contact</h2>
+        <div class="content">
+          <p>Open to conversations about data science and analytics roles, in sports and beyond. Email is the fastest way to reach me.</p>
+          <div class="links">
+            <a href="mailto:kelvinervais@gmail.com">kelvinervais@gmail.com</a>
+            <a href="https://www.linkedin.com/in/kelvinervais/">LinkedIn</a>
+            <a href="https://github.com/kelvinervais">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      filter9.addEventListener('click', () => {
-        currentFilter = '9';
-        updateFilterButtons(filter9);
-        renderGolfData('9');
-      });
-    }
+  </main>
 
-    function renderGolfData(filter) {
-      let rounds = [...allGolfRounds];
+  <footer>
+    <div class="wrap">Kelvin Ervais, Seattle. Updated September 2026.</div>
+  </footer>
 
-      // Apply filter - use exact hole counts since we already filtered out partial rounds
-      if (filter === '18') {
-        // 18-hole rounds: exactly 18 holes
-        rounds = rounds.filter(r => r.holeStrokes.length === 18);
-      } else if (filter === '9') {
-        // 9-hole rounds: exactly 9 holes
-        rounds = rounds.filter(r => r.holeStrokes.length === 9);
-      }
-
-      if (rounds.length === 0) {
-        document.getElementById('golfStats').innerHTML = '<div class="glass-card p-8 text-center"><p class="text-white">No rounds found for this filter</p></div>';
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    (async function () {
+      const statsEl = document.getElementById('golf-stats');
+      const noteEl = document.getElementById('golf-note');
+      const canvas = document.getElementById('golf-chart');
+      let rounds;
+      try {
+        const res = await fetch('Golf/rounds.json');
+        rounds = (await res.json()).rounds;
+      } catch (e) {
+        noteEl.textContent = 'Round data did not load.';
         return;
       }
 
-      // Calculate statistics
-      const stats = calculateStats(rounds);
+      const full = rounds.filter(r => r.holes.length === 18);
+      const nine = rounds.filter(r => r.holes.length === 9);
+      const thisYear = String(new Date().getFullYear());
+      const yearRounds = full.filter(r => r.date.startsWith(thisYear));
+      const best = full.reduce((a, b) => (b.strokes < a.strokes ? b : a));
+      const avg = arr => arr.reduce((s, r) => s + r.strokes, 0) / arr.length;
 
-      // Render visualizations
-      renderGolfVisualizations(stats, rounds);
-    }
+      const stat = (v, label) => `<div><b>${v}</b><span>${label}</span></div>`;
+      statsEl.innerHTML =
+        stat(full.length, '18-hole rounds') +
+        stat(nine.length, '9-hole rounds') +
+        stat(best.strokes, `best 18, ${best.course || best.date}`) +
+        (yearRounds.length ? stat(avg(yearRounds).toFixed(1), `${thisYear} average`) : '');
 
-    function calculateStats(rounds) {
-      const totalRounds = rounds.length;
-      const scores = rounds.map(r => r.strokes);
-      const avgScore = (scores.reduce((a, b) => a + b, 0) / totalRounds).toFixed(1);
-      const bestScore = Math.min(...scores);
-      const bestRound = rounds.find(r => r.strokes === bestScore);
-
-      // Calculate recent form (last 5 rounds average)
-      let recentForm = null;
-      const recentRounds = [...rounds].sort((a, b) => b.timestamp - a.timestamp).slice(0, 5);
-      if (recentRounds.length >= 3) {
-        const recentScores = recentRounds.map(r => r.strokes);
-        recentForm = (recentScores.reduce((a, b) => a + b, 0) / recentScores.length).toFixed(1);
-      }
-
-      // Calculate scoring breakdown - recompute from hole-level data
-      let totalBirdies = 0, totalPars = 0, totalBogeys = 0, totalDoubles = 0;
-
-      // First try using the stats if they exist and are valid
-      rounds.forEach(r => {
-        // Only use stats if they were actually tracked (non-zero counts indicate tracking)
-        const statsValid = r.stats && (
-          r.stats.birdies > 0 ||
-          r.stats.pars > 0 ||
-          r.stats.bogeys > 0 ||
-          r.stats.doubleBogeyOrWorse > 0
-        );
-
-        if (statsValid) {
-          totalBirdies += r.stats.birdies || 0;
-          totalPars += r.stats.pars || 0;
-          totalBogeys += r.stats.bogeys || 0;
-          totalDoubles += r.stats.doubleBogeyOrWorse || 0;
-        }
+      const window = 5;
+      const rolling = full.map((r, i) => {
+        if (i < window - 1) return null;
+        const slice = full.slice(i - window + 1, i + 1);
+        return +avg(slice).toFixed(1);
       });
 
-      // Course breakdown
-      const courseStats = {};
-      rounds.forEach(r => {
-        const clubId = r.clubId.id;
-        const courseName = golfCourseMap[clubId];
+      const css = getComputedStyle(document.documentElement);
+      const line = css.getPropertyValue('--chart-line').trim();
+      const avgColor = css.getPropertyValue('--chart-avg').trim();
+      const grid = css.getPropertyValue('--rule').trim();
+      const text = css.getPropertyValue('--ink-3').trim();
+      const font = css.getPropertyValue('--sans').trim();
 
-        // Skip rounds where we don't have course data
-        if (!courseName) {
-          return;
-        }
+      Chart.defaults.font.family = font;
+      Chart.defaults.color = text;
 
-        if (!courseStats[courseName]) {
-          courseStats[courseName] = { rounds: 0, totalScore: 0, bestScore: Infinity };
-        }
-        courseStats[courseName].rounds++;
-        courseStats[courseName].totalScore += r.strokes;
-        courseStats[courseName].bestScore = Math.min(courseStats[courseName].bestScore, r.strokes);
-      });
-
-      Object.keys(courseStats).forEach(course => {
-        courseStats[course].avgScore = (courseStats[course].totalScore / courseStats[course].rounds).toFixed(1);
-      });
-
-      return {
-        totalRounds,
-        avgScore,
-        bestScore,
-        bestRound,
-        recentForm,
-        totalBirdies,
-        totalPars,
-        totalBogeys,
-        totalDoubles,
-        courseStats
-      };
-    }
-
-    function renderGolfVisualizations(stats, rounds) {
-      const container = document.getElementById('golfStats');
-
-      const html = `
-        <!-- Hero Stats Dashboard -->
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">
-          <div class="glass-card p-6 text-center">
-            <div class="text-4xl font-display text-white mb-2">${stats.totalRounds}</div>
-            <div class="text-slate-300 text-sm">Rounds Played</div>
-          </div>
-          <div class="glass-card p-6 text-center">
-            <div class="text-4xl font-display text-yellow-400 mb-2">${stats.avgScore}</div>
-            <div class="text-slate-300 text-sm">Average Score</div>
-          </div>
-          <div class="glass-card p-6 text-center">
-            <div class="text-4xl font-display text-green-400 mb-2">${stats.bestScore}</div>
-            <div class="text-slate-300 text-sm">Best Round</div>
-          </div>
-          ${stats.recentForm !== null ? `
-          <div class="glass-card p-6 text-center">
-            <div class="text-4xl font-display text-purple-400 mb-2">${stats.recentForm}</div>
-            <div class="text-slate-300 text-sm">Recent Form</div>
-            <div class="text-slate-500 text-xs mt-1">Last 5 Avg</div>
-          </div>
-          ` : ''}
-          <div class="glass-card p-6 text-center">
-            <div class="text-4xl font-display text-blue-400 mb-2">${stats.totalBirdies}</div>
-            <div class="text-slate-300 text-sm">Total Birdies</div>
-          </div>
-        </div>
-
-        <!-- Performance Timeline Chart -->
-        <div class="glass-card p-8 mb-16">
-          <h3 class="font-display text-3xl text-white mb-6">Score Progression</h3>
-          <p class="text-slate-400 text-sm mb-4">Click any point to view hole-by-hole details</p>
-          <canvas id="scoreTimelineChart" style="max-height: 400px;"></canvas>
-        </div>
-
-        <!-- Round Detail Modal -->
-        <div id="roundDetailOverlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden" onclick="closeRoundDetail()"></div>
-        <div id="roundDetailModal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 hidden max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-          <div class="glass-card p-8">
-            <div class="flex justify-between items-start mb-6">
-              <div>
-                <h3 id="roundDetailTitle" class="font-display text-3xl text-white mb-2"></h3>
-                <p id="roundDetailSubtitle" class="text-slate-300"></p>
-              </div>
-              <button onclick="closeRoundDetail()" class="text-white hover:text-slate-300 text-3xl leading-none">&times;</button>
-            </div>
-            <div id="roundDetailContent"></div>
-          </div>
-        </div>
-
-        <!-- Scoring Patterns -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <div class="glass-card p-8">
-            <h3 class="font-display text-3xl text-white mb-6">Scoring Breakdown</h3>
-            <canvas id="scoringPieChart"></canvas>
-          </div>
-          <div class="glass-card p-8">
-            <h3 class="font-display text-3xl text-white mb-6">Score Distribution</h3>
-            <div class="space-y-4">
-              ${createScoreBar('Birdies', stats.totalBirdies, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#10b981')}
-              ${createScoreBar('Pars', stats.totalPars, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#3b82f6')}
-              ${createScoreBar('Bogeys', stats.totalBogeys, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#eab308')}
-              ${createScoreBar('Double+', stats.totalDoubles, stats.totalBirdies + stats.totalPars + stats.totalBogeys + stats.totalDoubles, '#ef4444')}
-            </div>
-          </div>
-        </div>
-
-        <!-- Course Breakdown -->
-        <div class="mb-16">
-          <h3 class="font-display text-4xl text-white mb-8 text-center">Course Breakdown</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            ${Object.entries(stats.courseStats)
-              .sort((a, b) => b[1].rounds - a[1].rounds)
-              .map(([course, data]) => `
-                <div class="glass-card p-6">
-                  <div class="text-2xl mb-2">⛳</div>
-                  <div class="text-lg font-semibold text-white mb-2">${course}</div>
-                  <div class="text-sm text-slate-300 space-y-1">
-                    <div>Rounds: <span class="text-white font-semibold">${data.rounds}</span></div>
-                    <div>Avg Score: <span class="text-yellow-400 font-semibold">${data.avgScore}</span></div>
-                    <div>Best: <span class="text-green-400 font-semibold">${data.bestScore}</span></div>
-                  </div>
-                </div>
-              `).join('')}
-          </div>
-        </div>
-
-        <!-- Best Round Highlight -->
-        <div class="glass-card p-8 text-center">
-          <h3 class="font-display text-3xl text-white mb-4">🏆 Best Round</h3>
-          <div class="text-6xl font-display text-green-400 mb-2">${stats.bestScore}</div>
-          <div class="text-xl text-slate-300 mb-4">${golfCourseMap[stats.bestRound.clubId.id] || new Date(stats.bestRound.timestamp).toLocaleDateString()}</div>
-          <div class="text-sm text-slate-400">${new Date(stats.bestRound.timestamp).toLocaleDateString()}</div>
-          <div class="mt-4 flex justify-center gap-6 text-sm">
-            <div><span class="text-green-400">⭐ ${stats.bestRound.stats.birdies}</span> Birdies</div>
-            <div><span class="text-blue-400">◼︎ ${stats.bestRound.stats.pars}</span> Pars</div>
-            <div><span class="text-yellow-400">▲ ${stats.bestRound.stats.bogeys}</span> Bogeys</div>
-          </div>
-        </div>
-      `;
-
-      container.innerHTML = html;
-
-      // Render charts
-      renderScoreTimelineChart(rounds);
-      renderScoringPieChart(stats);
-    }
-
-    function createScoreBar(label, count, total, color) {
-      const percentage = ((count / total) * 100).toFixed(1);
-      return `
-        <div>
-          <div class="flex justify-between text-sm text-slate-300 mb-1">
-            <span>${label}</span>
-            <span>${count} (${percentage}%)</span>
-          </div>
-          <div class="w-full bg-slate-700 rounded-full h-3">
-            <div class="h-3 rounded-full transition-all duration-1000" style="width: ${percentage}%; background: ${color};"></div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderScoreTimelineChart(rounds) {
-      const ctx = document.getElementById('scoreTimelineChart');
-      if (!ctx) return;
-
-      // Sort rounds by timestamp
-      const sortedRounds = [...rounds].sort((a, b) => a.timestamp - b.timestamp);
-
-      const labels = sortedRounds.map(r => new Date(r.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' }));
-      const scores = sortedRounds.map(r => r.strokes);
-
-      // Calculate moving average (last 5 rounds)
-      const movingAvg = scores.map((score, idx, arr) => {
-        const start = Math.max(0, idx - 4);
-        const subset = arr.slice(start, idx + 1);
-        return subset.reduce((a, b) => a + b, 0) / subset.length;
-      });
-
-      const chart = new Chart(ctx, {
+      new Chart(canvas.getContext('2d'), {
         type: 'line',
         data: {
-          labels,
+          labels: full.map(r => r.date),
           datasets: [
             {
               label: 'Score',
-              data: scores,
-              borderColor: '#3b82f6',
-              backgroundColor: 'rgba(59, 130, 246, 0.1)',
-              tension: 0.3,
-              fill: true,
-              pointRadius: 5,
-              pointHoverRadius: 7,
-              pointHitRadius: 10
+              data: full.map(r => r.strokes),
+              borderColor: line,
+              backgroundColor: line,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              borderWidth: 1,
+              showLine: false
             },
             {
-              label: '5-Round Avg',
-              data: movingAvg,
-              borderColor: '#eab308',
-              borderDash: [5, 5],
-              tension: 0.4,
-              fill: false,
-              pointRadius: 0
+              label: '5-round average',
+              data: rolling,
+              borderColor: avgColor,
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.3,
+              spanGaps: false
             }
           ]
         },
         options: {
           responsive: true,
-          maintainAspectRatio: true,
-          onClick: (event, elements) => {
-            if (elements.length > 0) {
-              const element = elements[0];
-              if (element.datasetIndex === 0) { // Only for Score dataset, not moving avg
-                const roundIndex = element.index;
-                showRoundDetail(sortedRounds[roundIndex]);
-              }
-            }
-          },
+          maintainAspectRatio: false,
+          animation: false,
+          interaction: { mode: 'nearest', intersect: false },
           plugins: {
-            legend: {
-              labels: { color: '#fff' }
-            },
+            legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true } },
             tooltip: {
               callbacks: {
-                title: (items) => {
-                  const idx = items[0].dataIndex;
-                  const round = sortedRounds[idx];
-                  const courseName = golfCourseMap[round.clubId.id];
-                  return courseName || new Date(round.timestamp).toLocaleDateString();
-                },
-                afterLabel: (context) => {
-                  const idx = context.dataIndex;
-                  const round = sortedRounds[idx];
-                  return `🐦 ${round.stats.birdies} | Par ${round.stats.pars} | Bogey ${round.stats.bogeys}`;
-                },
-                footer: () => 'Click to view details'
+                title: items => {
+                  const r = full[items[0].dataIndex];
+                  return r.course ? `${r.course}, ${r.date}` : r.date;
+                }
               }
             }
           },
           scales: {
-            y: {
-              reverse: true,
-              grid: { color: 'rgba(255,255,255,0.1)' },
-              ticks: { color: '#fff' }
-            },
             x: {
-              grid: { color: 'rgba(255,255,255,0.1)' },
-              ticks: { color: '#fff', maxRotation: 45 }
-            }
+              ticks: {
+                maxTicksLimit: 6,
+                callback: function (v, i) {
+                  const d = this.getLabelForValue(v);
+                  return d ? d.slice(0, 7) : '';
+                }
+              },
+              grid: { display: false }
+            },
+            y: { grid: { color: grid }, ticks: { stepSize: 5 } }
           }
         }
       });
-    }
 
-    function showRoundDetail(round) {
-      const courseName = golfCourseMap[round.clubId.id] || new Date(round.timestamp).toLocaleDateString();
-      const date = new Date(round.timestamp).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-      document.getElementById('roundDetailTitle').textContent = `${round.strokes} Strokes`;
-      document.getElementById('roundDetailSubtitle').textContent = `${courseName} • ${date}`;
-
-      const holes = round.holeStrokes.filter(s => s > 0);
-      const is18Holes = holes.length === 18;
-
-      // Split into front and back nine
-      const front9 = holes.slice(0, 9);
-      const back9 = is18Holes ? holes.slice(9, 18) : [];
-
-      const front9Total = front9.reduce((a, b) => a + b, 0);
-      const back9Total = back9.length > 0 ? back9.reduce((a, b) => a + b, 0) : null;
-
-      // Estimate par (typically 4 per hole)
-      const estimatedParPerHole = 4;
-      const front9Par = front9.length * estimatedParPerHole;
-      const back9Par = back9.length > 0 ? back9.length * estimatedParPerHole : null;
-
-      let html = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div class="bg-slate-800/50 p-4 rounded-lg">
-            <div class="text-slate-400 text-sm mb-2">Total Score</div>
-            <div class="text-3xl font-display text-white">${round.strokes}</div>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg">
-            <div class="text-slate-400 text-sm mb-2">Holes Played</div>
-            <div class="text-3xl font-display text-white">${holes.length}</div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-green-400 text-2xl font-display">${round.stats.birdies || 0}</div>
-            <div class="text-slate-400 text-xs">Birdies</div>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-blue-400 text-2xl font-display">${round.stats.pars || 0}</div>
-            <div class="text-slate-400 text-xs">Pars</div>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-yellow-400 text-2xl font-display">${round.stats.bogeys || 0}</div>
-            <div class="text-slate-400 text-xs">Bogeys</div>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-red-400 text-2xl font-display">${round.stats.doubleBogeyOrWorse || 0}</div>
-            <div class="text-slate-400 text-xs">Double+</div>
-          </div>
-        </div>
-
-        <div class="mb-6">
-          <h4 class="font-display text-xl text-white mb-4">Front Nine</h4>
-          <div class="grid grid-cols-9 gap-2 mb-2">
-            ${front9.map((score, idx) => {
-              const overPar = score - estimatedParPerHole;
-              let colorClass = 'bg-slate-700';
-              if (overPar < 0) colorClass = 'bg-green-600';
-              else if (overPar === 0) colorClass = 'bg-blue-600';
-              else if (overPar === 1) colorClass = 'bg-yellow-600';
-              else colorClass = 'bg-red-600';
-
-              return `
-                <div class="${colorClass} rounded p-2 text-center">
-                  <div class="text-white/60 text-xs">${idx + 1}</div>
-                  <div class="text-white font-bold">${score}</div>
-                </div>
-              `;
-            }).join('')}
-          </div>
-          <div class="text-right text-slate-300">
-            Total: <span class="font-semibold text-white">${front9Total}</span>
-            ${front9Par ? `<span class="text-slate-500 text-sm ml-2">(${front9Total > front9Par ? '+' : ''}${front9Total - front9Par})</span>` : ''}
-          </div>
-        </div>
-
-        ${back9.length > 0 ? `
-          <div class="mb-6">
-            <h4 class="font-display text-xl text-white mb-4">Back Nine</h4>
-            <div class="grid grid-cols-9 gap-2 mb-2">
-              ${back9.map((score, idx) => {
-                const overPar = score - estimatedParPerHole;
-                let colorClass = 'bg-slate-700';
-                if (overPar < 0) colorClass = 'bg-green-600';
-                else if (overPar === 0) colorClass = 'bg-blue-600';
-                else if (overPar === 1) colorClass = 'bg-yellow-600';
-                else colorClass = 'bg-red-600';
-
-                return `
-                  <div class="${colorClass} rounded p-2 text-center">
-                    <div class="text-white/60 text-xs">${idx + 10}</div>
-                    <div class="text-white font-bold">${score}</div>
-                  </div>
-                `;
-              }).join('')}
-            </div>
-            <div class="text-right text-slate-300">
-              Total: <span class="font-semibold text-white">${back9Total}</span>
-              ${back9Par ? `<span class="text-slate-500 text-sm ml-2">(${back9Total > back9Par ? '+' : ''}${back9Total - back9Par})</span>` : ''}
-            </div>
-          </div>
-        ` : ''}
-
-        <div class="mt-6 pt-6 border-t border-slate-700">
-          <div class="grid grid-cols-3 gap-4 text-center text-sm">
-            <div>
-              <div class="text-slate-400 mb-1">Best Hole</div>
-              <div class="text-white font-semibold">${Math.min(...holes)} strokes</div>
-            </div>
-            <div>
-              <div class="text-slate-400 mb-1">Worst Hole</div>
-              <div class="text-white font-semibold">${Math.max(...holes)} strokes</div>
-            </div>
-            <div>
-              <div class="text-slate-400 mb-1">Average</div>
-              <div class="text-white font-semibold">${(holes.reduce((a, b) => a + b, 0) / holes.length).toFixed(1)}</div>
-            </div>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('roundDetailContent').innerHTML = html;
-      document.getElementById('roundDetailOverlay').classList.remove('hidden');
-      document.getElementById('roundDetailModal').classList.remove('hidden');
-    }
-
-    function closeRoundDetail() {
-      document.getElementById('roundDetailOverlay').classList.add('hidden');
-      document.getElementById('roundDetailModal').classList.add('hidden');
-    }
-
-    function renderScoringPieChart(stats) {
-      const ctx = document.getElementById('scoringPieChart');
-      if (!ctx) return;
-
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Birdies', 'Pars', 'Bogeys', 'Double+'],
-          datasets: [{
-            data: [stats.totalBirdies, stats.totalPars, stats.totalBogeys, stats.totalDoubles],
-            backgroundColor: ['#10b981', '#3b82f6', '#eab308', '#ef4444'],
-            borderWidth: 2,
-            borderColor: '#0f172a'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: { color: '#fff', padding: 15, font: { size: 14 } }
-            }
-          }
-        }
-      });
-    }
-
+      const first = full[0].date.slice(0, 4);
+      noteEl.textContent = `Each point is one 18-hole round. Data exported from 18Birdies, ${first} to ${full[full.length - 1].date.slice(0, 7)}.`;
+    })();
   </script>
 </body>
 </html>

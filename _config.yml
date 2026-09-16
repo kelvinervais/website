@@ -1,7 +1,7 @@
 # _config.yml  (PROJECT SITE)
 
-title: "Kelvin Ervais — Data Science & Analytics"
-description: "R & Python, ML modeling, Shiny dashboards, and data storytelling."
+title: "Kelvin Ervais"
+description: "Data scientist building production analytics tools for sports front offices. Seattle Mariners. Georgia Tech M.S. Analytics."
 theme: minima
 
 author:
