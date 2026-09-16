@@ -45,7 +45,11 @@
     body { margin: 0; background: var(--bg); color: var(--chalk); font-family: var(--body); font-size: 16px; line-height: 1.55; }
     a { color: var(--teal); text-decoration: none; font-weight: 600; }
     a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    a:focus-visible, button:focus-visible, .base:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    /* The base <g> wraps an oversized invisible hit rect, so a focus ring on it
+       draws a huge box. Ring the tile itself instead. */
+    .base:focus { outline: none; }
+    .base:focus-visible rect.tile { stroke: var(--gold); stroke-width: 6; }
     img { max-width: 100%; display: block; }
     p { margin: 0 0 1rem; }
     ul, dl { margin: 0; padding: 0; list-style: none; }
