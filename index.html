@@ -59,11 +59,11 @@
     .stage { transition: opacity .3s ease .2s; }
     .intro { display: none; font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; letter-spacing: -0.02em; max-width: 24ch; margin: 0; }
     .shell.landing .intro { display: block; }
-    .shell.landing .side { max-width: 760px; width: 100%; margin: 0 auto; border-right: 0; align-items: center; text-align: center; justify-content: center; gap: 18px; }
-    .shell.landing .side h1 { font-size: clamp(56px, 6vw, 84px); }
+    .shell.landing .side { max-width: 760px; width: 100%; margin: 0 auto; border-right: 0; align-items: center; text-align: center; justify-content: safe center; gap: 16px; overflow-y: auto; padding: 28px 24px; }
     .shell.landing .links { justify-content: center; }
     .shell.landing .field-wrap { margin-top: 10px; width: 100%; }
-    .shell.landing .diamond { max-width: 460px; }
+    .shell.landing .diamond { max-width: min(460px, 48vh); }
+    .shell.landing .side h1 { font-size: clamp(44px, 7vh, 84px); }
     .diamond { transition: max-width .55s cubic-bezier(.4,0,.2,1); }
     .side { padding: 40px 36px 28px; display: flex; flex-direction: column; gap: 22px; border-right: 1px solid var(--line); min-height: 0; }
     .side h1 { font-size: clamp(44px, 4.2vw, 60px); font-variation-settings: "opsz" 96; }
