@@ -6,481 +6,466 @@
   <title>Kelvin Ervais</title>
   <meta name="description" content="Kelvin Ervais is a data scientist in Seattle who builds production analytics tools for sports front offices. Analyst, Baseball Projects at the Seattle Mariners. M.S. Analytics, Georgia Tech." />
   <meta name="author" content="Kelvin Ervais" />
-  <meta name="theme-color" content="#1f5d3f" />
+  <meta name="theme-color" content="#1f6b3a" />
   <link rel="canonical" href="https://kelvinervais.github.io/website/" />
-
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kelvinervais.github.io/website/" />
   <meta property="og:title" content="Kelvin Ervais" />
   <meta property="og:description" content="Data scientist building production analytics tools for sports front offices. Seattle Mariners. Georgia Tech M.S. Analytics." />
   <meta property="og:image" content="https://kelvinervais.github.io/website/headshot.jpeg" />
   <meta name="twitter:card" content="summary" />
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f5d3f'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23f3f4f1' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6b3a'/%3E%3Cpath d='M16 5 27 16 16 27 5 16Z' fill='%23f7f6f1'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23b8552b'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Kelvin Ervais",
-    "url": "https://kelvinervais.github.io/website/",
-    "image": "https://kelvinervais.github.io/website/headshot.jpeg",
-    "jobTitle": "Analyst, Baseball Projects",
-    "worksFor": { "@type": "Organization", "name": "Seattle Mariners" },
-    "alumniOf": [
-      { "@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology" },
-      { "@type": "CollegeOrUniversity", "name": "University of California, Berkeley" }
-    ],
-    "address": { "@type": "PostalAddress", "addressLocality": "Seattle", "addressRegion": "WA" },
-    "email": "mailto:kelvinervais@gmail.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/kelvinervais/",
-      "https://github.com/kelvinervais"
-    ]
-  }
+  {"@context":"https://schema.org","@type":"Person","name":"Kelvin Ervais","url":"https://kelvinervais.github.io/website/","image":"https://kelvinervais.github.io/website/headshot.jpeg","jobTitle":"Analyst, Baseball Projects","worksFor":{"@type":"Organization","name":"Seattle Mariners"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Georgia Institute of Technology"},{"@type":"CollegeOrUniversity","name":"University of California, Berkeley"}],"address":{"@type":"PostalAddress","addressLocality":"Seattle","addressRegion":"WA"},"email":"mailto:kelvinervais@gmail.com","sameAs":["https://www.linkedin.com/in/kelvinervais/","https://github.com/kelvinervais"]}
   </script>
 
   <style>
     :root {
-      --paper: #f3f4f1;
-      --paper-2: #e9ebe6;
-      --ink: #14201b;
-      --ink-2: #4f5a54;
-      --ink-3: #8a938e;
-      --rule: #cfd4ce;
-      --green: #1f5d3f;
-      --ochre: #a67c1b;
-      --chart-line: #1f5d3f;
-      --chart-avg: #a67c1b;
-      --serif: "Fraunces", Georgia, "Times New Roman", serif;
-      --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-      --gutter: 11rem;
-      color-scheme: light;
+      --chalk: #f7f6f1;
+      --chalk-2: #eeede5;
+      --grass: #1f6b3a;
+      --grass-deep: #174f2b;
+      --grass-light: #a6e0b6;
+      --infield: #e6ead9;
+      --clay: #b8552b;
+      --clay-light: #ffe3d6;
+      --ink: #15251b;
+      --mute: #5d6b62;
+      --line: #d9d8cf;
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --body: "Public Sans", "Helvetica Neue", Arial, sans-serif;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --paper: #131a16;
-        --paper-2: #1b241f;
-        --ink: #eef1ec;
-        --ink-2: #b4bcb6;
-        --ink-3: #7d8781;
-        --rule: #2e3a33;
-        --green: #7fc19c;
-        --ochre: #d9b04c;
-        --chart-line: #7fc19c;
-        --chart-avg: #d9b04c;
-        color-scheme: dark;
-      }
-    }
-
     *, *::before, *::after { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 1.0625rem;
-      line-height: 1.6;
-      font-feature-settings: "ss01";
-    }
-    a { color: var(--ochre); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    a:hover { color: var(--ink); }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--chalk); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
+    a { color: var(--clay); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible, .base:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
     img { max-width: 100%; display: block; }
     p { margin: 0 0 1rem; }
     ul { margin: 0; padding: 0; list-style: none; }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
-
-    .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; line-height: 0.95; margin: 0; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+    .eyebrow { font-weight: 600; color: var(--clay); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .eyebrow svg { width: 18px; height: 18px; }
+    .grass .eyebrow { color: var(--grass-light); }
+    h2 { font-size: clamp(42px, 6vw, 84px); margin-bottom: 36px; font-variation-settings: "opsz" 96; max-width: 16ch; }
 
     /* Hero */
-    .hero { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--rule); }
-    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: end; }
-    .hero h1 {
-      font-size: clamp(3.25rem, 9vw, 6.5rem);
-      font-weight: 500;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      font-variation-settings: "opsz" 144;
-      margin-bottom: 1.5rem;
-    }
-    .hero .lede { font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.35; max-width: 30ch; margin-bottom: 1.5rem; font-variation-settings: "opsz" 30; }
-    .hero .facts { color: var(--ink-2); max-width: 52ch; }
-    .hero .facts p { margin-bottom: 0.35rem; }
-    .hero .links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 1.5rem; }
-    .hero .links a { font-weight: 500; }
-    .portrait { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; border: 1px solid var(--rule); justify-self: start; order: -1; }
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 40px; padding: 56px 0 40px; }
+    .hero h1 { font-size: clamp(64px, 9.5vw, 136px); margin: 0 0 22px; font-variation-settings: "opsz" 96; }
+    .hero h1 span { color: var(--grass); display: block; }
+    .hero .lede { font-size: clamp(19px, 2vw, 24px); max-width: 30ch; margin: 0 0 26px; }
+    .hero .facts { color: var(--mute); max-width: 44ch; margin-bottom: 26px; }
+    .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+    .chips a { background: var(--ink); color: var(--chalk); padding: 12px 18px; border-radius: 999px; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; }
+    .chips a.alt { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+    .chips a:hover { text-decoration: none; background: var(--grass); color: var(--chalk); border-color: var(--grass); }
+    .hero-diamond { justify-self: center; width: min(100%, 540px); position: relative; }
+    .hero-diamond .hint { text-align: center; color: var(--mute); font-size: 14px; margin-top: 6px; }
 
-    /* Sections: gutter label on the left, content on the right */
-    .section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
-    .section-grid { display: grid; grid-template-columns: 1fr; gap: 1rem 2.5rem; }
-    .section h2 { font-size: 1.15rem; font-weight: 600; color: var(--ink-2); font-variation-settings: "opsz" 14; padding-top: 0.2rem; }
-    .content { max-width: 62ch; }
-    .content > p:last-child { margin-bottom: 0; }
+    /* Diamond (shared by hero and pinned nav) */
+    .diamond { width: 100%; aspect-ratio: 1; display: block; overflow: visible; }
+    .diamond .field { fill: var(--infield); stroke: var(--ink); stroke-width: 3; }
+    .diamond .path { fill: none; stroke: var(--clay); stroke-width: 3; stroke-dasharray: 8 8; }
+    .diamond .mound { fill: var(--clay); }
+    .base { cursor: pointer; }
+    .base rect { fill: var(--chalk); stroke: var(--ink); stroke-width: 3; transition: fill .2s, stroke .2s; }
+    .base text { font-family: var(--display); font-weight: 800; font-size: 20px; fill: var(--ink); text-anchor: middle; letter-spacing: -0.02em; pointer-events: none; }
+    .base:hover rect { fill: #fff; }
+    .base.on rect { fill: var(--grass); stroke: var(--grass-deep); }
+    .base.on text { fill: var(--chalk); }
+    .base.home rect { fill: var(--ink); }
+    .base.home text { fill: var(--chalk); }
+    .base.home.on rect { fill: var(--grass); }
+    .runner { fill: var(--ink); stroke: var(--chalk); stroke-width: 3; }
+    .runner-ring { fill: none; stroke: var(--ink); stroke-width: 2; opacity: .35; }
 
-    /* Ledger rows for experience and education */
-    .ledger li { display: grid; grid-template-columns: 1fr; gap: 0.2rem 1.5rem; padding: 1.1rem 0; border-top: 1px solid var(--rule); }
-    .ledger li:first-child { border-top: 0; padding-top: 0; }
-    .ledger .when { color: var(--ink-3); font-size: 0.95rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
-    .ledger h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; line-height: 1.4; letter-spacing: 0; }
-    .ledger .org { font-weight: 400; color: var(--ink-2); }
-    .ledger p { margin: 0.35rem 0 0; color: var(--ink-2); }
-    .ledger ul { margin-top: 0.5rem; }
-    .ledger ul li { display: block; border: 0; padding: 0.15rem 0 0.15rem 1.1rem; position: relative; color: var(--ink-2); }
-    .ledger ul li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 0.45rem; height: 1px; background: var(--ink-3); }
+    /* Pinned mini diamond */
+    .pin { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); width: 160px; z-index: 20; opacity: 0; transform: translateY(12px); transition: opacity .3s, transform .3s; pointer-events: none; background: var(--chalk); border: 3px solid var(--ink); border-radius: 18px; padding: 10px; box-shadow: 0 10px 28px rgba(21,37,27,.22); }
+    .pin.show { opacity: 1; transform: none; pointer-events: auto; }
+    .pin .base text { font-size: 38px; }
+    .pin .base rect { stroke-width: 2; }
+    .pin .diamond .field, .pin .diamond .path { stroke-width: 2; }
+    .pin .label { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: var(--display); font-weight: 800; font-size: 11px; letter-spacing: 0; color: var(--chalk); background: var(--clay); border-radius: 999px; padding: 3px 8px; pointer-events: none; white-space: nowrap; }
+
+    /* Sections */
+    section { padding: 96px 0; border-top: 3px solid var(--ink); }
+    section.grass { background: var(--grass); color: var(--chalk); border-top: 0; }
+    section.grass a { color: var(--clay-light); }
+    section.clay { background: var(--clay); color: #fff4ee; border-top: 0; }
+    section.clay a { color: #fff; }
+
+    /* Career */
+    .stops { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+    .stop { border-top: 3px solid var(--chalk); padding-top: 16px; }
+    .stop i { display: block; font-style: normal; font-size: 13px; color: var(--grass-light); margin-bottom: 8px; font-weight: 600; }
+    .stop b { display: block; font-family: var(--display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; line-height: 1.05; }
+    .stop span { display: block; color: #cfe8d6; font-size: 15px; margin: 4px 0 12px; }
+    .stop p { font-size: 15px; color: #e4f2e8; margin: 0; }
+    .bench { margin-top: 40px; color: #cfe8d6; font-size: 15px; border-top: 1px solid rgba(247,246,241,.25); padding-top: 16px; max-width: 70ch; }
+    .bench b { color: var(--chalk); font-weight: 600; }
 
     /* Projects */
-    .project { padding: 1.25rem 0; border-top: 1px solid var(--rule); }
-    .project:first-child { border-top: 0; padding-top: 0; }
-    .project h3 { font-size: 1.55rem; margin-bottom: 0.5rem; font-variation-settings: "opsz" 40; }
-    .project .kicker { color: var(--ink-2); margin-bottom: 0.75rem; }
-    .project .stack { color: var(--ink-3); font-size: 0.95rem; margin: 0.25rem 0 0; }
-    .project .stack span + span::before { content: ", "; }
-    .project .more { margin-top: 0.5rem; display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    .also h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.25rem; letter-spacing: 0; }
-    .also li { padding: 0.5rem 0; border-top: 1px solid var(--rule); color: var(--ink-2); }
-    .also li:first-of-type { border-top: 0; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: var(--clay); color: #fff4ee; padding: 32px; border-radius: 24px; min-height: 380px; display: flex; flex-direction: column; }
+    .card h3 { font-size: clamp(32px, 3.6vw, 44px); margin: 0 0 6px; }
+    .card .sub { font-weight: 600; margin-bottom: 14px; color: #ffe3d6; }
+    .card p { margin: 0; color: #ffe3d6; max-width: 44ch; }
+    .card .links { margin-top: auto; padding-top: 20px; display: flex; gap: 18px; }
+    .card .links a { color: #fff; }
+    .card .t { margin-top: 16px; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; opacity: .9; }
+    .card.alt { background: #fff; color: var(--ink); border: 3px solid var(--ink); }
+    .card.alt p, .card.alt .sub { color: var(--mute); }
+    .card.alt .links a { color: var(--clay); }
+    .also { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+    .also li { border-top: 2px solid var(--ink); padding-top: 12px; font-size: 15px; color: var(--mute); }
+    .also li b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
 
-    /* Skills table */
-    .skills { display: grid; grid-template-columns: 1fr; gap: 0.75rem 1.5rem; }
-    .skills dt { color: var(--ink-3); font-size: 0.95rem; }
-    .skills dd { margin: 0 0 0.5rem; }
+    /* Skills + education */
+    .skills-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+    .skills dt { font-weight: 600; color: #ffd8c2; margin-top: 18px; }
+    .skills dt:first-child { margin-top: 0; }
+    .skills dd { margin: 4px 0 0; }
+    .edu li { border-top: 3px solid #fff4ee; padding: 16px 0 22px; }
+    .edu b { font-family: var(--display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; display: block; line-height: 1.05; }
+    .edu span { display: block; color: #ffe3d6; font-size: 15px; margin-top: 4px; }
+    .edu i { display: block; font-style: normal; font-size: 13px; font-weight: 600; color: #ffd8c2; margin-bottom: 6px; }
 
-    /* Golf */
-    .golf-stats { display: flex; flex-wrap: wrap; gap: 1.25rem 2.5rem; margin: 0 0 1.25rem; }
-    .golf-stats div { display: flex; flex-direction: column; }
-    .golf-stats b { font-family: var(--serif); font-weight: 500; font-size: 2rem; line-height: 1; font-variation-settings: "opsz" 60; font-variant-numeric: tabular-nums; }
-    .golf-stats span { color: var(--ink-3); font-size: 0.95rem; margin-top: 0.3rem; }
-    .chart-box { position: relative; height: 260px; margin-top: 0.5rem; }
-    .chart-note { color: var(--ink-3); font-size: 0.9rem; margin-top: 0.75rem; }
+    /* Home: golf + cooking */
+    .golf { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: end; margin-bottom: 72px; }
+    .score { font-family: var(--display); font-weight: 800; font-size: clamp(96px, 14vw, 180px); line-height: .85; letter-spacing: -0.04em; margin: 0; }
+    .score small { display: block; font-family: var(--body); font-weight: 500; font-size: 17px; letter-spacing: 0; color: #cfe8d6; margin-top: 14px; max-width: 30ch; line-height: 1.4; }
+    .golf-stats { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+    .golf-stats div b { font-family: var(--display); font-weight: 800; font-size: 40px; display: block; line-height: 1; }
+    .golf-stats div span { font-size: 13px; color: #cfe8d6; font-weight: 600; }
+    .chalkline { height: 220px; border-bottom: 3px solid var(--chalk); display: flex; align-items: flex-end; gap: 3px; position: relative; }
+    .chalkline i { flex: 1; background: var(--chalk); display: block; min-width: 0; opacity: .85; transition: opacity .15s; }
+    .chalkline i:hover { opacity: 1; }
+    .chalkline i.best { background: #ffd8c2; opacity: 1; }
+    .chalkline .par { position: absolute; left: 0; right: 0; border-top: 2px dashed rgba(247,246,241,.45); font-size: 12px; color: #cfe8d6; padding-top: 2px; pointer-events: none; }
+    .chart-note { font-size: 14px; color: #cfe8d6; margin-top: 10px; }
+    .plates { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+    .plates img { flex: 0 0 auto; width: 200px; height: 260px; object-fit: cover; border-radius: 16px; scroll-snap-align: start; background: var(--grass-deep); }
+    .cook-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+    .cook-head h3 { font-size: clamp(30px, 4vw, 48px); }
+    .cook-head p { margin: 0; color: #cfe8d6; }
 
-    /* Cooking */
-    .plates { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
-    .plates img { flex: 0 0 auto; width: 12rem; height: 15rem; object-fit: cover; border-radius: 4px; scroll-snap-align: start; background: var(--paper-2); }
+    /* Contact */
+    .contact h2 { max-width: 20ch; }
+    .contact p { max-width: 52ch; font-size: 19px; }
 
-    /* Contact + footer */
-    .contact .links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; margin-top: 0.75rem; }
-    footer { padding: 2rem 0 3rem; color: var(--ink-3); font-size: 0.9rem; }
+    footer { padding: 28px 0 140px; color: var(--mute); font-size: 14px; border-top: 3px solid var(--ink); }
 
-    @media (min-width: 720px) {
-      .hero-grid { grid-template-columns: 1fr auto; }
-      .portrait { width: 11rem; height: 11rem; justify-self: end; order: 0; }
-      .section-grid { grid-template-columns: var(--gutter) 1fr; }
-      .section h2 { position: sticky; top: 1.5rem; }
-      .ledger li { grid-template-columns: 8.5rem 1fr; }
-      .skills { grid-template-columns: 8.5rem 1fr; }
-      .skills dd { margin-bottom: 0; }
-      .chart-box { height: 320px; }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding-top: 40px; }
+      .hero-diamond { width: min(100%, 400px); }
+      .stops, .cards, .skills-grid, .also, .golf { grid-template-columns: 1fr; }
+      .golf { gap: 28px; }
+      .pin { right: auto; left: 50%; transform: translate(-50%, 12px); width: 140px; padding: 8px; }
+      .pin.show { transform: translate(-50%, 0); }
+      section { padding: 72px 0; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      * { transition: none !important; animation: none !important; }
+      .pin, .base rect, .chalkline i { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <h1>Kelvin<br>Ervais</h1>
-        <p class="lede">I build the analytics tools that coaches and front-office staff open every day.</p>
-        <div class="facts">
-          <p>Analyst, Baseball Projects at the Seattle Mariners. M.S. Analytics from Georgia Tech. Based in Seattle.</p>
-          <p>Production R Shiny and Python apps, models on player-tracking data, and LLM tooling for people who don't write code.</p>
-        </div>
-        <div class="links">
-          <a href="mailto:kelvinervais@gmail.com">kelvinervais@gmail.com</a>
-          <a href="https://www.linkedin.com/in/kelvinervais/" rel="me">LinkedIn</a>
-          <a href="https://github.com/kelvinervais" rel="me">GitHub</a>
-        </div>
-      </div>
-      <img class="portrait" src="headshot.jpeg" alt="Kelvin Ervais" width="200" height="200" />
+<header class="hero wrap" id="top">
+  <div>
+    <h1>Kelvin<span>Ervais</span></h1>
+    <p class="lede">Data scientist for people who run baseball teams. I make the tools coaches and front-office staff actually use.</p>
+    <p class="facts">Analyst, Baseball Projects at the Seattle Mariners. M.S. Analytics from Georgia Tech. Based in Seattle.</p>
+    <div class="chips">
+      <a href="mailto:kelvinervais@gmail.com">Email me</a>
+      <a class="alt" href="https://www.linkedin.com/in/kelvinervais/" rel="me">LinkedIn</a>
+      <a class="alt" href="https://github.com/kelvinervais" rel="me">GitHub</a>
     </div>
-  </header>
+  </div>
+  <div class="hero-diamond">
+    <svg class="diamond" viewBox="-70 -30 540 460" role="navigation" aria-label="Site sections laid out as a baseball diamond">
+      <path class="field" d="M200 20 L380 200 L200 380 L20 200 Z" />
+      <path class="path" d="M200 60 L340 200 L200 340 L60 200 Z" />
+      <circle class="mound" cx="200" cy="200" r="22" />
+      <text x="200" y="205" text-anchor="middle" font-family="Public Sans" font-size="11" font-weight="600" fill="#fff">RUN</text>
+      <circle class="runner-ring" data-runner-ring r="16" cx="200" cy="340" />
+      <circle class="runner" data-runner r="9" cx="200" cy="340" />
+      <g class="base" data-base="projects" tabindex="0" transform="translate(200 20)"><rect x="-64" y="-24" width="128" height="48" rx="6" /><text y="7">2B Projects</text></g>
+      <g class="base" data-base="career" tabindex="0" transform="translate(380 200)"><rect x="-58" y="-24" width="116" height="48" rx="6" /><text y="7">1B Career</text></g>
+      <g class="base" data-base="skills" tabindex="0" transform="translate(20 200)"><rect x="-54" y="-24" width="108" height="48" rx="6" /><text y="7">3B Skills</text></g>
+      <g class="base home" data-base="home" tabindex="0" transform="translate(200 380)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
+    </svg>
+    <p class="hint">Click a base to jump. The runner follows as you scroll.</p>
+  </div>
+</header>
 
-  <main>
-
-    <section class="section" id="experience">
-      <div class="wrap section-grid">
-        <h2>Experience</h2>
-        <ul class="ledger content">
-          <li>
-            <span class="when">Apr 2023 – present</span>
-            <div>
-              <h3>Analyst, Baseball Projects <span class="org">· Seattle Mariners</span></h3>
-              <p>Build and maintain internal data products and decision-support tools for Baseball Operations, working directly with coaches, analysts, and performance staff.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">Jan – Apr 2023</span>
-            <div>
-              <h3>Graduate Intern, Analytics <span class="org">· ACLU</span></h3>
-              <p>Analyzed election, voting-rights, and redistricting data to support litigation and policy research. Built R Shiny dashboards with GIS visualizations and reproducible Python-to-R pipelines.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">May – Dec 2022</span>
-            <div>
-              <h3>Systems Video Associate <span class="org">· New York Mets</span></h3>
-              <p>Deployed, operated, and validated player-tracking and biomechanics technology at Citi Field (Trajekt, KinaTrax). Contributed statistical validation and Shiny development to Systems, Major League Strategy, and Minor League Analytics.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2018 – 2022</span>
-            <div>
-              <h3>Director of Baseball Analytics <span class="org">· Cal Baseball</span></h3>
-              <p>Joined as a student manager and bullpen catcher, then founded and ran the program's first analytics group for the coaching staff.</p>
-              <ul>
-                <li>Scouting reports and pitch-classification models from Trackman data</li>
-                <li>Effective Velocity calculator to show which pitchers play up to hitters</li>
-                <li>Opponent matchup model, WAR and FIP calculators, and a Tableau dashboard for the staff</li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <span class="when">Aug – Nov 2021</span>
-            <div>
-              <h3>Data Intern <span class="org">· Everytown for Gun Safety</span></h3>
-              <p>NLP and sentiment analysis on peer-to-peer texting campaigns, plus database upkeep.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="wrap section-grid">
-        <h2>Projects</h2>
-        <div class="content">
-          <article class="project">
-            <h3>AI TPI Golf Coach</h3>
-            <p class="kicker">A computer-vision swing screen, built end to end in Python.</p>
-            <p>Upload a swing video and get a Titleist Performance Institute-style assessment. A custom-trained YOLOv8 detector and MediaPipe pose estimation track the body and club through the swing. The app then profiles the kinematic sequence (pelvis, torso, lead arm, trail arm velocities), computes X-Factor hip-to-shoulder separation, and turns the measurements into plain-language coaching notes with the OpenAI API. Deployed with Shiny for Python.</p>
-            <p class="stack"><span>Python</span><span>YOLOv8</span><span>MediaPipe</span><span>OpenCV</span><span>Plotly</span><span>OpenAI API</span><span>Shiny for Python</span></p>
-          </article>
-
-          <article class="project">
-            <h3>FlickFlow</h3>
-            <p class="kicker">A swipe-based movie recommender with no streaming-service bias. Georgia Tech CSE 6242, team of three.</p>
-            <p>New users answer three questions and start on content-based filtering over roughly 100,000 TMDB titles. After 25 swipes the app hands off to a custom counts-and-means collaborative filter built on a cosine similarity matrix of users, with every interaction stored in MongoDB. In the evaluation period 39 users made 579 swipes, and the collaborative model beat the content-based cold start on right-swipe rate.</p>
-            <p class="stack"><span>Python</span><span>MongoDB</span><span>TMDB API</span><span>collaborative filtering</span></p>
-            <p class="more">
-              <a href="https://github.com/kelvinervais/flickflow">Code</a>
-              <a href="https://github.com/kelvinervais/flickflow/blob/main/team192report.pdf">Project report</a>
-            </p>
-          </article>
-
-          <div class="project also">
-            <h3>Also built</h3>
-            <ul>
-              <li>Portfolio tracker in R Shiny: live quotes, technical indicators, ARIMA and AR(1)+GARCH forecasts, Monte Carlo scenario fans, and news and Reddit sentiment. <a href="https://github.com/kelvinervais/stock_tracking">Code</a></li>
-              <li>Effective Velocity calculator for Trackman exports, from release speed, extension, time to plate, and location. Built for the Cal staff. <a href="https://github.com/kelvinervais/EffectiveVelo">Code</a></li>
-            </ul>
-          </div>
+<main>
+  <section class="grass" id="career">
+    <div class="wrap">
+      <div class="eyebrow"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2 18 10 10 18 2 10Z"/></svg>First base · Career</div>
+      <h2>Four stops, one throughline: tools people use.</h2>
+      <div class="stops">
+        <div class="stop">
+          <i>Apr 2023 – now</i>
+          <b>Seattle Mariners</b>
+          <span>Analyst, Baseball Projects</span>
+          <p>Build and maintain internal data products and decision-support tools for Baseball Operations, working directly with coaches, analysts, and performance staff.</p>
+        </div>
+        <div class="stop">
+          <i>Jan – Apr 2023</i>
+          <b>ACLU</b>
+          <span>Graduate Intern, Analytics</span>
+          <p>Election, voting-rights, and redistricting data for litigation and policy research. R Shiny dashboards with GIS visualizations and reproducible Python-to-R pipelines.</p>
+        </div>
+        <div class="stop">
+          <i>May – Dec 2022</i>
+          <b>New York Mets</b>
+          <span>Systems Video Associate</span>
+          <p>Deployed, operated, and validated player-tracking and biomechanics technology at Citi Field (Trajekt, KinaTrax). Statistical validation and Shiny work for Systems, Major League Strategy, and Minor League Analytics.</p>
+        </div>
+        <div class="stop">
+          <i>2018 – 2022</i>
+          <b>Cal Baseball</b>
+          <span>Director of Baseball Analytics</span>
+          <p>Joined as a student manager and bullpen catcher, then founded the program's first analytics group: scouting reports, pitch-classification models from Trackman, an Effective Velocity calculator, and WAR and FIP tools for the staff.</p>
         </div>
       </div>
-    </section>
+      <p class="bench"><b>Also:</b> Data Intern at Everytown for Gun Safety (2021), NLP and sentiment analysis on peer-to-peer texting campaigns.</p>
+    </div>
+  </section>
 
-    <section class="section" id="skills">
-      <div class="wrap section-grid">
-        <h2>Skills</h2>
-        <dl class="skills content">
+  <section id="projects">
+    <div class="wrap">
+      <div class="eyebrow"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2 18 10 10 18 2 10Z"/></svg>Second base · Projects</div>
+      <h2>Built on my own time</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>AI TPI Golf Coach</h3>
+          <div class="sub">A computer-vision swing screen, end to end in Python</div>
+          <p>Upload a swing video and get a Titleist Performance Institute-style assessment. A custom-trained YOLOv8 detector and MediaPipe pose estimation track the body and club, then the app profiles the kinematic sequence (pelvis, torso, lead arm, trail arm), computes X-Factor hip-to-shoulder separation, and turns the numbers into coaching notes with the OpenAI API. Deployed with Shiny for Python.</p>
+          <div class="t">Python · YOLOv8 · MediaPipe · OpenCV · Plotly · OpenAI · Shiny</div>
+        </article>
+        <article class="card alt">
+          <h3>FlickFlow</h3>
+          <div class="sub">Swipe-based movie recommender, Georgia Tech CSE 6242, team of three</div>
+          <p>New users start on content-based filtering over roughly 100,000 TMDB titles. After 25 swipes the app hands off to a custom counts-and-means collaborative filter built on a cosine similarity matrix of users, with every interaction stored in MongoDB. In evaluation, 39 users made 579 swipes and the collaborative model beat the content-based cold start.</p>
+          <div class="t">Python · MongoDB · TMDB API · Collaborative filtering</div>
+          <div class="links"><a href="https://github.com/kelvinervais/flickflow">Code</a><a href="https://github.com/kelvinervais/flickflow/blob/main/team192report.pdf">Project report</a></div>
+        </article>
+      </div>
+      <ul class="also">
+        <li><b>Portfolio tracker</b>R Shiny dashboard with live quotes, technical indicators, ARIMA and AR(1)+GARCH forecasts, Monte Carlo scenario fans, and news and Reddit sentiment. <a href="https://github.com/kelvinervais/stock_tracking">Code</a></li>
+        <li><b>Effective Velocity calculator</b>Perceived velocity from Trackman exports using release speed, extension, time to plate, and location. Built for the Cal coaching staff. <a href="https://github.com/kelvinervais/EffectiveVelo">Code</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="clay" id="skills">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#ffd8c2"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2 18 10 10 18 2 10Z"/></svg>Third base · Skills and education</div>
+      <h2>What I work in</h2>
+      <div class="skills-grid">
+        <dl class="skills">
           <dt>Languages</dt><dd>Python, R, SQL</dd>
-          <dt>Modeling</dt><dd>scikit-learn, XGBoost, PyTorch, tidymodels, computer vision (YOLOv8, MediaPipe)</dd>
+          <dt>Modeling</dt><dd>scikit-learn, XGBoost, PyTorch, tidymodels, computer vision with YOLOv8 and MediaPipe</dd>
           <dt>Data</dt><dd>Elasticsearch, MongoDB, pandas, numpy, geopandas</dd>
-          <dt>Apps and viz</dt><dd>R Shiny, Shiny for Python, ggplot2, Plotly, Tableau</dd>
-          <dt>LLM and infra</dt><dd>vLLM, OpenAI API, Azure, Airflow, Git</dd>
+          <dt>Apps and visualization</dt><dd>R Shiny, Shiny for Python, ggplot2, Plotly, Tableau</dd>
+          <dt>LLM and infrastructure</dt><dd>vLLM, OpenAI API, Azure, Airflow, Git</dd>
           <dt>Language</dt><dd>Spanish, California Seal of Biliteracy</dd>
         </dl>
-      </div>
-    </section>
-
-    <section class="section" id="education">
-      <div class="wrap section-grid">
-        <h2>Education</h2>
-        <ul class="ledger content">
-          <li>
-            <span class="when">2022 – 2025</span>
-            <div>
-              <h3>M.S. Analytics <span class="org">· Georgia Institute of Technology</span></h3>
-              <p>Computational Data Analytics track. Completed December 2025 while working full time.</p>
-            </div>
-          </li>
-          <li>
-            <span class="when">2018 – 2022</span>
-            <div>
-              <h3>B.A. Political Economy, minor in Data Science <span class="org">· UC Berkeley</span></h3>
-              <p>Concentration in technology and the economy. Regents' and Chancellor's Scholar.</p>
-            </div>
-          </li>
+        <ul class="edu">
+          <li><i>2022 – 2025</i><b>M.S. Analytics, Georgia Tech</b><span>Computational Data Analytics track. Completed December 2025 while working full time.</span></li>
+          <li><i>2018 – 2022</i><b>B.A. Political Economy, UC Berkeley</b><span>Minor in Data Science. Regents' and Chancellor's Scholar.</span></li>
         </ul>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="golf">
-      <div class="wrap section-grid">
-        <h2>Golf</h2>
-        <div class="content">
-          <p>Every round since late 2021, logged by hole. Mostly Seattle municipal courses.</p>
-          <div class="golf-stats" id="golf-stats" aria-live="polite"></div>
-          <div class="chart-box"><canvas id="golf-chart" aria-label="18-hole scores over time" role="img"></canvas></div>
-          <p class="chart-note" id="golf-note"></p>
+  <section class="grass" id="home">
+    <div class="wrap">
+      <div class="eyebrow"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 3h14v8l-7 7-7-7Z"/></svg>Home · Off the field</div>
+      <div class="golf">
+        <div>
+          <p class="score" id="best">76<small id="best-note">best 18 holes</small></p>
+          <div class="golf-stats" id="golf-stats"></div>
+        </div>
+        <div>
+          <div class="chalkline" id="bars"></div>
+          <p class="chart-note" id="chart-note">Loading rounds.</p>
         </div>
       </div>
-    </section>
-
-    <section class="section" id="cooking">
-      <div class="wrap section-grid">
-        <h2>Cooking</h2>
-        <div class="content" style="max-width:none">
-          <p>The other thing I make on weekends.</p>
-          <div class="plates">
-            <img src="Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg" alt="A plated dish" />
-            <img src="Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg" alt="A plated dish" />
-            <img src="Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg" alt="A plated dish" />
-            <img src="Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg" alt="A plated dish" />
-            <img src="Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg" alt="A plated dish" />
-            <img src="Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg" alt="A plated dish" />
-            <img src="Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg" alt="A plated dish" />
-          </div>
-        </div>
+      <div class="cook-head">
+        <h3>And the other weekend project</h3>
+        <p>Cooking, mostly.</p>
       </div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div class="wrap section-grid">
-        <h2>Contact</h2>
-        <div class="content">
-          <p>Open to conversations about data science and analytics roles, in sports and beyond. Email is the fastest way to reach me.</p>
-          <div class="links">
-            <a href="mailto:kelvinervais@gmail.com">kelvinervais@gmail.com</a>
-            <a href="https://www.linkedin.com/in/kelvinervais/">LinkedIn</a>
-            <a href="https://github.com/kelvinervais">GitHub</a>
-          </div>
-        </div>
+      <div class="plates">
+        <img src="Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg" alt="A plated dish" />
+        <img src="Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg" alt="A plated dish" />
+        <img src="Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg" alt="A plated dish" />
+        <img src="Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg" alt="A plated dish" />
+        <img src="Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg" alt="A plated dish" />
+        <img src="Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg" alt="A plated dish" />
+        <img src="Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg" alt="A plated dish" />
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="eyebrow"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2 18 10 10 18 2 10Z"/></svg>Extra innings · Contact</div>
+      <h2>Open to the next one.</h2>
+      <p>Data science and analytics roles, in sports and beyond. Email is the fastest way to reach me.</p>
+      <div class="chips">
+        <a href="mailto:kelvinervais@gmail.com">kelvinervais@gmail.com</a>
+        <a class="alt" href="https://www.linkedin.com/in/kelvinervais/">LinkedIn</a>
+        <a class="alt" href="https://github.com/kelvinervais">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    <div class="wrap">Kelvin Ervais, Seattle. Updated September 2026.</div>
-  </footer>
+<footer><div class="wrap">Kelvin Ervais, Seattle. Updated September 2026.</div></footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script>
-    (async function () {
-      const statsEl = document.getElementById('golf-stats');
-      const noteEl = document.getElementById('golf-note');
-      const canvas = document.getElementById('golf-chart');
-      let rounds;
-      try {
-        const res = await fetch('Golf/rounds.json');
-        rounds = (await res.json()).rounds;
-      } catch (e) {
-        noteEl.textContent = 'Round data did not load.';
-        return;
+<div class="pin" id="pin" aria-hidden="true">
+  <svg class="diamond" viewBox="-70 -40 540 480">
+    <path class="field" d="M200 20 L380 200 L200 380 L20 200 Z" />
+    <path class="path" d="M200 60 L340 200 L200 340 L60 200 Z" />
+    <circle class="runner-ring" data-runner-ring r="16" cx="200" cy="340" />
+    <circle class="runner" data-runner r="10" cx="200" cy="340" />
+    <g class="base" data-base="projects" transform="translate(200 20)"><rect x="-62" y="-32" width="124" height="64" rx="8" /><text y="13">2B</text></g>
+    <g class="base" data-base="career" transform="translate(380 200)"><rect x="-62" y="-32" width="124" height="64" rx="8" /><text y="13">1B</text></g>
+    <g class="base" data-base="skills" transform="translate(20 200)"><rect x="-62" y="-32" width="124" height="64" rx="8" /><text y="13">3B</text></g>
+    <g class="base home" data-base="home" transform="translate(200 380)"><rect x="-62" y="-32" width="124" height="64" rx="8" /><text y="13">H</text></g>
+  </svg>
+  <span class="label" id="pin-label">Top</span>
+</div>
+
+<script>
+(function () {
+  // Base order around the diamond: home plate -> 1B -> 2B -> 3B -> home.
+  var BASES = { start: [200, 340], career: [340, 200], projects: [200, 60], skills: [60, 200], home: [200, 340] };
+  var ORDER = ['start', 'career', 'projects', 'skills', 'home'];
+  var LABELS = { start: 'Top', career: 'Career', projects: 'Projects', skills: 'Skills', home: 'Off the field' };
+  var sections = ORDER.map(function (id) { return document.getElementById(id === 'start' ? 'top' : id); });
+  var runners = document.querySelectorAll('[data-runner]');
+  var rings = document.querySelectorAll('[data-runner-ring]');
+  var bases = document.querySelectorAll('.base');
+  var pin = document.getElementById('pin');
+  var pinLabel = document.getElementById('pin-label');
+  var heroDiamond = document.querySelector('.hero-diamond');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Click or keyboard on any base scrolls to its section.
+  bases.forEach(function (b) {
+    var go = function () {
+      var id = b.getAttribute('data-base');
+      document.getElementById(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    };
+    b.addEventListener('click', go);
+    b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  });
+
+  // Progress 0..4 along the basepaths, driven by scroll. The runner holds at a
+  // base while its section is being read and runs during the last 45% of it.
+  function progress() {
+    var y = window.scrollY + window.innerHeight * 0.35;
+    var tops = sections.map(function (s) { return s.offsetTop; });
+    for (var i = 0; i < sections.length - 1; i++) {
+      var a = tops[i], b = tops[i + 1];
+      if (y < b) {
+        var h = b - a;
+        var t = Math.max(0, Math.min(1, (y - (a + h * 0.55)) / (h * 0.45)));
+        return i + t * t * (3 - 2 * t);
       }
+    }
+    return 4;
+  }
 
-      const full = rounds.filter(r => r.holes.length === 18);
-      const nine = rounds.filter(r => r.holes.length === 9);
-      const thisYear = String(new Date().getFullYear());
-      const yearRounds = full.filter(r => r.date.startsWith(thisYear));
-      const best = full.reduce((a, b) => (b.strokes < a.strokes ? b : a));
-      const avg = arr => arr.reduce((s, r) => s + r.strokes, 0) / arr.length;
+  var current = '';
+  function draw() {
+    var p = progress();
+    var seg = Math.min(3, Math.floor(p));
+    var t = p - seg;
+    var from = BASES[ORDER[seg]], to = BASES[ORDER[seg + 1]];
+    var x = from[0] + (to[0] - from[0]) * t, y = from[1] + (to[1] - from[1]) * t;
+    runners.forEach(function (r) { r.setAttribute('cx', x); r.setAttribute('cy', y); });
+    rings.forEach(function (r) { r.setAttribute('cx', x); r.setAttribute('cy', y); r.setAttribute('r', 16 + Math.sin(t * Math.PI) * 8); });
 
-      const stat = (v, label) => `<div><b>${v}</b><span>${label}</span></div>`;
-      statsEl.innerHTML =
-        stat(full.length, '18-hole rounds') +
-        stat(nine.length, '9-hole rounds') +
-        stat(best.strokes, `best 18, ${best.course || best.date}`) +
-        (yearRounds.length ? stat(avg(yearRounds).toFixed(1), `${thisYear} average`) : '');
+    var atBase = ORDER[Math.round(p)];
+    if (atBase !== current) {
+      current = atBase;
+      bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-base') === atBase); });
+      pinLabel.textContent = LABELS[atBase];
+    }
 
-      const window = 5;
-      const rolling = full.map((r, i) => {
-        if (i < window - 1) return null;
-        const slice = full.slice(i - window + 1, i + 1);
-        return +avg(slice).toFixed(1);
-      });
+    var heroGone = heroDiamond.getBoundingClientRect().bottom < 0;
+    pin.classList.toggle('show', heroGone);
+    pin.setAttribute('aria-hidden', heroGone ? 'false' : 'true');
+  }
 
-      const css = getComputedStyle(document.documentElement);
-      const line = css.getPropertyValue('--chart-line').trim();
-      const avgColor = css.getPropertyValue('--chart-avg').trim();
-      const grid = css.getPropertyValue('--rule').trim();
-      const text = css.getPropertyValue('--ink-3').trim();
-      const font = css.getPropertyValue('--sans').trim();
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { draw(); ticking = false; });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', draw);
+  draw();
+})();
 
-      Chart.defaults.font.family = font;
-      Chart.defaults.color = text;
+// Golf: bars for recent 18-hole rounds, real data exported from 18Birdies.
+(async function () {
+  var note = document.getElementById('chart-note');
+  var data;
+  try { data = await (await fetch('Golf/rounds.json')).json(); }
+  catch (e) { note.textContent = 'Round data did not load.'; return; }
+  var courses = {};
+  (data.myData.clubData.playedClubs || []).forEach(function (c) { courses[c.clubId] = c.name; });
+  var rounds = data.myData.activityData.rounds;
+  var all = rounds.filter(function (r) { return r.holeStrokes && r.holeStrokes.length === 18 && r.strokes > 0; })
+                  .sort(function (a, b) { return a.timestamp - b.timestamp; });
+  var nine = rounds.filter(function (r) { return r.holeStrokes && r.holeStrokes.length === 9; }).length;
+  if (!all.length) { note.textContent = 'No rounds yet.'; return; }
 
-      new Chart(canvas.getContext('2d'), {
-        type: 'line',
-        data: {
-          labels: full.map(r => r.date),
-          datasets: [
-            {
-              label: 'Score',
-              data: full.map(r => r.strokes),
-              borderColor: line,
-              backgroundColor: line,
-              pointRadius: 3,
-              pointHoverRadius: 5,
-              borderWidth: 1,
-              showLine: false
-            },
-            {
-              label: '5-round average',
-              data: rolling,
-              borderColor: avgColor,
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.3,
-              spanGaps: false
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          interaction: { mode: 'nearest', intersect: false },
-          plugins: {
-            legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true } },
-            tooltip: {
-              callbacks: {
-                title: items => {
-                  const r = full[items[0].dataIndex];
-                  return r.course ? `${r.course}, ${r.date}` : r.date;
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              ticks: {
-                maxTicksLimit: 6,
-                callback: function (v, i) {
-                  const d = this.getLabelForValue(v);
-                  return d ? d.slice(0, 7) : '';
-                }
-              },
-              grid: { display: false }
-            },
-            y: { grid: { color: grid }, ticks: { stepSize: 5 } }
-          }
-        }
-      });
+  var best = all.reduce(function (a, b) { return b.strokes < a.strokes ? b : a; });
+  var year = new Date().getFullYear();
+  var thisYear = all.filter(function (r) { return new Date(r.timestamp).getFullYear() === year; });
+  var avg = function (arr) { return (arr.reduce(function (s, r) { return s + r.strokes; }, 0) / arr.length).toFixed(1); };
+  var fmt = function (d) { return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }); };
+  document.getElementById('best').firstChild.textContent = best.strokes;
+  document.getElementById('best-note').textContent = 'best 18 holes, ' + (courses[best.clubId.id] || 'course unknown') + ', ' + fmt(new Date(best.timestamp));
+  document.getElementById('golf-stats').innerHTML =
+    '<div><b>' + all.length + '</b><span>18-hole rounds</span></div>' +
+    '<div><b>' + nine + '</b><span>9-hole rounds</span></div>' +
+    (thisYear.length ? '<div><b>' + avg(thisYear) + '</b><span>' + year + ' average</span></div>' : '');
 
-      const first = full[0].date.slice(0, 4);
-      noteEl.textContent = `Each point is one 18-hole round. Data exported from 18Birdies, ${first} to ${full[full.length - 1].date.slice(0, 7)}.`;
-    })();
-  </script>
+  var recent = all.slice(-40);
+  var lo = 70, hi = Math.max.apply(null, recent.map(function (r) { return r.strokes; })) + 5;
+  var bars = document.getElementById('bars');
+  recent.forEach(function (r) {
+    var i = document.createElement('i');
+    i.style.height = ((r.strokes - lo) / (hi - lo) * 100) + '%';
+    i.title = r.strokes + ' at ' + (courses[r.clubId.id] || 'unknown course') + ', ' + new Date(r.timestamp).toLocaleDateString();
+    if (r.strokes === best.strokes) i.classList.add('best');
+    bars.appendChild(i);
+  });
+  var par = document.createElement('div');
+  par.className = 'par';
+  par.style.bottom = ((90 - lo) / (hi - lo) * 100) + '%';
+  par.textContent = '90';
+  bars.appendChild(par);
+  note.textContent = 'Last ' + recent.length + ' rounds of 18, ' + fmt(new Date(recent[0].timestamp)) + ' to ' + fmt(new Date(recent[recent.length - 1].timestamp)) + '. Every round since late 2021 is logged by hole, mostly at Seattle municipal courses.';
+})();
+</script>
 </body>
 </html>
