@@ -59,7 +59,8 @@
     .stage { transition: opacity .35s ease .35s; }
     .side .fade { transition: opacity .2s ease; }
     .side.switching .fade { opacity: 0; }
-    .side { transition: padding .55s cubic-bezier(.4,0,.2,1), gap .55s cubic-bezier(.4,0,.2,1); }
+    .side { max-width: 460px; width: 100%; margin: 0 auto; transition: padding .55s cubic-bezier(.4,0,.2,1), gap .55s cubic-bezier(.4,0,.2,1), max-width .55s cubic-bezier(.4,0,.2,1); }
+    @media (max-width: 960px) { .side { max-width: none; } }
     .side h1 { transition: font-size .55s cubic-bezier(.4,0,.2,1); }
     .intro { display: none; font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; letter-spacing: -0.02em; max-width: 24ch; margin: 0; }
     .shell.landing .intro { display: block; }
