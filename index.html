@@ -240,7 +240,7 @@
         <g class="base" data-view="projects" tabindex="0" role="button" transform="translate(200 -26)"><rect x="-58" y="-24" width="116" height="48" rx="6" /><text y="7">Projects</text></g>
         <g class="base" data-view="career" tabindex="0" role="button" transform="translate(448 200)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Career</text></g>
         <g class="base" data-view="skills" tabindex="0" role="button" transform="translate(-48 200)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Skills</text></g>
-        <g class="base on" data-view="home" tabindex="0" role="button" transform="translate(200 426)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
+        <g class="base" data-view="home" tabindex="0" role="button" transform="translate(200 426)"><rect x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
         <g class="base dugout" data-view="dugout" tabindex="0" role="button" transform="translate(360 486)"><rect x="-58" y="-22" width="116" height="44" rx="6" /><text y="7">Dugout</text></g>
       </svg>
       <p class="field-hint">Click a base. The runner takes you there.</p>
@@ -248,6 +248,18 @@
   </aside>
 
   <main class="stage" id="stage">
+
+    <section class="view" id="home" data-view="home">
+      <h2 class="lede">I build data products that MLB front offices use every day.</h2>
+      <div class="about">
+        <div>
+          <p>Analyst in Baseball Projects with the Seattle Mariners since 2023. I build and maintain the internal tools Baseball Operations staff work from, and I sit close to the coaches and analysts who use them.</p>
+          <p>Before Seattle: the Mets' systems group, an analytics internship at the ACLU, and Cal Baseball, where I went from bullpen catcher to founding the program's analytics group.</p>
+          <p class="soft">M.S. Analytics, Georgia Tech. B.A. Political Economy with a Data Science minor, UC Berkeley. Email is the fastest way to reach me.</p>
+        </div>
+        <img class="portrait" src="headshot.jpeg" alt="Kelvin Ervais" width="200" height="200" />
+      </div>
+    </section>
 
 
     <section class="view" id="career" data-view="career">
@@ -411,7 +423,7 @@
 (function () {
   // Where the runner stands for each view, on the inner basepath. The dugout
   // sits off the field past home plate.
-  var SPOTS = { home: [200, 380], career: [380, 200], projects: [200, 20], skills: [20, 200], dugout: [300, 450] };
+  var SPOTS = { landing: [200, 380], home: [200, 380], career: [380, 200], projects: [200, 20], skills: [20, 200], dugout: [300, 450] };
   var ORDER = ['home', 'career', 'projects', 'skills'];
   var bases = document.querySelectorAll('.base');
   var views = document.querySelectorAll('.view');
@@ -420,7 +432,7 @@
   var stage = document.getElementById('stage');
   var shell = document.querySelector('.shell');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var current = 'home';
+  var current = 'landing';
   var anim = null;
 
   // Runners only go forward. From a base, the route to another base goes
@@ -428,6 +440,7 @@
   function route(from, to) {
     if (from === to) return [];
     var pts = [];
+    if (from === 'landing') from = 'home';
     if (from === 'dugout') { pts.push(SPOTS.home); from = 'home'; }
     var i = ORDER.indexOf(from);
     var target = to === 'dugout' ? 'home' : to;
@@ -465,11 +478,11 @@
 
   function show(view, push) {
     views.forEach(function (v) { v.classList.toggle('on', v.getAttribute('data-view') === view); });
-    shell.classList.toggle('landing', view === 'home');
+    shell.classList.toggle('landing', view === 'landing');
     bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
     stage.scrollTop = 0;
-    if (window.innerWidth <= 960 && view !== 'home') stage.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    if (push) history.replaceState(null, '', view === 'home' ? location.pathname : '#' + view);
+    if (window.innerWidth <= 960 && view !== 'landing') stage.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    if (push) history.replaceState(null, '', view === 'landing' ? location.pathname : '#' + view);
   }
 
   function go(view) {
@@ -486,7 +499,7 @@
   });
   window.addEventListener('hashchange', function () { var v = location.hash.slice(1); if (SPOTS[v]) go(v); });
   var initial = location.hash.slice(1);
-  if (SPOTS[initial] && initial !== 'home') { current = initial; place(SPOTS[initial]); show(initial, false); }
+  if (SPOTS[initial] && initial !== 'landing') { current = initial; place(SPOTS[initial]); show(initial, false); }
 })();
 
 // Timeline cards expand in place.
