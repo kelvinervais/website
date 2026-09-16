@@ -102,6 +102,7 @@
     .rows p { margin: 8px 0 0; color: #c7d0dc; font-size: 15px; }
     .rows .meta { margin-top: 8px; font-size: 13px; color: var(--mute); }
     .rows .meta a { margin-right: 14px; }
+    .rows.nowhen li { grid-template-columns: 1fr; }
 
     /* Skills */
     .skills { display: grid; grid-template-columns: 150px 1fr; gap: 12px 24px; margin-bottom: 40px; }
@@ -259,25 +260,23 @@
 
     <section class="view" id="projects" data-view="projects">
       <h2>Projects</h2>
-      <ul class="rows">
+      <ul class="rows nowhen">
         <li>
-          <span class="when">2025</span>
           <div>
             <h3>Portfolio tracker<span>Stock and ETF dashboard in R Shiny</span></h3>
-            <p>Live quotes and watchlist, technical indicator builder (RSI, MACD, ADX, Bollinger), portfolio upload with P&amp;L, and an Insights tab with ARIMA, random-walk, and AR(1)+GARCH expected paths plus Monte Carlo scenario fans with normal, Student-t, or bootstrapped shocks. News and Reddit sentiment feed into the signals.</p>
-            <div class="meta"><a href="https://kelvinervais.shinyapps.io/TrendTracker/">Live app</a><a href="https://github.com/kelvinervais/stock_tracking">Code</a>R · Shiny · bslib · quantmod · forecast · rugarch</div>
+            <p>Watchlist with live quotes, a technical indicator builder, and portfolio upload with P&amp;L. An Insights tab projects expected price paths with ARIMA and AR(1)+GARCH and runs Monte Carlo scenario fans, with news and Reddit sentiment folded into the signals.</p>
+            <div class="meta"><a href="https://kelvinervais.shinyapps.io/TrendTracker/">Live app</a><a href="https://github.com/kelvinervais/stock_tracking">Code</a>R · Shiny · quantmod · forecast · rugarch</div>
           </div>
         </li>
-      </ul>
-    <li>
-          <span class="when">2024</span>
+        <li>
           <div>
-            <h3>FlickFlow<span>Swipe-based movie recommender · Georgia Tech CSE 6242, team of three</span></h3>
-            <p>New users start on content-based filtering over roughly 100,000 TMDB titles. After 25 swipes the app hands off to a custom counts-and-means collaborative filter built on a cosine similarity matrix of users, with every interaction stored in MongoDB. In evaluation, 39 users made 579 swipes and the collaborative model beat the content-based cold start.</p>
+            <h3>FlickFlow<span>Swipe-based movie recommender</span></h3>
+            <p>Swipe through movies like a dating app. New users start on content-based filtering over roughly 100,000 TMDB titles, then a custom collaborative filter takes over once there are enough swipes to find similar users. In testing, 39 users made 579 swipes and the collaborative model beat the cold-start baseline.</p>
             <div class="meta"><a href="https://github.com/kelvinervais/flickflow">Code</a><a href="https://github.com/kelvinervais/flickflow/blob/main/team192report.pdf">Project report</a>Python · MongoDB · TMDB API</div>
           </div>
         </li>
-        </section>
+      </ul>
+    </section>
 
     <section class="view" id="skills" data-view="skills">
       <h2>Skills</h2>
