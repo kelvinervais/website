@@ -11,6 +11,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kelvinervais.github.io/website/" />
   <meta property="og:title" content="Kelvin Ervais" />
+  <meta property="og:site_name" content="Kelvin Ervais" />
+  <meta property="og:image:alt" content="Kelvin Ervais" />
   <meta property="og:description" content="Data, design, and development, mostly for baseball. Seattle Mariners. Georgia Tech M.S. Analytics." />
   <meta property="og:image" content="https://kelvinervais.github.io/website/headshot.jpeg" />
   <meta name="twitter:card" content="summary" />
@@ -122,7 +124,7 @@
     .rows .when { color: var(--mute); font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 4px; }
     .rows h3 { font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; }
     .rows h3 span { display: block; font-family: var(--body); font-weight: 400; font-size: 15px; color: var(--mute); letter-spacing: 0; margin-top: 4px; }
-    .rows p { margin: 8px 0 0; color: #c7d0dc; font-size: 15px; }
+    .rows p { margin: 8px 0 0; color: #c7d0dc; font-size: 15px; max-width: 72ch; }
     .rows .meta { margin-top: 8px; font-size: 13px; color: var(--mute); }
     .rows .meta a { margin-right: 14px; }
     .rows.nowhen li { grid-template-columns: 1fr; }
@@ -149,7 +151,7 @@
     .ledger { border-top: 1px solid var(--line); margin-top: 6px; }
     .stop { display: none; }
     .stop.sel { display: block; }
-    .stop button { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; width: 100%; padding: 14px 0 6px; background: none; border: 0; color: var(--chalk); text-align: left; cursor: default; }
+    .stop .hd { display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center; width: 100%; padding: 14px 0 6px; color: var(--chalk); }
     .stop .logo { width: 44px; height: 44px; border-radius: 9px; background: var(--chalk); padding: 4px; display: flex; align-items: center; justify-content: center; }
     .stop.now .logo { box-shadow: 0 0 0 2px var(--gold); }
     .stop .logo img { width: 100%; height: 100%; object-fit: contain; }
@@ -265,7 +267,7 @@
       .gr, .gaxis { grid-template-columns: 96px 1fr; gap: 0 8px; }
       .gl { font-size: 12px; }
       .gkey { padding-left: 0; }
-      .stop button { grid-template-columns: 40px 1fr; }
+      .stop .hd { grid-template-columns: 40px 1fr; }
       .stop .logo { width: 40px; height: 40px; }
       .stop .when { grid-column: 2; }
       .stop p { margin-left: 0; }
@@ -281,6 +283,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .view { animation: none; }
+      .shell, .side, .side h1, .side .fade, .stage, .diamond, .base rect.tile { transition: none !important; }
       .stage { scroll-behavior: auto; }
     }
   </style>
@@ -314,7 +317,7 @@
         <g class="base" data-view="home" tabindex="0" role="button" transform="translate(200 426)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-52" y="-24" width="104" height="48" rx="6" /><text y="7">Home</text></g>
         <g class="base dugout" data-view="dugout" tabindex="0" role="button" transform="translate(360 486)"><rect class="hit" x="-120" y="-80" width="240" height="160" /><rect class="tile" x="-58" y="-22" width="116" height="44" rx="6" /><text y="7">Dugout</text></g>
       </svg>
-      <p class="field-hint fade">Click a base. The runner takes you there.</p>
+      <p class="field-hint fade">Pick a base. The runner takes you there.</p>
     </div>
   </aside>
 
@@ -324,9 +327,9 @@
       <h2 class="lede">Data, design, and development, mostly for baseball.</h2>
       <div class="about">
         <div>
-          <p>Analyst in Baseball Projects with the Seattle Mariners since 2023. I build and maintain the internal tools Baseball Operations staff work from, and I sit close to the coaches and analysts who use them.</p>
-          <p>Before Seattle: the Mets' systems group, an analytics internship at the ACLU, and Cal Baseball, where I went from bullpen catcher to founding the program's analytics group.</p>
-          <p class="soft">M.S. Analytics, Georgia Tech. B.A. Political Economy with a Data Science minor, UC Berkeley. Email is the fastest way to reach me.</p>
+          <p>I'm an analyst in Baseball Projects with the Seattle Mariners. I build and maintain the internal tools Baseball Operations staff work from, and I sit close to the coaches and analysts who use them.</p>
+          <p>Outside of baseball I build my own things: a 3D golf course atlas, and the AI bill analysis behind a site that tracks how Congress votes. Mostly web apps and data pipelines, and more and more work with language models.</p>
+          <p class="soft">Email is the fastest way to reach me.</p>
         </div>
         <img class="portrait" src="headshot.jpeg" alt="Kelvin Ervais" width="200" height="200" />
       </div>
@@ -370,59 +373,59 @@
       </div>
       <ul class="ledger">
         <li class="stop now" data-stop="mariners">
-          <button type="button" aria-expanded="true">
+          <div class="hd">
             <span class="logo"><img src="logos/mariners.png" alt="" /></span>
             <span class="who"><b>Seattle Mariners</b><span>Analyst, Baseball Projects</span></span>
             <span class="when">Apr 2023 – now</span>
-          </button>
+          </div>
           <p>Build and maintain internal data products and decision-support tools for Baseball Operations, working directly with coaches, analysts, and performance staff.</p>
         </li>
         <li class="stop" data-stop="aclu">
-          <button type="button" aria-expanded="false">
+          <div class="hd">
             <span class="logo"><img src="logos/aclu.png" alt="" /></span>
             <span class="who"><b>ACLU</b><span>Graduate Intern, Analytics</span></span>
             <span class="when">Jan – Apr 2023</span>
-          </button>
+          </div>
           <p>Election, voting-rights, and redistricting data for litigation and policy research. R Shiny dashboards with GIS visualizations and reproducible Python-to-R pipelines.</p>
         </li>
         <li class="stop" data-stop="gt">
-          <button type="button" aria-expanded="false">
+          <div class="hd">
             <span class="logo"><img src="logos/gt.png" alt="" /></span>
             <span class="who"><b>Georgia Tech</b><span>M.S. Analytics, Computational Data Analytics</span></span>
             <span class="when">Aug 2022 – Dec 2025</span>
-          </button>
+          </div>
           <p>Completed December 2025 while working full time. Machine learning, statistical modeling, and data and visual analytics.</p>
         </li>
         <li class="stop" data-stop="mets">
-          <button type="button" aria-expanded="false">
+          <div class="hd">
             <span class="logo"><img src="logos/mets.png" alt="" /></span>
             <span class="who"><b>New York Mets</b><span>Systems Video Associate</span></span>
             <span class="when">May – Dec 2022</span>
-          </button>
+          </div>
           <p>Deployed, operated, and validated player-tracking and biomechanics technology at Citi Field (Trajekt, KinaTrax). Statistical validation and Shiny development for Systems, Major League Strategy, and Minor League Analytics.</p>
         </li>
         <li class="stop" data-stop="everytown">
-          <button type="button" aria-expanded="false">
+          <div class="hd">
             <span class="logo"><img src="logos/everytown.png" alt="" /></span>
             <span class="who"><b>Everytown for Gun Safety</b><span>Data Intern</span></span>
             <span class="when">Aug – Nov 2021</span>
-          </button>
+          </div>
           <p>NLP and sentiment analysis on peer-to-peer texting campaigns, database maintenance, and campaign administration.</p>
         </li>
         <li class="stop" data-stop="calbaseball">
-          <button type="button" aria-expanded="false">
+          <div class="hd">
             <span class="logo"><img src="logos/cal_baseball.png" alt="" /></span>
             <span class="who"><b>Cal Baseball</b><span>Director of Baseball Analytics</span></span>
             <span class="when">Aug 2018 – May 2022</span>
-          </button>
+          </div>
           <p>Joined as a student manager and bullpen catcher, then founded the program's first analytics group: scouting reports, pitch-classification models from Trackman, an Effective Velocity calculator, opponent matchup modeling, and WAR and FIP tools for the staff.</p>
         </li>
         <li class="stop" data-stop="berkeley">
-          <button type="button" aria-expanded="false">
+          <div class="hd">
             <span class="logo"><img src="logos/cal.png" alt="" /></span>
             <span class="who"><b>UC Berkeley</b><span>B.A. Political Economy, minor in Data Science</span></span>
             <span class="when">Jun 2018 – May 2022</span>
-          </button>
+          </div>
           <p>Concentration in technology and the economy. Regents' and Chancellor's Scholar.</p>
         </li>
       </ul>
@@ -433,16 +436,16 @@
       <ul class="rows nowhen">
         <li>
           <div>
-            <h3>Portfolio tracker<span>Stock and ETF dashboard in R Shiny</span></h3>
-            <p>Watchlist with live quotes, a technical indicator builder, and portfolio upload with P&amp;L. An Insights tab projects expected price paths with ARIMA and AR(1)+GARCH and runs Monte Carlo scenario fans, with news and Reddit sentiment folded into the signals.</p>
-            <div class="meta"><a href="https://kelvinervais.shinyapps.io/TrendTracker/">Live app</a><a href="https://github.com/kelvinervais/stock_tracking">Code</a>R · Shiny · quantmod · forecast · rugarch</div>
+            <h3>CaddieLog</h3>
+            <p>3D maps of golf courses across the US, built from public lidar and mapping data so you can see a course before you play it. Elevation, green slopes, scorecards, and distances for every hole.</p>
+            <div class="meta"><a href="https://caddielog.app">caddielog.app</a>React · Vite · lidar · OpenStreetMap</div>
           </div>
         </li>
         <li>
           <div>
-            <h3>FlickFlow<span>Swipe-based movie recommender</span></h3>
-            <p>Swipe through movies like a dating app. New users start on content-based filtering over roughly 100,000 TMDB titles, then a custom collaborative filter takes over once there are enough swipes to find similar users. In testing, 39 users made 579 swipes and the collaborative model beat the cold-start baseline.</p>
-            <div class="meta"><a href="https://github.com/kelvinervais/flickflow">Code</a><a href="https://github.com/kelvinervais/flickflow/blob/main/team192report.pdf">Project report</a>Python · MongoDB · TMDB API</div>
+            <h3>The Fourth Estate</h3>
+            <p>A site that tracks how every member of Congress votes. I work on the AI and data visualization side: using language models to summarize bills and score which way they push, and building the charts that show how each member votes across issues.</p>
+            <div class="meta"><a href="https://thefourthestate.today">thefourthestate.today</a>Python · FastAPI · PostgreSQL · OpenAI and Anthropic APIs · Pydantic</div>
           </div>
         </li>
       </ul>
@@ -461,13 +464,13 @@
 
     <section class="view" id="dugout" data-view="dugout">
       <h2>Dugout</h2>
-      <div class="tabs" role="tablist">
-        <button class="tab on" data-sub="golf" role="tab">Golf</button>
-        <button class="tab" data-sub="cooking" role="tab">Cooking</button>
+      <div class="tabs">
+        <button class="tab on" data-sub="golf" aria-pressed="true">Golf</button>
+        <button class="tab" data-sub="cooking" aria-pressed="false">Cooking</button>
         <span style="flex:1"></span>
-        <button class="tab on" data-filter="18" role="tab">18 holes</button>
-        <button class="tab" data-filter="9" role="tab">9 holes</button>
-        <button class="tab" data-filter="all" role="tab">All</button>
+        <button class="tab on" data-filter="18" aria-pressed="true">18 holes</button>
+        <button class="tab" data-filter="9" aria-pressed="false">9 holes</button>
+        <button class="tab" data-filter="all" aria-pressed="false">All</button>
       </div>
 
       <div class="sub on" id="golf">
@@ -485,13 +488,13 @@
 
       <div class="sub" id="cooking">
         <div class="plates">
-          <img src="Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg" alt="A plated dish" />
-          <img src="Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg" alt="A plated dish" />
-          <img src="Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg" alt="A plated dish" />
-          <img src="Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg" alt="A plated dish" />
-          <img src="Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg" alt="A plated dish" />
-          <img src="Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg" alt="A plated dish" />
-          <img src="Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg" alt="A plated dish" />
+          <img src="Cooking/1D7F075E-A72E-4E0F-B9D5-5D39FBD875C0_1_105_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
+          <img src="Cooking/249ADACF-F38B-4C50-A613-CFD3076C7285_1_105_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
+          <img src="Cooking/4DD43B50-F9C2-445A-93A7-6C7B75157E23_1_105_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
+          <img src="Cooking/2E9AA4CB-7B59-488C-B023-67A0516B18C3_4_5005_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
+          <img src="Cooking/C33A91D5-87F5-47F0-B581-BC9AE37D12A1_4_5005_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
+          <img src="Cooking/1C75E887-A51F-4229-A5DE-5FAC77A60991_1_105_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
+          <img src="Cooking/C5D0E0E0-395B-417B-ADCA-E1340BF816DA_4_5005_c.jpeg" alt="A plated dish" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -574,7 +577,7 @@
       shell.classList.toggle('landing', toLanding);
       svgEl.setAttribute('viewBox', (!toLanding && window.innerWidth <= 960) ? '-14 -14 428 468' : FULLBOX);
     }
-    bases.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-view') === view); });
+    bases.forEach(function (b) { var on = b.getAttribute('data-view') === view; b.classList.toggle('on', on); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
     document.getElementById('now-label').textContent = LABELS[view] || '';
     stage.scrollTop = 0;
     setTimeout(function () { window.dispatchEvent(new Event('resize')); }, 60);
@@ -604,11 +607,13 @@
 (function () {
   function select(key) {
     document.querySelectorAll('.stop').forEach(function (st) { st.classList.toggle('sel', st.getAttribute('data-stop') === key); });
-    document.querySelectorAll('.gr').forEach(function (r) { r.classList.toggle('sel', r.getAttribute('data-stop') === key); });
+    document.querySelectorAll('.gr').forEach(function (r) { var on = r.getAttribute('data-stop') === key; r.classList.toggle('sel', on); r.setAttribute('aria-pressed', on); });
   }
   document.querySelectorAll('.gr').forEach(function (row) {
     row.addEventListener('click', function () { select(row.getAttribute('data-stop')); });
     row.setAttribute('tabindex', '0');
+    row.setAttribute('role', 'button');
+    row.setAttribute('aria-label', row.querySelector('.gl').textContent);
     row.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(row.getAttribute('data-stop')); } });
   });
   select('mariners');
@@ -620,7 +625,7 @@
   var filterTabs = document.querySelectorAll('[data-filter]');
   subTabs.forEach(function (t) {
     t.addEventListener('click', function () {
-      subTabs.forEach(function (x) { x.classList.toggle('on', x === t); });
+      subTabs.forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-pressed', x === t); });
       var sub = t.getAttribute('data-sub');
       document.querySelectorAll('.sub').forEach(function (s) { s.classList.toggle('on', s.id === sub); });
       filterTabs.forEach(function (f) { f.style.display = sub === 'golf' ? '' : 'none'; });
@@ -666,7 +671,7 @@
     var y = function (v) { return (H - padB) - (v - lo) / (hi - lo) * (H - padB - 10); };
     var svg = document.getElementById('trend');
     W = Math.max(320, Math.round(svg.getBoundingClientRect().width) || 800);
-    bw = (W - padL) / recent.length;
+    var bw = (W - padL) / recent.length;
     svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var mean = avg(recent);
     var html = '';
@@ -734,7 +739,7 @@
 
   filterTabs.forEach(function (t) {
     t.addEventListener('click', function () {
-      filterTabs.forEach(function (x) { x.classList.toggle('on', x === t); });
+      filterTabs.forEach(function (x) { x.classList.toggle('on', x === t); x.setAttribute('aria-pressed', x === t); });
       filter = t.getAttribute('data-filter');
       render();
     });
